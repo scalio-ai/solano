@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>[Your Agency] — AI-Powered Growth for LA Private Practices</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#2774AE;--blue-dk:#1a5a8a;--blue-lt:#e8f2fb;--blue-md:#5a9dc7;--blue-xlt:#f0f7ff;
+  --gold:#c9a84c;--gold-lt:#fdf6e7;
+  --white:#fff;--off:#f8fafc;--g50:#f1f5f9;--g100:#e2e8f0;--g200:#cbd5e1;--g300:#94a3b8;--g500:#64748b;--g600:#475569;--g700:#334155;--g800:#1e293b;--g900:#0f172a;
+  --serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+  --r:14px;--rs:8px;--shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.06);--shadow-lg:0 8px 32px rgba(0,0,0,.1),0 2px 8px rgba(0,0,0,.06);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--g800);background:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--g100);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,4vw,3.5rem)}
+.logo{font-family:var(--serif);font-size:1.25rem;color:var(--g900);text-decoration:none;letter-spacing:-.02em}
+.logo span{color:var(--blue)}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{font-size:.875rem;font-weight:500;color:var(--g500);text-decoration:none;transition:color .15s;letter-spacing:-.01em}
+.nav-links a:hover{color:var(--g900)}
+.nav-cta{background:var(--g900);color:#fff!important;padding:.5rem 1.25rem;border-radius:50px;font-size:.8rem!important;font-weight:600!important;transition:all .15s!important}
+.nav-cta:hover{background:var(--blue)!important;transform:translateY(-1px)}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hbg span{display:block;width:20px;height:1.5px;background:var(--g600);border-radius:2px}
+@media(max-width:700px){.nav-links{display:none}.hbg{display:flex}}
+.mmenu{display:none;position:fixed;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--g100);padding:1.25rem 1.5rem;z-index:99;flex-direction:column;gap:.5rem;box-shadow:var(--shadow-lg)}
+.mmenu.open{display:flex}
+.mmenu a{font-size:.95rem;color:var(--g700);text-decoration:none;font-weight:500;padding:.5rem 0;border-bottom:1px solid var(--g50)}
+.mmenu .mm-cta{border:none;background:var(--g900);color:#fff;text-align:center;padding:.75rem;border-radius:50px;margin-top:.5rem}
+
+/* LAYOUT */
+section{padding:clamp(5rem,9vw,8rem) clamp(1.25rem,4vw,3.5rem)}
+.wrap{max-width:1100px;margin:0 auto}
+.label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.label::before{content:'';display:block;width:18px;height:1.5px;background:var(--blue)}
+h2{font-family:var(--serif);font-size:clamp(1.9rem,3.8vw,2.8rem);line-height:1.15;letter-spacing:-.025em;color:var(--g900)}
+
+/* HERO */
+#hero{min-height:100vh;background:var(--g900);display:flex;align-items:center;padding-top:100px;position:relative;overflow:hidden}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(39,116,174,.15) 0%,transparent 65%);top:-100px;right:-200px;pointer-events:none}
+.hero-glow2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(39,116,174,.08) 0%,transparent 65%);bottom:50px;left:-100px;pointer-events:none}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+@media(max-width:860px){.hero-inner{grid-template-columns:1fr}}
+.hero-tag{display:inline-flex;align-items:center;gap:.6rem;background:rgba(39,116,174,.15);border:1px solid rgba(39,116,174,.3);color:var(--blue-md);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.4rem 1rem;border-radius:50px;margin-bottom:1.75rem}
+.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--blue-md);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+h1{font-family:var(--serif);font-size:clamp(2.5rem,5.5vw,4.2rem);line-height:1.05;letter-spacing:-.035em;color:#fff;margin-bottom:1.5rem}
+h1 em{font-style:italic;color:var(--blue-md)}
+h1 span{display:block;color:rgba(255,255,255,.45);font-size:clamp(1.8rem,3.8vw,2.9rem)}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:2.5rem;max-width:460px}
+.hero-sub strong{color:rgba(255,255,255,.85);font-weight:500}
+.btn-row{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--blue);color:#fff;padding:.85rem 1.75rem;border-radius:50px;font-weight:600;font-size:.875rem;text-decoration:none;transition:all .2s;letter-spacing:-.01em}
+.btn-primary:hover{background:#3085c4;transform:translateY(-2px);box-shadow:0 8px 24px rgba(39,116,174,.4)}
+.btn-ghost{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);padding:.85rem 1.5rem;border-radius:50px;font-weight:500;font-size:.875rem;text-decoration:none;transition:all .2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.35);color:#fff}
+.trust-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem}
+.pill{display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;color:rgba(255,255,255,.5);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:.3rem .75rem;border-radius:50px;letter-spacing:.02em}
+.pill-dot{width:5px;height:5px;border-radius:50%;background:#4ade80}
+
+/* HERO VISUAL */
+.hero-vis{position:relative}
+.phone-frame{background:var(--g800);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4);max-width:340px;margin:0 auto}
+.pf-top{background:rgba(255,255,255,.04);padding:.75rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.pf-dots{display:flex;gap:5px}
+.pf-dot{width:8px;height:8px;border-radius:50%}
+.pf-title{font-size:.7rem;color:rgba(255,255,255,.35);margin-left:.5rem}
+.chat-wrap{padding:1.25rem}
+.chat-agent-name{font-size:.7rem;font-weight:600;color:var(--blue-md);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem;display:flex;align-items:center;gap:.4rem}
+.agent-online{width:6px;height:6px;border-radius:50%;background:#4ade80}
+.bubble{padding:.65rem .9rem;border-radius:12px;font-size:.75rem;line-height:1.55;margin-bottom:.5rem;max-width:85%}
+.bubble.ai{background:rgba(39,116,174,.2);color:rgba(255,255,255,.85);border-radius:12px 12px 12px 3px}
+.bubble.user{background:var(--blue);color:#fff;margin-left:auto;border-radius:12px 12px 3px 12px}
+.typing-ind{display:flex;align-items:center;gap:4px;padding:.55rem .9rem;background:rgba(39,116,174,.2);border-radius:12px 12px 12px 3px;width:fit-content;margin-top:.25rem}
+.t-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.4);animation:tdot .9s infinite}
+.t-dot:nth-child(2){animation-delay:.15s}
+.t-dot:nth-child(3){animation-delay:.3s}
+@keyframes tdot{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-4px);opacity:1}}
+.pf-bottom{background:rgba(255,255,255,.03);padding:.75rem 1rem;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:.5rem}
+.pf-input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:50px;padding:.4rem .85rem;font-size:.7rem;color:rgba(255,255,255,.3);font-family:var(--sans)}
+.pf-send{width:28px;height:28px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* FLOATING CARDS */
+.float-card{position:absolute;background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:.65rem .9rem}
+.fc-top{top:-20px;left:-40px;display:flex;align-items:center;gap:.5rem}
+.fc-bottom{bottom:20px;right:-30px}
+.fc-icon{width:30px;height:30px;border-radius:8px;background:rgba(39,116,174,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fc-t{font-size:.65rem;font-weight:600;color:rgba(255,255,255,.85)}
+.fc-s{font-size:.58rem;color:rgba(255,255,255,.4)}
+.fc-stat{font-family:var(--serif);font-size:1.4rem;color:#fff;line-height:1}
+.fc-stat-l{font-size:.6rem;color:rgba(255,255,255,.4);margin-top:.1rem}
+
+/* STRIP */
+.strip{background:var(--blue);padding:1.5rem clamp(1.25rem,4vw,3.5rem)}
+.strip-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;text-align:center}
+.strip-n{font-family:var(--serif);font-size:2rem;color:#fff;line-height:1}
+.strip-l{font-size:.72rem;color:rgba(255,255,255,.65);margin-top:.2rem;letter-spacing:.03em}
+
+/* AI SECTION — HERO OF THE PAGE */
+#ai{background:var(--off);position:relative;overflow:hidden}
+.ai-bg{position:absolute;inset:0;background-image:radial-gradient(circle at 80% 50%,rgba(39,116,174,.04) 0%,transparent 60%);pointer-events:none}
+.ai-header{text-align:center;max-width:640px;margin:0 auto 4rem}
+.ai-header h2{margin-bottom:1rem}
+.ai-header p{color:var(--g500);font-size:1rem;line-height:1.8}
+.ai-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:800px){.ai-trio{grid-template-columns:1fr}}
+.ai-card{background:#fff;border-radius:var(--r);border:1px solid var(--g100);padding:2rem;position:relative;overflow:hidden;transition:all .25s}
+.ai-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px);border-color:var(--blue-md)}
+.ai-card-accent{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-md))}
+.ai-card-num{font-family:var(--serif);font-size:3rem;color:var(--g50);line-height:1;margin-bottom:1rem;font-weight:400}
+.ai-card h3{font-size:1.1rem;font-weight:600;margin-bottom:.6rem;color:var(--g900);letter-spacing:-.02em}
+.ai-card p{font-size:.875rem;color:var(--g500);line-height:1.75;margin-bottom:1.5rem}
+.ai-card-tags{display:flex;flex-wrap:wrap;gap:.35rem}
+.act{font-size:.68rem;background:var(--blue-lt);color:var(--blue-dk);padding:.2rem .6rem;border-radius:50px;font-weight:500}
+.ai-proof{margin-top:3rem;background:var(--g900);border-radius:var(--r);padding:2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+@media(max-width:680px){.ai-proof{grid-template-columns:1fr}}
+.ai-proof-t{font-family:var(--serif);font-size:1.5rem;color:#fff;line-height:1.3;margin-bottom:.75rem}
+.ai-proof-p{font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.75}
+.ai-proof-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.aps{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:1.1rem}
+.aps-n{font-family:var(--serif);font-size:2rem;color:#fff;line-height:1;margin-bottom:.2rem}
+.aps-l{font-size:.72rem;color:rgba(255,255,255,.4);line-height:1.4}
+
+/* SERVICES */
+#services{background:#fff}
+.svc-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:4rem}
+@media(max-width:700px){.svc-header{grid-template-columns:1fr;gap:1.5rem}}
+.svc-header p{color:var(--g500);font-size:.95rem;line-height:1.8}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:860px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.svc-grid{grid-template-columns:1fr}}
+.scard{border-radius:var(--r);padding:2rem;border:1px solid var(--g100);transition:all .25s;position:relative;overflow:hidden;background:#fff}
+.scard:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);border-color:transparent}
+.scard.featured{background:var(--g900);border-color:transparent}
+.scard-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem}
+.scard:not(.featured) .scard-icon{background:var(--blue-lt)}
+.scard.featured .scard-icon{background:rgba(39,116,174,.2)}
+.scard h3{font-size:1.05rem;font-weight:600;margin-bottom:.6rem;letter-spacing:-.02em}
+.scard:not(.featured) h3{color:var(--g900)}
+.scard.featured h3{color:#fff}
+.scard p{font-size:.83rem;line-height:1.75;margin-bottom:1.5rem}
+.scard:not(.featured) p{color:var(--g500)}
+.scard.featured p{color:rgba(255,255,255,.5)}
+.scard-badge{display:inline-flex;align-items:center;gap:.35rem;font-size:.68rem;font-weight:600;padding:.25rem .65rem;border-radius:50px}
+.scard:not(.featured) .scard-badge{background:var(--blue-lt);color:var(--blue-dk)}
+.scard.featured .scard-badge{background:rgba(39,116,174,.2);color:var(--blue-md)}
+.scard-feat-tag{position:absolute;top:1.25rem;right:1.25rem;background:var(--blue);color:#fff;font-size:.62rem;font-weight:700;padding:.2rem .6rem;border-radius:50px;letter-spacing:.06em;text-transform:uppercase}
+
+/* NICHE */
+#niche{background:var(--g900);position:relative;overflow:hidden}
+.niche-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.niche-header{text-align:center;max-width:560px;margin:0 auto 3.5rem}
+.niche-header h2{color:#fff;margin-bottom:.85rem}
+.niche-header p{color:rgba(255,255,255,.45);font-size:.95rem}
+.niche-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.ncard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);padding:1.5rem;transition:all .2s;text-align:center}
+.ncard:hover{background:rgba(39,116,174,.1);border-color:rgba(39,116,174,.3);transform:translateY(-2px)}
+.ncard-icon{width:48px;height:48px;border-radius:12px;background:rgba(39,116,174,.15);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+.ncard h3{font-size:.9rem;font-weight:600;color:#fff;margin-bottom:.35rem}
+.ncard p{font-size:.75rem;color:rgba(255,255,255,.35);line-height:1.5}
+
+/* PROCESS */
+#process{background:var(--blue-xlt)}
+.proc-header{text-align:center;max-width:520px;margin:0 auto 4rem}
+.proc-header p{color:var(--g500);font-size:.95rem;margin-top:.75rem}
+.proc-track{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.proc-track::before{content:'';position:absolute;top:28px;left:12.5%;right:12.5%;height:1px;background:var(--g200);z-index:0}
+@media(max-width:640px){.proc-track{grid-template-columns:1fr 1fr;gap:2rem}.proc-track::before{display:none}}
+.pstep{text-align:center;padding:0 1rem;position:relative;z-index:1}
+.pstep-num{width:56px;height:56px;border-radius:50%;background:#fff;border:1.5px solid var(--g200);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-family:var(--serif);font-size:1.2rem;color:var(--blue);box-shadow:var(--shadow)}
+.pstep h3{font-size:.9rem;font-weight:600;color:var(--g900);margin-bottom:.4rem}
+.pstep p{font-size:.78rem;color:var(--g500);line-height:1.6}
+
+/* PRICING */
+#pricing{background:#fff}
+.price-header{text-align:center;max-width:520px;margin:0 auto 4rem}
+.price-header p{color:var(--g500);font-size:.95rem;margin-top:.75rem}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:780px){.price-grid{grid-template-columns:1fr}}
+.prcard{border-radius:var(--r);padding:2rem;border:1px solid var(--g100);position:relative;background:#fff;transition:all .25s}
+.prcard:hover{box-shadow:var(--shadow-lg)}
+.prcard.featured{background:var(--g900);border-color:transparent}
+.feat-pill{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:.65rem;font-weight:700;padding:.25rem .9rem;border-radius:50px;white-space:nowrap;letter-spacing:.06em;text-transform:uppercase}
+.pr-tier{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem}
+.prcard:not(.featured) .pr-tier{color:var(--blue)}
+.prcard.featured .pr-tier{color:var(--blue-md)}
+.pr-price{font-family:var(--serif);font-size:2.5rem;line-height:1;margin-bottom:.25rem;letter-spacing:-.02em}
+.prcard:not(.featured) .pr-price{color:var(--g900)}
+.prcard.featured .pr-price{color:#fff}
+.pr-price sup{font-family:var(--sans);font-size:1rem;vertical-align:super;font-weight:500}
+.pr-price sub{font-family:var(--sans);font-size:.85rem;vertical-align:baseline;font-weight:400}
+.prcard:not(.featured) .pr-price sub{color:var(--g400)}
+.prcard.featured .pr-price sub{color:rgba(255,255,255,.4)}
+.pr-desc{font-size:.8rem;line-height:1.65;margin:1rem 0 1.5rem;padding-bottom:1.5rem}
+.prcard:not(.featured) .pr-desc{color:var(--g500);border-bottom:1px solid var(--g100)}
+.prcard.featured .pr-desc{color:rgba(255,255,255,.45);border-bottom:1px solid rgba(255,255,255,.08)}
+.pr-list{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin-bottom:2rem}
+.pr-list li{font-size:.82rem;display:flex;align-items:flex-start;gap:.6rem;line-height:1.5}
+.prcard:not(.featured) .pr-list li{color:var(--g600)}
+.prcard.featured .pr-list li{color:rgba(255,255,255,.65)}
+.pr-check{width:16px;height:16px;border-radius:50%;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center}
+.prcard:not(.featured) .pr-check{background:var(--blue-lt)}
+.prcard.featured .pr-check{background:rgba(39,116,174,.25)}
+.pr-btn{width:100%;padding:.8rem;border-radius:50px;font-size:.875rem;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .2s;letter-spacing:-.01em}
+.prcard:not(.featured) .pr-btn{border:1.5px solid var(--g200);color:var(--g700);background:transparent}
+.prcard:not(.featured) .pr-btn:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-lt)}
+.prcard.featured .pr-btn{background:var(--blue);color:#fff;border:none}
+.prcard.featured .pr-btn:hover{background:#3085c4}
+
+/* CONTACT */
+#contact{background:var(--g900);position:relative;overflow:hidden}
+.contact-bg{position:absolute;inset:0;background-image:radial-gradient(circle at 20% 50%,rgba(39,116,174,.08) 0%,transparent 55%);pointer-events:none}
+.contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:5rem;align-items:start;position:relative;z-index:1}
+@media(max-width:780px){.contact-grid{grid-template-columns:1fr;gap:3rem}}
+.ci-label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-md);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.ci-label::before{content:'';display:block;width:18px;height:1.5px;background:var(--blue-md)}
+.ci h2{color:#fff;margin-bottom:1rem}
+.ci-sub{color:rgba(255,255,255,.45);font-size:.9rem;line-height:1.8;margin-bottom:2.5rem}
+.ci-dets{display:flex;flex-direction:column;gap:1rem}
+.ci-det{display:flex;align-items:center;gap:.85rem;font-size:.85rem}
+.ci-det-icon{width:36px;height:36px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ci-det-t{color:rgba(255,255,255,.4);font-size:.7rem;margin-bottom:.1rem}
+.ci-det-v{color:rgba(255,255,255,.8);font-size:.85rem;font-weight:500}
+.fcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:2rem}
+.fcard h3{font-size:1rem;font-weight:600;color:#fff;margin-bottom:1.75rem;letter-spacing:-.02em}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;margin-bottom:.85rem}
+@media(max-width:500px){.frow{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column;gap:.4rem;margin-bottom:.85rem}
+label{font-size:.75rem;font-weight:500;color:rgba(255,255,255,.5);letter-spacing:.02em}
+input,select,textarea{font-family:var(--sans);font-size:.875rem;padding:.7rem .95rem;border:1px solid rgba(255,255,255,.1);border-radius:var(--rs);color:rgba(255,255,255,.85);background:rgba(255,255,255,.05);transition:border-color .2s,background .2s;outline:none;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--blue-md);background:rgba(255,255,255,.08)}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.2)}
+select option{background:var(--g800);color:#fff}
+textarea{resize:vertical;min-height:90px}
+.fsub{width:100%;background:var(--blue);color:#fff;border:none;padding:.9rem;border-radius:50px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--sans);letter-spacing:-.01em}
+.fsub:hover{background:#3085c4;transform:translateY(-1px)}
+.fnote{font-size:.7rem;color:rgba(255,255,255,.25);text-align:center;margin-top:.65rem}
+
+/* UCLA BADGE SECTION */
+.ucla-strip{background:rgba(255,255,255,.03);border-top:1px solid rgba(255,255,255,.06);padding:2rem clamp(1.25rem,4vw,3.5rem);display:flex;align-items:center;justify-content:center}
+.ucla-badge{display:inline-flex;align-items:center;gap:.6rem;background:rgba(255,200,0,.08);border:1px solid rgba(255,200,0,.2);color:#ffd700;font-size:.78rem;font-weight:600;padding:.5rem 1.1rem;border-radius:50px;letter-spacing:.04em}
+
+/* FOOTER */
+footer{background:var(--g900);border-top:1px solid rgba(255,255,255,.06);padding:2.5rem clamp(1.25rem,4vw,3.5rem) 1.75rem}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+@media(max-width:600px){.footer-top{grid-template-columns:1fr;gap:2rem}}
+.fb-logo{font-family:var(--serif);font-size:1.2rem;color:#fff;margin-bottom:.65rem}
+.fb-logo span{color:var(--blue-md)}
+.fb p{font-size:.8rem;color:rgba(255,255,255,.3);line-height:1.75;max-width:260px;margin-bottom:1.1rem}
+.fc h4{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.3);margin-bottom:.9rem}
+.fc a{display:block;font-size:.82rem;color:rgba(255,255,255,.45);text-decoration:none;margin-bottom:.45rem;transition:color .15s}
+.fc a:hover{color:rgba(255,255,255,.85)}
+.footer-bot{border-top:1px solid rgba(255,255,255,.06);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.footer-bot p{font-size:.75rem;color:rgba(255,255,255,.25)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">[Your Agency]<span>.</span></a>
+  <div class="nav-links">
+    <a href="#ai">AI Agents</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#niche">Who We Serve</a>
+    <a href="#contact" class="nav-cta">Book a Free Call</a>
+  </div>
+  <div class="hbg" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="mmenu" id="mm">
+  <a href="#ai" onclick="closeMM()">AI Agents</a>
+  <a href="#services" onclick="closeMM()">Services</a>
+  <a href="#pricing" onclick="closeMM()">Pricing</a>
+  <a href="#niche" onclick="closeMM()">Who We Serve</a>
+  <a href="#contact" onclick="closeMM()" class="mm-cta">Book a Free Consultation →</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag"><div class="hero-tag-dot"></div>AI-Powered · LA Private Practices</div>
+        <h1>Your Practice,<br/><em>Always Open.</em><br/><span>More Patients. Zero Missed Calls.</span></h1>
+        <p class="hero-sub">We build <strong>websites, run Google & Meta Ads,</strong> and deploy <strong>AI receptionists</strong> that book appointments 24/7 — for LA's medspas, dental clinics, and private practices.</p>
+        <div class="btn-row">
+          <a href="#contact" class="btn-primary">See Your Free Demo →</a>
+          <a href="#ai" class="btn-ghost">How the AI Works</a>
+        </div>
+        <div class="trust-pills">
+          <div class="pill"><div class="pill-dot"></div>AI Receptionist 24/7</div>
+          <div class="pill"><div class="pill-dot"></div>Google & Meta Ads</div>
+          <div class="pill"><div class="pill-dot"></div>UCLA Alumni Owned</div>
+          <div class="pill"><div class="pill-dot"></div>LA-Based</div>
+        </div>
+      </div>
+      <div class="hero-vis">
+        <div class="float-card fc-top">
+          <div class="fc-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2h3l.8 2.5L5.5 5.5c.6 1.2 1.8 2.4 3 3l1-1.3L12 8v2.5c0 .4-.4.8-.8.8C4.5 11.3 1 7.8 1 2.8c0-.4.4-.8.8-.8H3Z" stroke="#5a9dc7" stroke-width="1.2" stroke-linejoin="round"/></svg></div>
+          <div>
+            <div class="fc-t">AI Call Agent</div>
+            <div class="fc-s">Booked appt · 11:47 PM</div>
+          </div>
+        </div>
+        <div class="phone-frame">
+          <div class="pf-top">
+            <div class="pf-dots">
+              <div class="pf-dot" style="background:#ff5f57"></div>
+              <div class="pf-dot" style="background:#febc2e"></div>
+              <div class="pf-dot" style="background:#28c840"></div>
+            </div>
+            <div class="pf-title">AI Practice Assistant — drsarahchen.com</div>
+          </div>
+          <div class="chat-wrap">
+            <div class="chat-agent-name"><div class="agent-online"></div>Practice Assistant · Online</div>
+            <div class="bubble ai">Hi! I'm the virtual assistant for Dr. Chen's office. How can I help you today?</div>
+            <div class="bubble user">Do you take Blue Shield?</div>
+            <div class="bubble ai">Yes — we accept Blue Shield PPO and HMO. Dr. Chen is accepting new patients. Want to book a visit?</div>
+            <div class="bubble user">Yes, this week please</div>
+            <div class="bubble ai">I have Thursday 2pm or Friday 10am open. Which works?</div>
+            <div class="typing-ind"><div class="t-dot"></div><div class="t-dot"></div><div class="t-dot"></div></div>
+          </div>
+          <div class="pf-bottom">
+            <div class="pf-input">Type a message…</div>
+            <div class="pf-send"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 2l4 4-4 4" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </div>
+        <div class="float-card fc-bottom">
+          <div class="fc-stat">+31%</div>
+          <div class="fc-stat-l">new bookings this month</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <div><div class="strip-n">3×</div><div class="strip-l">Average booking increase</div></div>
+    <div><div class="strip-n">24/7</div><div class="strip-l">AI captures leads</div></div>
+    <div><div class="strip-n">48h</div><div class="strip-l">Demo site turnaround</div></div>
+    <div><div class="strip-n">$0</div><div class="strip-l">Cost to see your demo</div></div>
+  </div>
+</div>
+
+<!-- AI SECTION -->
+<section id="ai">
+  <div class="ai-bg"></div>
+  <div class="wrap">
+    <div class="ai-header">
+      <div class="label">Our Edge</div>
+      <h2>The AI Layer That Sets Us Apart</h2>
+      <p>Every other agency stops at the website. We add AI agents that work after your office closes — so you never miss a lead again. This is what no one else in LA is offering practices right now.</p>
+    </div>
+    <div class="ai-trio">
+      <div class="ai-card">
+        <div class="ai-card-accent"></div>
+        <div class="ai-card-num">01</div>
+        <h3>AI Chat Agent</h3>
+        <p>Embedded on your website, it greets every visitor, handles insurance questions, answers FAQs, and pushes them to book — without a single staff member involved. Works at 2am just as well as 2pm.</p>
+        <div class="ai-card-tags"><span class="act">Live Chat</span><span class="act">FAQ Handling</span><span class="act">Lead Capture</span><span class="act">Auto-Booking</span></div>
+      </div>
+      <div class="ai-card">
+        <div class="ai-card-accent"></div>
+        <div class="ai-card-num">02</div>
+        <h3>AI Call Receptionist</h3>
+        <p>After-hours callers get a natural, conversational AI that picks up every call, answers questions about services and insurance, and books appointments directly into your calendar system.</p>
+        <div class="ai-card-tags"><span class="act">Inbound Calls</span><span class="act">Insurance Q&A</span><span class="act">Calendar Sync</span><span class="act">24/7</span></div>
+      </div>
+      <div class="ai-card">
+        <div class="ai-card-accent"></div>
+        <div class="ai-card-num">03</div>
+        <h3>Automated Follow-Up</h3>
+        <p>Leads who don't book get an automatic SMS and email sequence that re-engages them over 7 days. Lapsed patients get win-back campaigns. No lead disappears into a black hole ever again.</p>
+        <div class="ai-card-tags"><span class="act">SMS Sequences</span><span class="act">Email Drip</span><span class="act">Re-Engagement</span><span class="act">Win-Back</span></div>
+      </div>
+    </div>
+    <div class="ai-proof">
+      <div>
+        <div class="ai-proof-t">The average practice loses 40% of leads after hours.</div>
+        <p class="ai-proof-p">Someone visits your site at 9pm, has a quick question about pricing, gets no response, and books with the practice two blocks away. Our AI agents close that gap — every night, every weekend, every holiday.</p>
+      </div>
+      <div class="ai-proof-stats">
+        <div class="aps"><div class="aps-n">40%</div><div class="aps-l">of patient inquiries happen outside office hours</div></div>
+        <div class="aps"><div class="aps-n">78%</div><div class="aps-l">of patients book the first practice that responds</div></div>
+        <div class="aps"><div class="aps-n">3×</div><div class="aps-l">more booked appointments with AI follow-up</div></div>
+        <div class="aps"><div class="aps-n">$0</div><div class="aps-l">additional staff cost to capture after-hours leads</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="svc-header">
+      <div>
+        <div class="label">What We Build</div>
+        <h2>Three Services. One Complete System.</h2>
+      </div>
+      <p>We don't do SEO. We don't pad our packages with things that take 6 months to show results. Every service we offer drives new patients within weeks — not quarters.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="scard">
+        <div class="scard-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="12" rx="2" stroke="#2774AE" stroke-width="1.4"/><path d="M6 18h8M10 15v3" stroke="#2774AE" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+        <h3>Website Design</h3>
+        <p>Custom, conversion-focused sites built for your specialty. Mobile-first, fast-loading, and designed to turn visitors into booked patients the moment they land.</p>
+        <div class="scard-badge"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="#1a5a8a" stroke-width="1"/><path d="M3 5l1.5 1.5L7 3" stroke="#1a5a8a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg> Your door-opener</div>
+      </div>
+      <div class="scard featured">
+        <div class="scard-feat-tag">Our Edge</div>
+        <div class="scard-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4h4l1.5 3.5-2 1.5c.9 1.8 2.5 3.4 4.5 4.5l1.5-2L17 13v3.5c0 .6-.5 1-1 1C8 17.5 2 11.5 2 4.5c0-.6.5-1 1-1H4Z" stroke="#5a9dc7" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+        <h3>AI Agents</h3>
+        <p>Chat agent on your site, call receptionist on your phone line, and automated follow-up sequences. The only agency in LA offering this complete AI layer for private practices.</p>
+        <div class="scard-badge"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1l1.2 2.4L9 4 7 6l.5 2.8L5 7.5 2.5 8.8 3 6 1 4l2.8-.6L5 1Z" stroke="#5a9dc7" stroke-width="1" stroke-linejoin="round"/></svg> Biggest differentiator</div>
+      </div>
+      <div class="scard">
+        <div class="scard-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 15l4-6 3 3 3-4 4 7H3Z" stroke="#2774AE" stroke-width="1.4" stroke-linejoin="round"/><circle cx="14" cy="5" r="2" stroke="#2774AE" stroke-width="1.4"/></svg></div>
+        <h3>Google & Meta Ads</h3>
+        <p>Targeted campaigns that put your practice in front of patients actively searching for your services in your zip code. Traffic starts day one — no waiting for organic growth.</p>
+        <div class="scard-badge"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="#1a5a8a" stroke-width="1"/><path d="M3 5l1.5 1.5L7 3" stroke="#1a5a8a" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg> Instant results</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NICHE -->
+<section id="niche">
+  <div class="niche-bg"></div>
+  <div class="wrap">
+    <div class="niche-header">
+      <div class="label" style="color:var(--blue-md);justify-content:center"><span style="background:var(--blue-md)"></span>Who We Serve</div>
+      <h2>Built Exclusively for LA Private Practices</h2>
+      <p>We don't work with e-commerce brands or tech startups. Our entire system is designed around one thing: filling appointment books for LA's healthcare and wellness practices.</p>
+    </div>
+    <div class="niche-grid">
+      <div class="ncard">
+        <div class="ncard-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3C7.7 3 5 5.7 5 9c0 2.5 1.4 4.7 3.5 5.8V17h5v-2.2C15.6 13.7 17 11.5 17 9c0-3.3-2.7-6-6-6Z" stroke="#5a9dc7" stroke-width="1.3"/><path d="M8.5 17h5M9.5 19.5h3" stroke="#5a9dc7" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+        <h3>Medspas</h3>
+        <p>Botox, fillers, laser treatments. High-ticket, cash-pay, visual-driven.</p>
+      </div>
+      <div class="ncard">
+        <div class="ncard-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 4C8.2 4 6 6.2 6 9c0 1.8.9 3.4 2.3 4.4L9 17h4l.7-3.6C15.1 12.4 16 10.8 16 9c0-2.8-2.2-5-5-5Z" stroke="#5a9dc7" stroke-width="1.3"/><path d="M9 17h4v1.5a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V17Z" stroke="#5a9dc7" stroke-width="1.3"/></svg></div>
+        <h3>Dental Clinics</h3>
+        <p>General dentistry, cosmetic, orthodontics. High LTV per patient.</p>
+      </div>
+      <div class="ncard">
+        <div class="ncard-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M8 4h6M11 4v4M6 10h10a1 1 0 0 1 1 1v5a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-5a1 1 0 0 1 1-1Z" stroke="#5a9dc7" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+        <h3>IV Wellness</h3>
+        <p>IV drips, NAD+, vitamin therapy. Fast-growing, affluent clientele.</p>
+      </div>
+      <div class="ncard">
+        <div class="ncard-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="3.5" stroke="#5a9dc7" stroke-width="1.3"/><path d="M4 19c0-3.9 3.1-6.5 7-6.5s7 2.6 7 6.5" stroke="#5a9dc7" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+        <h3>Therapists</h3>
+        <p>Private practices, group therapy, psychiatry. Post-pandemic demand surge.</p>
+      </div>
+      <div class="ncard">
+        <div class="ncard-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3L5 6v6c0 4 2.5 7 6 8 3.5-1 6-4 6-8V6L11 3Z" stroke="#5a9dc7" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
+        <h3>Chiropractors</h3>
+        <p>High search intent, recurring patients. Ads convert exceptionally well.</p>
+      </div>
+      <div class="ncard">
+        <div class="ncard-icon"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="13" rx="2" stroke="#5a9dc7" stroke-width="1.3"/><path d="M8 5V4a3 3 0 0 1 6 0v1" stroke="#5a9dc7" stroke-width="1.3" stroke-linecap="round"/><path d="M11 11v3M9.5 12.5h3" stroke="#5a9dc7" stroke-width="1.3" stroke-linecap="round"/></svg></div>
+        <h3>General Practice</h3>
+        <p>Family medicine, internists, GPs accepting new patients in LA.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="wrap">
+    <div class="proc-header">
+      <div class="label">How It Works</div>
+      <h2>Live in 3 Weeks. No Fluff.</h2>
+      <p>We show up with a free demo already built for your practice. From there it's a clear four-step path to a full patient acquisition system.</p>
+    </div>
+    <div class="proc-track">
+      <div class="pstep"><div class="pstep-num">1</div><h3>Free Demo Call</h3><p>We build your demo site before we call. You see the product before you hear the pitch.</p></div>
+      <div class="pstep"><div class="pstep-num">2</div><h3>Discovery</h3><p>30-minute call to understand your goals, patients, and what's leaking revenue right now.</p></div>
+      <div class="pstep"><div class="pstep-num">3</div><h3>Build & Deploy</h3><p>Site, ad campaigns, and AI agents live within 3 weeks. You review before anything goes public.</p></div>
+      <div class="pstep"><div class="pstep-num">4</div><h3>Grow & Report</h3><p>Monthly reporting on new patient inquiries. You see exactly what the system generates.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="price-header">
+      <div class="label">Pricing</div>
+      <h2>Transparent. No Long Contracts.</h2>
+      <p>Start with a 30-day pilot. If we don't drive measurable results, you don't continue. That's how confident we are.</p>
+    </div>
+    <div class="price-grid">
+      <div class="prcard">
+        <div class="pr-tier">Starter</div>
+        <div class="pr-price"><sup>$</sup>500<sub>/mo</sub></div>
+        <div class="pr-desc">The foundation. A professional site that builds trust and converts visitors into inquiries.</div>
+        <ul class="pr-list">
+          <li><div class="pr-check"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="#2774AE" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Custom website design</li>
+          <li><div class="pr-check"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="#2774AE" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Hosting + maintenance</li>
+          <li><div class="pr-check"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="#2774AE" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Mobile-first + fast load</li>
+          <li><div class="pr-check"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="#2774AE" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Contact + booking forms</li>
+        </ul>
+        <button class="pr-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      </div>
+      <div class="prcard featured">
+        <div class="feat-pill">Most Popular</div>
+        <div class="pr-tier">Growth</div>
+        <div class="pr-price"><sup>$</sup>2,000<sub>/mo</sub></div>
+        <div class="pr-desc">Website + paid ads + AI agents. The complete system that fills your calendar around the clock.</div>
+        <ul class="pr-list">
+          <li><div class="pr-check"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="#5a9dc7" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Everything in Starter</li>
+          <li><div class="pr-check"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="#5a9dc7" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Google & Meta Ads management</li>
+          <li><div class="pr-check"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="#5a9dc7" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>AI chat agent on website</li>
+          <li><div class="pr-check"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="#5a9dc7" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>AI call receptionist</li>
+          <li><div class="pr-check"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="#5a9dc7" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Monthly performance report</li>
+        </ul>
+        <button class="pr-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      </div>
+      <div class="prcard">
+        <div class="pr-tier">Full System</div>
+        <div class="pr-price"><sup>$</sup>3,500<sub>/mo</sub></div>
+        <div class="pr-desc">Everything in Growth plus advanced automation, retargeting, and priority support.</div>
+        <ul class="pr-list">
+          <li><div class="pr-check"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="#2774AE" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Everything in Growth</li>
+          <li><div class="pr-check"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="#2774AE" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Automated SMS follow-up</li>
+          <li><div class="pr-check"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="#2774AE" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Retargeting campaigns</li>
+          <li><div class="pr-check"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1.5 4l2 2 3-3" stroke="#2774AE" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Priority support + strategy calls</li>
+        </ul>
+        <button class="pr-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-bg"></div>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="ci">
+        <div class="ci-label">Get In Touch</div>
+        <h2>See Your Free Demo.<br/>No Obligation.</h2>
+        <p class="ci-sub">We build a demo site for your practice this week and walk you through exactly what's costing you new patients right now. No pitch deck. No pressure. Just proof.</p>
+        <div class="ci-dets">
+          <div class="ci-det">
+            <div class="ci-det-icon"><svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1.5C5.3 1.5 3.5 3.3 3.5 5.5c0 3 4 8.5 4 8.5s4-5.5 4-8.5c0-2.2-1.8-4-4-4Z" stroke="#5a9dc7" stroke-width="1.2"/><circle cx="7.5" cy="5.5" r="1.5" stroke="#5a9dc7" stroke-width="1.2"/></svg></div>
+            <div><div class="ci-det-t">Location</div><div class="ci-det-v">Los Angeles, CA — all LA County</div></div>
+          </div>
+          <div class="ci-det">
+            <div class="ci-det-icon"><svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="1.5" y="3.5" width="12" height="8" rx="1.5" stroke="#5a9dc7" stroke-width="1.2"/><path d="M1.5 5.5l6 4 6-4" stroke="#5a9dc7" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+            <div><div class="ci-det-t">Email</div><div class="ci-det-v">hello@youragency.com</div></div>
+          </div>
+          <div class="ci-det">
+            <div class="ci-det-icon"><svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M3 2.5h2.5l1 3-1.5 1c.7 1.4 2.1 2.8 3.5 3.5l1-1.5 3 1v2.5c0 .5-.4.8-.8.8C5.5 12.8 1.8 9.2 1.8 3.3c0-.4.3-.8.7-.8H3Z" stroke="#5a9dc7" stroke-width="1.2" stroke-linejoin="round"/></svg></div>
+            <div><div class="ci-det-t">Phone</div><div class="ci-det-v">(310) 555-0192</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="fcard">
+          <h3>Book a Free Consultation</h3>
+          <div class="frow">
+            <div class="fg"><label>First Name</label><input type="text" placeholder="Dr. Sarah"/></div>
+            <div class="fg"><label>Last Name</label><input type="text" placeholder="Chen"/></div>
+          </div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="you@yourpractice.com"/></div>
+          <div class="fg"><label>Phone</label><input type="tel" placeholder="(310) 555-0000"/></div>
+          <div class="fg">
+            <label>Practice Type</label>
+            <select>
+              <option value="">Select your specialty…</option>
+              <option>Medspa / Aesthetics</option>
+              <option>Dental / Orthodontics</option>
+              <option>IV Wellness / Functional Medicine</option>
+              <option>Mental Health / Therapy</option>
+              <option>Chiropractic / Physical Therapy</option>
+              <option>General / Family Medicine</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label>Tell us about your practice</label><textarea placeholder="Location, current website, main goal (e.g. more new patients per month)…"></textarea></div>
+          <button class="fsub" id="fsub">Send My Request →</button>
+          <div class="fnote">We respond within 4 business hours.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ucla-strip">
+    <div class="ucla-badge">🎓 UCLA Alumni Owned & Operated · Los Angeles, CA</div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="fb">
+        <div class="fb-logo">[Your Agency]<span>.</span></div>
+        <p>AI-powered patient acquisition for LA's private practices. Websites, Google & Meta Ads, and AI agents that work 24/7.</p>
+        <div class="ucla-badge" style="font-size:.68rem;padding:.35rem .85rem">🎓 UCLA Alumni Owned</div>
+      </div>
+      <div class="fc">
+        <h4>Services</h4>
+        <a href="#">Website Design</a>
+        <a href="#">Google Ads</a>
+        <a href="#">Meta Ads</a>
+        <a href="#">AI Chat Agent</a>
+        <a href="#">AI Call Agent</a>
+      </div>
+      <div class="fc">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#niche">Who We Serve</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <p>© 2025 [Your Agency], LLC. Los Angeles, CA.</p>
+      <p>Privacy Policy · Terms of Service</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mm').classList.toggle('open')}
+function closeMM(){document.getElementById('mm').classList.remove('open')}
+document.getElementById('fsub').addEventListener('click',function(e){
+  e.preventDefault();
+  this.textContent='✓ Sent — We\'ll be in touch within 4 hours!';
+  this.style.background='#16a34a';
+  this.disabled=true;
+});
+</script>
+</body>
+</html>
