@@ -46,9 +46,19 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
 
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+    if (inViewport) {
+      // Already visible on load — reveal immediately, no stagger delay
+      el.style.transitionDelay = '0ms';
+      requestAnimationFrame(() => el.classList.add('revealed'));
+    } else {
+      revealObserver.observe(el);
+    }
+  });
 
   // ---- COUNTER ANIMATION ----
   const counterObserver = new IntersectionObserver((entries) => {

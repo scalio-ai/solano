@@ -1232,3 +1232,142 @@ footer {
     transition-duration: .01ms !important;
   }
 }
+
+/* ============================================================
+   RESPONSIVE GRID HELPERS (replace inline style grids)
+   ============================================================ */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.content-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.content-split-form {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* ============================================================
+   MOBILE — max-width: 768px
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* Collapse two-column layouts */
+  .hero-split,
+  .content-split,
+  .content-split-form {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  /* ai-feature-row already collapses at 800px but needs tighter gap */
+  .ai-feature-row { gap: 2rem; }
+  .ai-feature-row[style*="margin-bottom:6rem"] { margin-bottom: 3.5rem !important; }
+
+  /* Float cards overflow on mobile — hide them */
+  .float-card { display: none !important; }
+
+  /* Hero */
+  #hero { padding-top: 88px; }
+  #hero .wrap { text-align: center; }
+  .hero-content .btn-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-content .btn-row .btn { width: 100%; justify-content: center; }
+  .hero-content .trust-pills { justify-content: center; }
+  .hero-content p { max-width: 100% !important; }
+
+  /* Section padding — tighter on mobile */
+  section { padding: 3.5rem 1.25rem; }
+  .stats-strip { padding: 2rem 1.25rem; }
+  footer { padding: 3rem 1.25rem 2rem; }
+
+  /* Page hero sub-pages */
+  .page-hero { min-height: auto; padding: 6rem 1.25rem 3rem; }
+  .page-hero h1 { font-size: clamp(2rem, 7vw, 3rem) !important; }
+  .page-hero p  { font-size: .95rem !important; }
+
+  /* Proof strip stat dividers */
+  .proof-divider { display: none !important; }
+
+  /* Tab nav — horizontal scroll instead of overflow */
+  .tab-nav {
+    overflow-x: auto;
+    width: 100%;
+    border-radius: var(--r-lg);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-btn { white-space: nowrap; flex-shrink: 0; }
+
+  /* CTA block */
+  .cta-block { padding: 2.5rem 1.25rem; }
+  .cta-block .btn-row { flex-direction: column; align-items: center; }
+  .cta-block .btn-row .btn { width: 100%; justify-content: center; }
+
+  /* Section head margin */
+  .section-head { margin-bottom: 2.5rem; }
+
+  /* Centered btn-row (page heroes) */
+  .btn-row[style*="justify-content:center"] {
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn-row[style*="justify-content:center"] .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Form card */
+  .form-card { padding: 1.5rem 1.25rem; }
+
+  /* Progress step labels — hide to save space */
+  .ps-label { display: none; }
+
+  /* Footer top on mobile */
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+  /* Website design mini-grid inside feature row */
+  .ai-feature-row div[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Nerve center pricing gap fix */
+  .price-card.featured { margin-top: 1rem; }
+}
+
+/* ---- Extra small screens ---- */
+@media (max-width: 480px) {
+  h1 { font-size: clamp(2rem, 9vw, 2.8rem) !important; }
+  h2 { font-size: clamp(1.6rem, 7vw, 2.2rem) !important; }
+
+  .price-card { padding: 1.75rem 1.25rem; }
+
+  /* Process track → single column */
+  .process-track { grid-template-columns: 1fr !important; }
+
+  /* Stats strip → 2 col */
+  .stats-inner { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Tab nav full scroll */
+  .tab-nav { border-radius: var(--r); }
+
+  /* Proof strip → wrap nicely */
+  div[style*="justify-content:center"][style*="gap:2.5rem"] {
+    gap: 1.5rem !important;
+  }
+
+  .footer-top { grid-template-columns: 1fr; }
+
+  section { padding: 3rem 1rem; }
+}
