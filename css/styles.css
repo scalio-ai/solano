@@ -859,9 +859,7 @@ nav.scrolled {
   border-radius: 14px;
   padding: .75rem 1rem;
   box-shadow: var(--shadow-lg);
-  animation: floatBob 4s ease-in-out infinite;
 }
-.float-card:nth-child(2) { animation-delay: -2s; }
 @keyframes floatBob {
   0%,100% { transform: translateY(0); }
   50%      { transform: translateY(-8px); }
@@ -1344,6 +1342,260 @@ footer {
 
   /* Nerve center pricing gap fix */
   .price-card.featured { margin-top: 1rem; }
+}
+
+/* ============================================================
+   VAPI CUSTOM CALL WIDGET
+   ============================================================ */
+
+/* Hide the Vapi SDK's own rendered button */
+#vapi-support-btn,
+[id*="vapi-support"],
+[class*="vapi-btn"] {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+/* --- Call Button --- */
+#solano-call-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9990;
+}
+
+#solano-call-trigger {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  background: rgba(9,12,20,0.92);
+  border: 1px solid rgba(255,255,255,0.11);
+  border-radius: 50px;
+  padding: .6rem 1.2rem .6rem .65rem;
+  cursor: pointer;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,0.04);
+  transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  font-family: var(--sans);
+}
+
+#solano-call-trigger:hover {
+  border-color: rgba(196,122,60,0.35);
+  box-shadow: 0 10px 40px rgba(0,0,0,.65), 0 0 24px rgba(196,122,60,0.12);
+  transform: translateY(-2px);
+}
+
+.scb-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--copper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(196,122,60,0.35);
+  transition: background .2s ease, box-shadow .2s ease;
+}
+
+.scb-text {
+  display: flex;
+  flex-direction: column;
+  gap: .05rem;
+  text-align: left;
+}
+
+.scb-title {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--text);
+  font-family: var(--serif);
+  letter-spacing: -.01em;
+  line-height: 1.25;
+}
+
+.scb-sub {
+  font-size: .67rem;
+  color: var(--muted);
+  line-height: 1.2;
+}
+
+/* Active / in-call state */
+#solano-call-btn.active #solano-call-trigger {
+  border-color: rgba(239,68,68,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,.55), 0 0 20px rgba(239,68,68,0.1);
+}
+#solano-call-btn.active .scb-icon {
+  background: #ef4444;
+  box-shadow: 0 4px 14px rgba(239,68,68,.3);
+}
+#solano-call-btn.active .scb-sub { color: rgba(239,68,68,.85); }
+
+/* --- Transcript Panel --- */
+#solano-transcript {
+  position: fixed;
+  bottom: 90px;
+  right: 28px;
+  width: 318px;
+  max-height: 400px;
+  background: rgba(9,12,20,0.96);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 20px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 24px 64px rgba(0,0,0,.75), 0 0 0 1px rgba(255,255,255,0.03);
+  z-index: 9989;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(10px) scale(.97);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease, transform .22s ease;
+}
+#solano-transcript.open {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.st-header {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  padding: .85rem 1.1rem .75rem;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  flex-shrink: 0;
+}
+
+.st-live {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--green);
+  font-family: var(--serif);
+  letter-spacing: .02em;
+  flex: 1;
+}
+
+.st-bars {
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+  height: 16px;
+}
+.st-bar {
+  width: 2.5px;
+  border-radius: 2px;
+  background: var(--blue);
+  height: 3px;
+  animation: stBarPulse 1.1s ease-in-out infinite;
+}
+.st-bar:nth-child(1) { animation-delay: 0s; }
+.st-bar:nth-child(2) { animation-delay: .15s; }
+.st-bar:nth-child(3) { animation-delay: .3s; }
+.st-bar:nth-child(4) { animation-delay: .15s; }
+.st-bar:nth-child(5) { animation-delay: 0s; }
+@keyframes stBarPulse {
+  0%,100% { height: 3px; opacity: .3; }
+  50%      { height: 13px; opacity: 1; }
+}
+
+.st-close {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.09);
+  color: var(--muted);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.st-close:hover { background: rgba(255,255,255,.12); color: var(--text); }
+
+.st-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: .85rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.07) transparent;
+  min-height: 80px;
+}
+
+.st-empty {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .78rem;
+  color: var(--muted);
+  font-style: italic;
+  padding: .25rem 0;
+}
+
+.st-msg {
+  display: flex;
+  flex-direction: column;
+  gap: .12rem;
+  max-width: 90%;
+  animation: stMsgIn .18s ease;
+}
+@keyframes stMsgIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.st-msg.assistant { align-self: flex-start; }
+.st-msg.user      { align-self: flex-end; }
+
+.st-role {
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 0 .35rem;
+}
+.st-msg.assistant .st-role { color: var(--blue); }
+.st-msg.user .st-role      { color: var(--muted); text-align: right; }
+
+.st-bubble {
+  padding: .5rem .8rem;
+  font-size: .78rem;
+  line-height: 1.55;
+  color: rgba(240,237,232,.88);
+}
+.st-msg.assistant .st-bubble {
+  background: rgba(78,124,201,.13);
+  border: 1px solid rgba(78,124,201,.18);
+  border-radius: 11px 11px 11px 3px;
+}
+.st-msg.user .st-bubble {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 11px 11px 3px 11px;
+}
+
+.st-footer {
+  padding: .6rem 1.1rem;
+  border-top: 1px solid rgba(255,255,255,.06);
+  font-size: .67rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  flex-shrink: 0;
+  min-height: 36px;
+}
+
+@media (max-width: 480px) {
+  #solano-call-btn  { bottom: 16px; right: 16px; }
+  #solano-transcript { right: 16px; bottom: 80px; width: calc(100vw - 32px); }
 }
 
 /* ---- Extra small screens ---- */

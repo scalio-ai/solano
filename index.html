@@ -474,48 +474,150 @@
   #hero .hero-vis { display: none; }
 }
 </style>
-  <!-- Vapi AI Call Widget -->
+<!-- Custom Vapi Call Widget -->
+<div id="solano-call-btn">
+  <button id="solano-call-trigger" aria-label="Talk to Peter">
+    <div class="scb-icon">
+      <svg id="scb-phone-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.32 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6.29 6.29l.98-.93a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/>
+      </svg>
+    </div>
+    <div class="scb-text">
+      <span class="scb-title">Talk to Peter</span>
+      <span class="scb-sub">Ask us anything</span>
+    </div>
+  </button>
+</div>
+
+<!-- Live Transcript Panel -->
+<div id="solano-transcript">
+  <div class="st-header">
+    <div class="st-live">
+      <div class="live-dot"></div>
+      Live Call
+    </div>
+    <div class="st-bars">
+      <div class="st-bar"></div>
+      <div class="st-bar"></div>
+      <div class="st-bar"></div>
+      <div class="st-bar"></div>
+      <div class="st-bar"></div>
+    </div>
+    <button class="st-close" aria-label="Close transcript">
+      <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 1l7 7M8 1l-7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="st-body" id="st-body">
+    <div class="st-empty">
+      <div class="live-dot" style="background:var(--copper);width:7px;height:7px"></div>
+      Connecting you to Peter…
+    </div>
+  </div>
+  <div class="st-footer">
+    <div class="typing" id="st-typing" style="display:none">
+      <div class="t-dot"></div><div class="t-dot"></div><div class="t-dot"></div>
+    </div>
+    <span id="st-status">Solano AI · Live Receptionist</span>
+  </div>
+</div>
+
 <script>
   var vapiInstance = null;
-  const assistant = "93d5367c-bf01-4d0e-b2c9-3445b2757fcc";
-  const apiKey = "eecf9b04-fe88-4a1f-9851-9d69c920e242";
-  const buttonConfig = {
-    position: "bottom-right",
-    offset: "40px",
-    width: "60px",
-    height: "60px",
-    idle: {
-      color: "#2774AE",
-      type: "pill",
-      title: "Talk to Peter",
-      subtitle: "Ask us anything",
-      icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone.svg",
-    },
-    active: {
-      color: "#1a5a8a",
-      type: "pill",
-      title: "Call in progress",
-      subtitle: "Tap to end",
-      icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg",
-    },
-  };
+  var ASST_ID = "93d5367c-bf01-4d0e-b2c9-3445b2757fcc";
+  var API_KEY = "eecf9b04-fe88-4a1f-9851-9d69c920e242";
 
-  (function (d, t) {
-    var g = document.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    g.src =
-      "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+  var callBtn      = document.getElementById('solano-call-btn');
+  var callTrigger  = document.getElementById('solano-call-trigger');
+  var scbTitle     = callTrigger.querySelector('.scb-title');
+  var scbSub       = callTrigger.querySelector('.scb-sub');
+  var scbIconWrap  = callTrigger.querySelector('.scb-icon');
+  var transcriptEl = document.getElementById('solano-transcript');
+  var stBody       = document.getElementById('st-body');
+  var stTyping     = document.getElementById('st-typing');
+  var stStatus     = document.getElementById('st-status');
+  var stClose      = transcriptEl.querySelector('.st-close');
+  var isActive     = false;
+
+  var PHONE_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.32 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6.29 6.29l.98-.93a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>';
+  var STOP_SVG  = '<svg width="16" height="16" viewBox="0 0 24 24" fill="white" stroke="none"><rect x="4" y="4" width="16" height="16" rx="3"/></svg>';
+
+  callTrigger.addEventListener('click', function() {
+    if (!vapiInstance) return;
+    isActive ? vapiInstance.stop() : vapiInstance.start();
+  });
+
+  stClose.addEventListener('click', function(e) {
+    e.stopPropagation();
+    transcriptEl.classList.remove('open');
+  });
+
+  function addMsg(role, text) {
+    var empty = stBody.querySelector('.st-empty');
+    if (empty) empty.remove();
+    stTyping.style.display = 'none';
+    var el = document.createElement('div');
+    el.className = 'st-msg ' + role;
+    el.innerHTML = '<div class="st-role">' + (role === 'assistant' ? 'Peter' : 'You') + '</div>'
+      + '<div class="st-bubble">' + text.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</div>';
+    stBody.appendChild(el);
+    stBody.scrollTop = stBody.scrollHeight;
+  }
+
+  function bindVapi() {
+    vapiInstance.on('call-start', function() {
+      isActive = true;
+      callBtn.classList.add('active');
+      scbTitle.textContent = 'Call in progress';
+      scbSub.textContent   = 'Tap to end';
+      scbIconWrap.innerHTML = STOP_SVG;
+      stBody.innerHTML = '';
+      stStatus.textContent = 'Live · Solano AI';
+      transcriptEl.classList.add('open');
+    });
+
+    vapiInstance.on('call-end', function() {
+      isActive = false;
+      callBtn.classList.remove('active');
+      scbTitle.textContent  = 'Talk to Peter';
+      scbSub.textContent    = 'Ask us anything';
+      scbIconWrap.innerHTML = PHONE_SVG;
+      stStatus.textContent  = 'Call ended';
+      stTyping.style.display = 'none';
+    });
+
+    vapiInstance.on('message', function(msg) {
+      if (msg.type === 'transcript' && msg.transcriptType === 'final') {
+        addMsg(msg.role, msg.transcript);
+      }
+    });
+
+    vapiInstance.on('speech-start', function() { stTyping.style.display = 'inline-flex'; });
+    vapiInstance.on('speech-end',   function() { stTyping.style.display = 'none'; });
+  }
+
+  // Load Vapi SDK — push SDK's own button off-screen so only our custom button shows
+  (function(d, t) {
+    var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    g.src   = 'https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js';
     g.defer = true;
     g.async = true;
     s.parentNode.insertBefore(g, s);
-    g.onload = function () {
+    g.onload = function() {
       vapiInstance = window.vapiSDK.run({
-        apiKey: apiKey,
-        assistant: assistant,
-        config: buttonConfig,
+        apiKey: API_KEY,
+        assistant: ASST_ID,
+        config: {
+          position: 'bottom-right',
+          offset: '-999px',
+          width: '1px',
+          height: '1px',
+          idle:   { color: 'transparent', type: 'pill', title: '', subtitle: '' },
+          active: { color: 'transparent', type: 'pill', title: '', subtitle: '' },
+        },
       });
+      bindVapi();
     };
-  })(document, "script");
+  })(document, 'script');
 </script>
 </body>
 </html>
