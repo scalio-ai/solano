@@ -474,5 +474,48 @@
   #hero .hero-vis { display: none; }
 }
 </style>
+  <!-- Vapi AI Call Widget -->
+<script>
+  var vapiInstance = null;
+  const assistant = "93d5367c-bf01-4d0e-b2c9-3445b2757fcc";
+  const apiKey = "eecf9b04-fe88-4a1f-9851-9d69c920e242";
+  const buttonConfig = {
+    position: "bottom-right",
+    offset: "40px",
+    width: "60px",
+    height: "60px",
+    idle: {
+      color: "#2774AE",
+      type: "pill",
+      title: "Talk to Peter",
+      subtitle: "Ask us anything",
+      icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone.svg",
+    },
+    active: {
+      color: "#1a5a8a",
+      type: "pill",
+      title: "Call in progress",
+      subtitle: "Tap to end",
+      icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg",
+    },
+  };
+
+  (function (d, t) {
+    var g = document.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    g.src =
+      "https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+    g.defer = true;
+    g.async = true;
+    s.parentNode.insertBefore(g, s);
+    g.onload = function () {
+      vapiInstance = window.vapiSDK.run({
+        apiKey: apiKey,
+        assistant: assistant,
+        config: buttonConfig,
+      });
+    };
+  })(document, "script");
+</script>
 </body>
 </html>
