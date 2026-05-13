@@ -629,19 +629,6 @@
         },
       });
       bindVapi();
-      // After the SDK renders its own button, hide it — our custom widget takes over
-      setTimeout(function() {
-        document.querySelectorAll('[id*="vapi"],[class*="vapi"]').forEach(function(el) {
-          if (el.id === 'solano-call-btn' || el.id === 'solano-transcript') return;
-          var root = el;
-          while (root.parentElement && root.parentElement !== document.body) {
-            if (getComputedStyle(root.parentElement).position === 'fixed') {
-              root = root.parentElement;
-            } else break;
-          }
-          root.style.setProperty('display', 'none', 'important');
-        });
-      }, 800);
     };
   })(document, 'script');
 </script>
