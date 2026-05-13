@@ -595,7 +595,8 @@
     vapiInstance.on('speech-end',   function() { stTyping.style.display = 'none'; });
   }
 
-  // Load Vapi SDK — push SDK's own button off-screen so only our custom button shows
+  // Load Vapi SDK with original valid config (required for proper initialization),
+  // then hide its rendered button via DOM so only our custom widget shows.
   (function(d, t) {
     var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
     g.src   = 'https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js';
@@ -608,14 +609,39 @@
         assistant: ASST_ID,
         config: {
           position: 'bottom-right',
-          offset: '-999px',
-          width: '1px',
-          height: '1px',
-          idle:   { color: 'transparent', type: 'pill', title: '', subtitle: '' },
-          active: { color: 'transparent', type: 'pill', title: '', subtitle: '' },
+          offset: '40px',
+          width: '60px',
+          height: '60px',
+          idle: {
+            color: '#2774AE',
+            type: 'pill',
+            title: 'Talk to Peter',
+            subtitle: 'Ask us anything',
+            icon: 'https://unpkg.com/lucide-static@0.321.0/icons/phone.svg',
+          },
+          active: {
+            color: '#1a5a8a',
+            type: 'pill',
+            title: 'Call in progress',
+            subtitle: 'Tap to end',
+            icon: 'https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg',
+          },
         },
       });
       bindVapi();
+      // After the SDK renders its own button, hide it — our custom widget takes over
+      setTimeout(function() {
+        document.querySelectorAll('[id*="vapi"],[class*="vapi"]').forEach(function(el) {
+          if (el.id === 'solano-call-btn' || el.id === 'solano-transcript') return;
+          var root = el;
+          while (root.parentElement && root.parentElement !== document.body) {
+            if (getComputedStyle(root.parentElement).position === 'fixed') {
+              root = root.parentElement;
+            } else break;
+          }
+          root.style.setProperty('display', 'none', 'important');
+        });
+      }, 800);
     };
   })(document, 'script');
 </script>
