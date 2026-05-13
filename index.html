@@ -543,7 +543,7 @@
 
   callTrigger.addEventListener('click', function() {
     if (!vapiInstance) return;
-    isActive ? vapiInstance.stop() : vapiInstance.start();
+    isActive ? vapiInstance.stop() : vapiInstance.start(ASST_ID);
   });
 
   stClose.addEventListener('click', function(e) {
