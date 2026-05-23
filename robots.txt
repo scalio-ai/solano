@@ -1,0 +1,11 @@
+# robots.txt for Solano AI
+# https://solano-ai.com/
+
+User-agent: *
+Allow: /
+
+# Block the orphan template file from being indexed
+Disallow: /Scalio%202.0.html
+Disallow: /Scalio 2.0.html
+
+Sitemap: https://solano-ai.com/sitemap.xml

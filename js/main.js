@@ -4,6 +4,10 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ---- AUTO-UPDATE FOOTER COPYRIGHT YEAR ----
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
   // ---- NAV SCROLL BEHAVIOR ----
   const nav = document.querySelector('nav');
   const handleNavScroll = () => {
@@ -198,17 +202,48 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     form.querySelector('.btn-next')?.addEventListener('click', () => {
+      // Validate the current visible step's required fields before advancing
+      const currentStep = form.querySelector('.form-step.active');
+      if (currentStep) {
+        const requiredFields = currentStep.querySelectorAll('[required]');
+        for (const field of requiredFields) {
+          if (!field.checkValidity()) {
+            field.reportValidity();
+            return;
+          }
+        }
+      }
       if (step < totalSteps) { step++; updateUI(); window.scrollTo({ top: form.getBoundingClientRect().top + window.scrollY - 120, behavior: 'smooth' }); }
     });
     form.querySelector('.btn-prev')?.addEventListener('click', () => {
       if (step > 1) { step--; updateUI(); }
     });
-    form.querySelector('.btn-submit')?.addEventListener('click', (e) => {
+    // Real form submission — POSTs to Netlify Forms endpoint at "/"
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const btn = e.currentTarget;
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
-      setTimeout(() => {
+
+      // If user hits Enter on an earlier step, treat as Next instead of Submit
+      if (step !== totalSteps) {
+        form.querySelector('.btn-next')?.click();
+        return;
+      }
+
+      const submitBtn = form.querySelector('.btn-submit');
+      if (submitBtn) {
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+      }
+
+      const formData = new FormData(form);
+      const body = new URLSearchParams(formData).toString();
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body
+      })
+      .then((response) => {
+        if (!response.ok) throw new Error('Network response was not ok: ' + response.status);
         form.innerHTML = `
           <div style="text-align:center;padding:3rem 1rem">
             <div style="width:64px;height:64px;border-radius:50%;background:var(--blue-lt);border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem">
@@ -217,7 +252,15 @@ document.addEventListener('DOMContentLoaded', () => {
             <h3 style="color:var(--text);margin-bottom:.5rem">You're on the list.</h3>
             <p style="max-width:340px;margin:0 auto">We'll reach out within 4 business hours to confirm your consultation. Talk soon.</p>
           </div>`;
-      }, 1200);
+      })
+      .catch((err) => {
+        console.error('Form submission failed:', err);
+        if (submitBtn) {
+          submitBtn.textContent = 'Send Request →';
+          submitBtn.disabled = false;
+        }
+        alert('Sorry — something went wrong submitting the form. Please email us directly at solano.ai.solutions@gmail.com and we\'ll get right back to you.');
+      });
     });
 
     updateUI();
