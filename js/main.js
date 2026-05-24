@@ -244,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .then((response) => {
         if (!response.ok) throw new Error('Network response was not ok: ' + response.status);
+        if (typeof window.sendSolanoEmails === 'function') window.sendSolanoEmails(formData);
         form.innerHTML = `
           <div style="text-align:center;padding:3rem 1rem">
             <div style="width:64px;height:64px;border-radius:50%;background:var(--blue-lt);border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem">
