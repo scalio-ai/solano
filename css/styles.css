@@ -1588,6 +1588,8 @@ footer {
   border-radius: 11px 11px 3px 11px;
 }
 
+.st-msg.partial .st-bubble { opacity: .55; font-style: italic; }
+
 .st-footer {
   padding: .6rem 1.1rem;
   border-top: 1px solid rgba(255,255,255,.06);

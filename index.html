@@ -551,21 +551,50 @@ body > .vapi-call-button,
     transcriptEl.classList.remove('open');
   });
 
-  function addMsg(role, text) {
+  // Tracks the live partial-transcript bubble for each role so we can update it in place
+  var partialBubbles = {};
+
+  function escape(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+  function upsertMsg(role, text, isFinal) {
     var empty = stBody.querySelector('.st-empty');
     if (empty) empty.remove();
-    stTyping.style.display = 'none';
-    var el = document.createElement('div');
-    el.className = 'st-msg ' + role;
-    el.innerHTML = '<div class="st-role">' + (role === 'assistant' ? 'Peter' : 'You') + '</div>'
-      + '<div class="st-bubble">' + text.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</div>';
-    stBody.appendChild(el);
+
+    var label = role === 'assistant' ? 'Peter' : 'You';
+
+    if (!isFinal) {
+      // Create or update a partial bubble for this role
+      if (!partialBubbles[role]) {
+        var el = document.createElement('div');
+        el.className = 'st-msg ' + role + ' partial';
+        el.innerHTML = '<div class="st-role">' + label + '</div>'
+          + '<div class="st-bubble"></div>';
+        stBody.appendChild(el);
+        partialBubbles[role] = el;
+      }
+      partialBubbles[role].querySelector('.st-bubble').textContent = text;
+    } else {
+      // Finalize — replace partial bubble if one exists, otherwise create new
+      if (partialBubbles[role]) {
+        partialBubbles[role].classList.remove('partial');
+        partialBubbles[role].querySelector('.st-bubble').textContent = text;
+        partialBubbles[role] = null;
+      } else {
+        var el = document.createElement('div');
+        el.className = 'st-msg ' + role;
+        el.innerHTML = '<div class="st-role">' + label + '</div>'
+          + '<div class="st-bubble">' + escape(text) + '</div>';
+        stBody.appendChild(el);
+      }
+    }
+
     stBody.scrollTop = stBody.scrollHeight;
   }
 
   function bindVapi() {
     vapiInstance.on('call-start', function() {
       isActive = true;
+      partialBubbles = {};
       callBtn.classList.add('active');
       scbTitle.textContent = 'Call in progress';
       scbSub.textContent   = 'Tap to end';
@@ -577,6 +606,7 @@ body > .vapi-call-button,
 
     vapiInstance.on('call-end', function() {
       isActive = false;
+      partialBubbles = {};
       callBtn.classList.remove('active');
       scbTitle.textContent  = 'Talk to Peter';
       scbSub.textContent    = 'Ask us anything';
@@ -586,8 +616,10 @@ body > .vapi-call-button,
     });
 
     vapiInstance.on('message', function(msg) {
-      if (msg.type === 'transcript' && msg.transcriptType === 'final') {
-        addMsg(msg.role, msg.transcript);
+      if (msg.type !== 'transcript') return;
+      var isFinal = msg.transcriptType === 'final';
+      if (msg.transcript && msg.transcript.trim()) {
+        upsertMsg(msg.role, msg.transcript, isFinal);
       }
     });
 
