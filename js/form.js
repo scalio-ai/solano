@@ -294,53 +294,51 @@ function buildOwnerEmailHtml(data) {
 
 // ─── Send Both Emails ────────────────────────────────────────
 
+// Returns a Promise so the form handler can await it
 window.sendSolanoEmails = function(formData) {
   if (!window.emailjs || EMAILJS_CONFIG.publicKey === 'YOUR_PUBLIC_KEY') {
-    console.info('[Solano AI] EmailJS not configured — skipping email send. Fill in EMAILJS_CONFIG in js/form.js.');
-    return;
+    console.info('[Solano AI] EmailJS not configured — skipping email send.');
+    return Promise.resolve();
   }
 
   const services = formData.getAll('services').join(', ') || 'Not specified';
   const data = {
-    firstName:       formData.get('first_name')       || '',
-    lastName:        formData.get('last_name')         || '',
-    email:           formData.get('email')             || '',
-    phone:           formData.get('phone')             || '',
-    role:            formData.get('role')              || '',
-    companyName:     formData.get('company_name')      || '',
-    trade:           formData.get('trade')             || '',
-    serviceArea:     formData.get('service_area')      || '',
-    currentWebsite:  formData.get('current_website')   || 'None',
-    teamSize:        formData.get('team_size')         || '',
-    biggestChallenge:formData.get('biggest_challenge') || '',
+    firstName:        formData.get('first_name')       || '',
+    lastName:         formData.get('last_name')        || '',
+    email:            formData.get('email')            || '',
+    phone:            formData.get('phone')            || '',
+    role:             formData.get('role')             || '',
+    companyName:      formData.get('company_name')     || '',
+    trade:            formData.get('trade')            || '',
+    serviceArea:      formData.get('service_area')     || '',
+    currentWebsite:   formData.get('current_website')  || 'None',
+    teamSize:         formData.get('team_size')        || '',
+    biggestChallenge: formData.get('biggest_challenge')|| '',
     services,
-    message:         formData.get('message')           || 'None',
+    message:          formData.get('message')          || 'None',
   };
 
   const baseParams = {
-    to_name:          `${data.firstName} ${data.lastName}`,
-    to_email:         data.email,
-    company_name:     data.companyName,
-    trade:            data.trade,
-    service_area:     data.serviceArea,
-    biggest_challenge:data.biggestChallenge,
-    services_interest:data.services,
+    to_name:           `${data.firstName} ${data.lastName}`,
+    to_email:          data.email,
+    company_name:      data.companyName,
+    trade:             data.trade,
+    service_area:      data.serviceArea,
+    biggest_challenge: data.biggestChallenge,
+    services_interest: data.services,
   };
 
-  // Client confirmation
-  emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.clientTemplateId, {
-    ...baseParams,
-    message_html: buildClientEmailHtml(data),
-  })
-    .then(() => console.info('[Solano AI] Client confirmation email sent.'))
-    .catch(err => console.error('[Solano AI] Client email error:', err));
+  const clientEmail = emailjs.send(
+    EMAILJS_CONFIG.serviceId,
+    EMAILJS_CONFIG.clientTemplateId,
+    { ...baseParams, message_html: buildClientEmailHtml(data) }
+  );
 
-  // Owner notification
-  emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.ownerTemplateId, {
-    ...baseParams,
-    to_email:     'solano.ai.solutions@gmail.com',
-    message_html: buildOwnerEmailHtml(data),
-  })
-    .then(() => console.info('[Solano AI] Owner notification email sent.'))
-    .catch(err => console.error('[Solano AI] Owner email error:', err));
+  const ownerEmail = emailjs.send(
+    EMAILJS_CONFIG.serviceId,
+    EMAILJS_CONFIG.ownerTemplateId,
+    { ...baseParams, to_email: 'solano.ai.solutions@gmail.com', message_html: buildOwnerEmailHtml(data) }
+  );
+
+  return Promise.all([clientEmail, ownerEmail]);
 };

@@ -218,11 +218,9 @@ document.addEventListener('DOMContentLoaded', () => {
     form.querySelector('.btn-prev')?.addEventListener('click', () => {
       if (step > 1) { step--; updateUI(); }
     });
-    // Real form submission — POSTs to Netlify Forms endpoint at "/"
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // If user hits Enter on an earlier step, treat as Next instead of Submit
       if (step !== totalSteps) {
         form.querySelector('.btn-next')?.click();
         return;
@@ -235,33 +233,38 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const formData = new FormData(form);
-      const body = new URLSearchParams(formData).toString();
+      const clientEmail = formData.get('email') || '';
 
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body
-      })
-      .then((response) => {
-        if (!response.ok) throw new Error('Network response was not ok: ' + response.status);
-        if (typeof window.sendSolanoEmails === 'function') window.sendSolanoEmails(formData);
+      try {
+        if (typeof window.sendSolanoEmails === 'function') {
+          await window.sendSolanoEmails(formData);
+        }
+
+        // Fire-and-forget to Netlify for data logging (non-blocking)
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString(),
+        }).catch(() => {});
+
         form.innerHTML = `
-          <div style="text-align:center;padding:3rem 1rem">
-            <div style="width:64px;height:64px;border-radius:50%;background:var(--blue-lt);border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem">
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M5 14l7 7L23 7" stroke="#5b8def" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div style="text-align:center;padding:3.5rem 1.5rem">
+            <div style="width:68px;height:68px;border-radius:50%;background:var(--blue-lt);border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 1.75rem">
+              <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M6 15l7 7L24 8" stroke="#4E7CC9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <h3 style="color:var(--text);margin-bottom:.5rem">You're on the list.</h3>
-            <p style="max-width:340px;margin:0 auto">We'll reach out within 4 business hours to confirm your consultation. Talk soon.</p>
+            <p style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin:0 0 .75rem">Request Received</p>
+            <h3 style="color:var(--text);margin:0 0 1rem;font-size:1.4rem">You're on the list.</h3>
+            <p style="max-width:360px;margin:0 auto 1.25rem;line-height:1.75">A confirmation email is on its way to <strong style="color:var(--text)">${clientEmail}</strong>. We'll follow up within 4 business hours to schedule your demo.</p>
+            <p style="font-size:.78rem;color:var(--dim)">Questions in the meantime? <a href="mailto:solano.ai.solutions@gmail.com" style="color:var(--blue);text-decoration:none">solano.ai.solutions@gmail.com</a></p>
           </div>`;
-      })
-      .catch((err) => {
-        console.error('Form submission failed:', err);
+      } catch (err) {
+        console.error('Submission error:', err);
         if (submitBtn) {
           submitBtn.textContent = 'Send Request →';
           submitBtn.disabled = false;
         }
-        alert('Sorry — something went wrong submitting the form. Please email us directly at solano.ai.solutions@gmail.com and we\'ll get right back to you.');
-      });
+        alert('Something went wrong sending your request. Please email us directly at solano.ai.solutions@gmail.com and we\'ll get right back to you.');
+      }
     });
 
     updateUI();
