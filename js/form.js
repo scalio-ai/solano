@@ -83,28 +83,28 @@ function buildClientEmailHtml(data) {
           <p style="margin:0 0 20px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#4E7CC9;">What Happens Next</p>
           <table width="100%" cellpadding="0" cellspacing="0">
             <tr>
-              <td style="padding:12px 0;border-bottom:1px solid #1a2240;vertical-align:top;width:28px;">
-                <div style="width:22px;height:22px;border-radius:50%;background:#1a2240;border:1px solid #2a3560;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#4E7CC9;font-weight:700;">1</div>
+              <td style="padding:12px 0;border-bottom:1px solid #1a2240;vertical-align:top;width:36px;">
+                <table cellpadding="0" cellspacing="0"><tr><td width="26" height="26" style="width:26px;height:26px;border-radius:50%;background:#1a2240;border:1px solid #2a3560;text-align:center;vertical-align:middle;font-size:11px;color:#4E7CC9;font-weight:700;line-height:26px;">1</td></tr></table>
               </td>
-              <td style="padding:12px 0 12px 14px;border-bottom:1px solid #1a2240;">
+              <td style="padding:12px 0 12px 12px;border-bottom:1px solid #1a2240;">
                 <p style="margin:0;font-size:13px;font-weight:600;color:#f0ede8;">We review your request</p>
                 <p style="margin:4px 0 0;font-size:12px;color:#848090;line-height:1.6;">Our team looks at your business type, service area, and goals so we can prep a custom demo.</p>
               </td>
             </tr>
             <tr>
-              <td style="padding:12px 0;border-bottom:1px solid #1a2240;vertical-align:top;">
-                <div style="width:22px;height:22px;border-radius:50%;background:#1a2240;border:1px solid #2a3560;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#4E7CC9;font-weight:700;">2</div>
+              <td style="padding:12px 0;border-bottom:1px solid #1a2240;vertical-align:top;width:36px;">
+                <table cellpadding="0" cellspacing="0"><tr><td width="26" height="26" style="width:26px;height:26px;border-radius:50%;background:#1a2240;border:1px solid #2a3560;text-align:center;vertical-align:middle;font-size:11px;color:#4E7CC9;font-weight:700;line-height:26px;">2</td></tr></table>
               </td>
-              <td style="padding:12px 0 12px 14px;border-bottom:1px solid #1a2240;">
+              <td style="padding:12px 0 12px 12px;border-bottom:1px solid #1a2240;">
                 <p style="margin:0;font-size:13px;font-weight:600;color:#f0ede8;">We reach out to schedule</p>
                 <p style="margin:4px 0 0;font-size:12px;color:#848090;line-height:1.6;">Expect a call or email within 4 business hours to lock in a time that works for you.</p>
               </td>
             </tr>
             <tr>
-              <td style="padding:12px 0;vertical-align:top;">
-                <div style="width:22px;height:22px;border-radius:50%;background:#1a2240;border:1px solid #2a3560;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#4E7CC9;font-weight:700;">3</div>
+              <td style="padding:12px 0;vertical-align:top;width:36px;">
+                <table cellpadding="0" cellspacing="0"><tr><td width="26" height="26" style="width:26px;height:26px;border-radius:50%;background:#1a2240;border:1px solid #2a3560;text-align:center;vertical-align:middle;font-size:11px;color:#4E7CC9;font-weight:700;line-height:26px;">3</td></tr></table>
               </td>
-              <td style="padding:12px 0 12px 14px;">
+              <td style="padding:12px 0 12px 12px;">
                 <p style="margin:0;font-size:13px;font-weight:600;color:#f0ede8;">Your personalized demo</p>
                 <p style="margin:4px 0 0;font-size:12px;color:#848090;line-height:1.6;">30 minutes. We show you exactly how Solano AI works for your trade and your service area.</p>
               </td>
