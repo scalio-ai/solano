@@ -524,7 +524,8 @@ body > .vapi-call-button,
     '127.0.0.1'
   ];
   var hostAllowed = ALLOWED_HOSTS.indexOf(window.location.hostname) !== -1
-    || /\.netlify\.app$/.test(window.location.hostname);
+    || /\.netlify\.app$/.test(window.location.hostname)
+    || /\.pages\.dev$/.test(window.location.hostname);
 
   var callBtn      = document.getElementById('solano-call-btn');
   var callTrigger  = document.getElementById('solano-call-trigger');
