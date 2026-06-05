@@ -240,6 +240,14 @@ document.addEventListener('DOMContentLoaded', () => {
           await window.sendSolanoEmails(formData);
         }
 
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-18217136997/-7JiCN-dybkcEOXmze5D',
+            'value': 1.0,
+            'currency': 'USD'
+          });
+        }
+
         // Fire-and-forget to Netlify for data logging (non-blocking)
         fetch('/', {
           method: 'POST',
