@@ -539,6 +539,8 @@ nav.scrolled {
 
 /* ---- PRICING ---- */
 .price-card {
+  display: flex;
+  flex-direction: column;
   border-radius: var(--r-lg);
   padding: 2.25rem;
   border: 1px solid var(--border);
@@ -546,6 +548,8 @@ nav.scrolled {
   position: relative;
   transition: all .25s ease;
 }
+.price-card .price-list { flex: 1; }
+.price-card .price-btn { margin-top: auto; }
 .price-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
