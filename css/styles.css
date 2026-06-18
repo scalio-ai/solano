@@ -588,6 +588,8 @@ nav.scrolled {
   color: var(--text);
   letter-spacing: -0.03em;
   line-height: 1;
+  display: block;
+  margin-bottom: .65rem;
 }
 .price-amount sup { font-size: 1.1rem; vertical-align: super; font-weight: 600; }
 .price-amount sub { font-size: .85rem; vertical-align: baseline; font-weight: 400; color: var(--muted); }
