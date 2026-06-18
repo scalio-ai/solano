@@ -1346,7 +1346,6 @@ footer {
     grid-template-columns: 1fr 1fr !important;
   }
 
-  /* Nerve center pricing gap fix */
   .price-card.featured { margin-top: 1rem; }
 }
 
