@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Page Not Found | Solano AI</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
-<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/styles.css?v=4"/>
 </head>
 <body>
 <nav>
@@ -24,7 +24,7 @@
     <a href="book.html">Work With Us</a>
   </div>
   <div class="nav-right">
-    <a href="book.html" class="btn btn-primary nav-btn">Book a Free Demo</a>
+    <a href="book.html" class="btn btn-primary nav-btn btn-refined">Book a Free Demo</a>
   </div>
 </nav>
 
@@ -39,12 +39,37 @@
     <h1 style="font-size:2rem;margin-bottom:1rem">Page Not Found</h1>
     <p style="color:var(--muted);max-width:400px;margin:0 auto 2.5rem">This page doesn't exist or was moved. Let's get you back on track.</p>
     <div class="btn-row" style="justify-content:center">
-      <a href="index.html" class="btn btn-primary">Go Home →</a>
-      <a href="book.html" class="btn btn-ghost">Book a Free Demo</a>
+      <a href="index.html" class="btn btn-primary btn-refined">Go Home →</a>
+      <a href="book.html" class="btn btn-ghost btn-refined">Book a Free Demo</a>
     </div>
   </div>
 </section>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=3"></script>
+
+<!-- PREVIEW-ONLY THEME TOGGLE (remove before launch) -->
+<button id="theme-toggle-preview" style="position:fixed;bottom:1.25rem;left:1.25rem;z-index:99999;background:var(--copper);color:#fff;border:2px solid #fff;border-radius:50px;padding:.8rem 1.4rem;font-size:.85rem;font-weight:700;font-family:var(--sans);cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.5);letter-spacing:.01em">☀ Toggle Light Mode</button>
+<script>
+(function(){
+  var btn = document.getElementById('theme-toggle-preview');
+  var saved = localStorage.getItem('solano-theme-preview');
+  if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  function updateLabel(){
+    btn.textContent = document.documentElement.getAttribute('data-theme') === 'light' ? 'Toggle Dark Mode' : 'Toggle Light Mode';
+  }
+  updateLabel();
+  btn.addEventListener('click', function(){
+    var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    if (isLight) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('solano-theme-preview', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('solano-theme-preview', 'light');
+    }
+    updateLabel();
+  });
+})();
+</script>
 </body>
 </html>

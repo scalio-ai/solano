@@ -30,7 +30,7 @@
 <meta name="twitter:image" content="https://solano-ai.com/og-image.png"/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="shortcut icon" href="favicon.svg"/>
-<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/styles.css?v=4"/>
 <!-- Structured data: ProfessionalService -->
 <script type="application/ld+json">
 {
@@ -80,7 +80,7 @@
     <a href="book.html">Work With Us</a>
   </div>
   <div class="nav-right">
-    <a href="book.html" class="btn btn-primary nav-btn">Book a Free Demo</a>
+    <a href="book.html" class="btn btn-primary nav-btn btn-refined">Book a Free Demo</a>
   </div>
   <div class="nav-hamburger" role="button" aria-label="Toggle menu">
     <span></span><span></span><span></span>
@@ -95,7 +95,7 @@
 </div>
 
 <!-- HERO -->
-<section id="hero">
+<section id="hero" class="hero-refined">
   <div class="hero-bg">
     <div class="hero-blob blob-blue"></div>
     <div class="hero-blob blob-orange"></div>
@@ -105,33 +105,33 @@
   <div class="wrap">
     <div class="hero-split">
       <div class="hero-content">
-        <div class="badge badge-live" style="margin-bottom:1.5rem">
-          <div class="live-dot"></div>
-          AI-Powered · Home Services
-        </div>
+        <div class="label-quiet" style="margin-bottom:1.5rem">Home Service Marketing &amp; AI</div>
         <h1>Your Phones,<br/>
-          <em style="font-style:italic;color:var(--blue)">Always Answered.</em>
+          <em style="font-style:italic;color:var(--copper)">Always Answered.</em>
         </h1>
         <p style="max-width:460px;margin:1.5rem 0 2.25rem;font-size:1rem;color:var(--muted)">
           We deploy <strong style="color:var(--text);font-weight:600">AI call agents, conversion websites,</strong> and <strong style="color:var(--text);font-weight:600">Google &amp; Meta Ads</strong> built exclusively for
           <span class="word-cycle" data-words='["HVAC companies","plumbers","electricians","home service businesses"]' style="color:var(--orange);font-weight:600">HVAC companies</span> that want to dominate their market.
         </p>
         <div class="btn-row">
-          <a href="book.html" class="btn btn-primary">Book a Free Demo →</a>
-          <a href="services.html" class="btn btn-ghost">How Our AI Works</a>
+          <a href="book.html" class="btn btn-primary btn-refined">Book a Free Demo →</a>
+          <a href="services.html" class="btn btn-ghost btn-refined">How Our AI Works</a>
         </div>
-        <div class="trust-pills" style="margin-top:2rem">
-          <div class="trust-pill"><div class="trust-pill-dot"></div>AI Receptionist 24/7</div>
-          <div class="trust-pill"><div class="trust-pill-dot"></div>Google &amp; Meta Ads</div>
-          <div class="trust-pill"><div class="trust-pill-dot"></div>English · Español · 한국어</div>
-          <div class="trust-pill"><div class="trust-pill-dot"></div>UCLA Alumni Owned</div>
+        <div class="trust-row" style="margin-top:2rem">
+          <span>AI Receptionist 24/7</span>
+          <span class="div">·</span>
+          <span>Google &amp; Meta Ads</span>
+          <span class="div">·</span>
+          <span>English · Español · 한국어</span>
+          <span class="div">·</span>
+          <span>UCLA Alumni Owned</span>
         </div>
       </div>
 
       <!-- COMMAND PANEL -->
       <div style="position:relative;display:flex;justify-content:center;align-items:center" class="reveal" data-delay="3">
         <!-- Float card top-left -->
-        <div class="float-card" style="top:-24px;left:-20px;z-index:2">
+        <div class="float-card" style="top:-58px;left:-36px;z-index:2">
           <div class="fc-row">
             <div class="fc-icon">
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2h3l.8 2.5L5.5 5.5c.6 1.2 1.8 2.4 3 3l1-1.3L12 8v2.5c0 .4-.4.8-.8.8C4.5 11.3 1 7.8 1 2.8c0-.4.4-.8.8-.8H3Z" stroke="#5b8def" stroke-width="1.2" stroke-linejoin="round"/></svg>
@@ -144,7 +144,7 @@
         </div>
 
         <!-- Phone mockup -->
-        <div class="phone-frame">
+        <div class="phone-frame phone-frame-refined">
           <div class="pf-bar">
             <div class="pf-dots">
               <div class="pf-dot" style="background:#ff5f57"></div>
@@ -153,14 +153,14 @@
             </div>
             <div class="pf-label">Solano AI · Example Conversation</div>
           </div>
-          <div class="chat-body">
-            <div class="chat-name"><div class="live-dot"></div>Solano AI Agent · Online</div>
-            <div class="bubble ai">Hi, thanks for calling Valley HVAC! I'm your virtual assistant — how can I help?</div>
-            <div class="bubble user">My AC stopped working, it's 95 degrees</div>
-            <div class="bubble ai">Oh no — I can get a tech out today. Are you in the 818 area?</div>
-            <div class="bubble user">Yes, Burbank</div>
-            <div class="bubble ai">Perfect. I have a slot at 3pm or 5pm today. Which works?</div>
-            <div class="typing"><div class="t-dot"></div><div class="t-dot"></div><div class="t-dot"></div></div>
+          <div class="chat-body" data-convo>
+            <div class="chat-name"><div class="status-quiet"></div>Solano AI Agent · Online</div>
+            <div class="bubble ai" data-convo-line>Hi, thanks for calling Valley HVAC! I'm your virtual assistant — how can I help?</div>
+            <div class="bubble user" data-convo-line>My AC stopped working, it's 95 degrees</div>
+            <div class="bubble ai" data-convo-line>Oh no — I can get a tech out today. Are you in the 818 area?</div>
+            <div class="bubble user" data-convo-line>Yes, Burbank</div>
+            <div class="bubble ai" data-convo-line>Perfect. I have a slot at 3pm or 5pm today. Which works?</div>
+            <div class="typing" data-convo-typing><div class="t-dot"></div><div class="t-dot"></div><div class="t-dot"></div></div>
           </div>
           <div class="pf-input-bar">
             <div class="pf-input">Type a message…</div>
@@ -292,27 +292,53 @@
             <span>Follows up automatically via SMS &amp; email with leads who don't book</span>
           </li>
         </ul>
-        <a href="services.html" class="btn btn-primary">Explore Our Services →</a>
+        <a href="services.html" class="btn btn-primary btn-refined">Explore Our Services →</a>
       </div>
 
-      <!-- Stats grid -->
+      <!-- Same call, two outcomes -->
       <div class="reveal" data-delay="2">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-          <div class="glass-card" style="padding:1.75rem;text-align:center">
-            <div style="font-family:var(--serif);font-size:2.5rem;font-weight:800;color:var(--text);line-height:1;letter-spacing:-0.03em"><span data-count="60" data-suffix="%">0%</span></div>
-            <div style="font-size:.72rem;color:var(--muted);margin-top:.35rem;line-height:1.4">of calls go to voicemail without AI</div>
+        <div style="border:1px solid var(--border);border-radius:var(--r-lg)">
+          <div style="padding:1rem 1.5rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Tuesday, 11:47 PM</span>
+            <span style="font-size:.68rem;color:var(--dim)">Same call, two outcomes</span>
           </div>
-          <div class="glass-card" style="padding:1.75rem;text-align:center">
-            <div style="font-family:var(--serif);font-size:2.5rem;font-weight:800;color:var(--orange);line-height:1;letter-spacing:-0.03em"><span data-count="78" data-suffix="%">0%</span></div>
-            <div style="font-size:.72rem;color:var(--muted);margin-top:.35rem;line-height:1.4">book with the first company that responds</div>
-          </div>
-          <div class="glass-card" style="padding:1.75rem;text-align:center">
-            <div style="font-family:var(--serif);font-size:2.5rem;font-weight:800;color:var(--blue);line-height:1;letter-spacing:-0.03em"><span data-count="7" data-suffix="d">0d</span></div>
-            <div style="font-size:.72rem;color:var(--muted);margin-top:.35rem;line-height:1.4">automated follow-up sequence per lead</div>
-          </div>
-          <div class="glass-card" style="padding:1.75rem;text-align:center">
-            <div style="font-family:var(--serif);font-size:2.5rem;font-weight:800;color:var(--text);line-height:1;letter-spacing:-0.03em">$0</div>
-            <div style="font-size:.72rem;color:var(--muted);margin-top:.35rem;line-height:1.4">extra staff cost to capture after-hours leads</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr">
+            <div style="padding:1.5rem;border-right:1px solid var(--border)">
+              <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:1.1rem">Without an AI Agent</div>
+              <div style="display:flex;flex-direction:column;gap:.85rem">
+                <div>
+                  <div style="font-size:.66rem;color:var(--dim);margin-bottom:.15rem">11:47 PM</div>
+                  <div style="font-size:.82rem;color:var(--text)">Phone rings six times, no answer</div>
+                </div>
+                <div>
+                  <div style="font-size:.66rem;color:var(--dim);margin-bottom:.15rem">11:48 PM</div>
+                  <div style="font-size:.82rem;color:var(--text)">Call drops to voicemail</div>
+                </div>
+                <div>
+                  <div style="font-size:.66rem;color:var(--dim);margin-bottom:.15rem">11:51 PM</div>
+                  <div style="font-size:.82rem;color:var(--text)">Customer calls the next listing on Google</div>
+                </div>
+              </div>
+              <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--muted)">Job lost — and you have no record it ever happened.</div>
+            </div>
+            <div style="padding:1.5rem">
+              <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--copper);margin-bottom:1.1rem">With Solano</div>
+              <div style="display:flex;flex-direction:column;gap:.85rem">
+                <div>
+                  <div style="font-size:.66rem;color:var(--dim);margin-bottom:.15rem">11:47 PM</div>
+                  <div style="font-size:.82rem;color:var(--text)">AI agent answers in under 1 second</div>
+                </div>
+                <div>
+                  <div style="font-size:.66rem;color:var(--dim);margin-bottom:.15rem">11:48 PM</div>
+                  <div style="font-size:.82rem;color:var(--text)">Job qualified, tech booked for 8am</div>
+                </div>
+                <div>
+                  <div style="font-size:.66rem;color:var(--dim);margin-bottom:.15rem">11:49 PM</div>
+                  <div style="font-size:.82rem;color:var(--text)">Confirmation texted, your calendar updated</div>
+                </div>
+              </div>
+              <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border);font-size:.78rem;color:var(--copper);font-weight:600">Job booked — you see it on tomorrow's report.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -378,7 +404,7 @@
       </div>
     </div>
     <div style="text-align:center;margin-top:2.5rem" class="reveal">
-      <a href="services.html" class="btn btn-ghost">See All Services →</a>
+      <a href="services.html" class="btn btn-ghost btn-refined">See All Services →</a>
     </div>
   </div>
 </section>
@@ -391,8 +417,8 @@
       <h2>See What You're Losing Every Night.</h2>
       <p>We build a custom demo for your business this week and show you exactly how many leads you're leaving on the table. No pitch deck. No pressure. Just proof.</p>
       <div class="btn-row">
-        <a href="book.html" class="btn btn-primary" style="font-size:.95rem;padding:.95rem 2rem">Book a Free Demo →</a>
-        <a href="services.html" class="btn btn-glass">Explore Our Services</a>
+        <a href="book.html" class="btn btn-primary btn-refined" style="font-size:.95rem;padding:.95rem 2rem">Book a Free Demo →</a>
+        <a href="services.html" class="btn btn-glass btn-refined">Explore Our Services</a>
       </div>
       <div class="ucla-badge" style="margin:2rem auto 0;width:fit-content">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.3 3.8H12L9 7.2l1.3 3.8L7 8.7 3.7 11l1.3-3.8L2 3.8h3.7L7 1Z" fill="#ffd060"/></svg>
@@ -441,7 +467,7 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/main.js?v=3"></script>
 <style>
 @media(max-width:860px){
   #hero .wrap > div { grid-template-columns: 1fr !important; }
@@ -681,6 +707,7 @@ body > .vapi-call-button,
             var skip = bodyChildrenBeforeVapi.indexOf(child) !== -1
               || child.id === 'solano-call-btn'
               || child.id === 'solano-transcript'
+              || child.id === 'theme-toggle-preview'
               || ['SCRIPT','STYLE','LINK','META','NOSCRIPT'].indexOf(child.tagName) !== -1;
             if (!skip) child.style.display = 'none';
           });
@@ -692,6 +719,31 @@ body > .vapi-call-button,
     if (callBtn) callBtn.style.display = 'none';
     console.info('[Vapi] Skipped initialization: host "' + window.location.hostname + '" not in allowed list.');
   }
+</script>
+
+<!-- PREVIEW-ONLY THEME TOGGLE (remove before launch) -->
+<button id="theme-toggle-preview" style="position:fixed;bottom:1.25rem;left:1.25rem;z-index:99999;background:var(--copper);color:#fff;border:2px solid #fff;border-radius:50px;padding:.8rem 1.4rem;font-size:.85rem;font-weight:700;font-family:var(--sans);cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.5);letter-spacing:.01em">☀ Toggle Light Mode</button>
+<script>
+(function(){
+  var btn = document.getElementById('theme-toggle-preview');
+  var saved = localStorage.getItem('solano-theme-preview');
+  if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  function updateLabel(){
+    btn.textContent = document.documentElement.getAttribute('data-theme') === 'light' ? 'Toggle Dark Mode' : 'Toggle Light Mode';
+  }
+  updateLabel();
+  btn.addEventListener('click', function(){
+    var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    if (isLight) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('solano-theme-preview', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('solano-theme-preview', 'light');
+    }
+    updateLabel();
+  });
+})();
 </script>
 </body>
 </html>

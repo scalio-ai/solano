@@ -30,7 +30,7 @@
 <meta name="twitter:image" content="https://solano-ai.com/og-image.png"/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="shortcut icon" href="favicon.svg"/>
-<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="css/styles.css?v=4"/>
 <!-- Structured data: ProfessionalService + FAQPage -->
 <script type="application/ld+json">
 {
@@ -130,7 +130,7 @@
     <a href="book.html" class="active">Work With Us</a>
   </div>
   <div class="nav-right">
-    <a href="book.html" class="btn btn-primary nav-btn">Book a Free Demo</a>
+    <a href="book.html" class="btn btn-primary nav-btn btn-refined">Book a Free Demo</a>
   </div>
   <div class="nav-hamburger" role="button" aria-label="Toggle menu">
     <span></span><span></span><span></span>
@@ -396,9 +396,9 @@
 
           <!-- Form navigation -->
           <div class="form-nav">
-            <button type="button" class="btn btn-ghost btn-prev" style="visibility:hidden">← Back</button>
-            <button type="button" class="btn btn-primary btn-next">Continue →</button>
-            <button type="submit" class="btn btn-primary btn-submit" style="display:none">Send Request →</button>
+            <button type="button" class="btn btn-ghost btn-prev btn-refined" style="visibility:hidden">← Back</button>
+            <button type="button" class="btn btn-primary btn-next btn-refined">Continue →</button>
+            <button type="submit" class="btn btn-primary btn-submit btn-refined" style="display:none">Send Request →</button>
           </div>
 
           <p style="font-size:.72rem;color:var(--dim);text-align:center;margin-top:1rem">We respond within 4 business hours · Your info stays private</p>
@@ -592,7 +592,32 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
-<script src="js/form.js"></script>
+<script src="js/main.js?v=3"></script>
+<script src="js/form.js?v=3"></script>
+
+<!-- PREVIEW-ONLY THEME TOGGLE (remove before launch) -->
+<button id="theme-toggle-preview" style="position:fixed;bottom:1.25rem;left:1.25rem;z-index:99999;background:var(--copper);color:#fff;border:2px solid #fff;border-radius:50px;padding:.8rem 1.4rem;font-size:.85rem;font-weight:700;font-family:var(--sans);cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.5);letter-spacing:.01em">☀ Toggle Light Mode</button>
+<script>
+(function(){
+  var btn = document.getElementById('theme-toggle-preview');
+  var saved = localStorage.getItem('solano-theme-preview');
+  if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  function updateLabel(){
+    btn.textContent = document.documentElement.getAttribute('data-theme') === 'light' ? 'Toggle Dark Mode' : 'Toggle Light Mode';
+  }
+  updateLabel();
+  btn.addEventListener('click', function(){
+    var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    if (isLight) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('solano-theme-preview', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('solano-theme-preview', 'light');
+    }
+    updateLabel();
+  });
+})();
+</script>
 </body>
 </html>

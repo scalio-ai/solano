@@ -128,6 +128,71 @@ document.addEventListener('DOMContentLoaded', () => {
     if (words.length) setTimeout(type, 800);
   }
 
+  // ---- ANIMATED CONVERSATION MOCKUPS ----
+  // Plays chat/call transcript mockups one line at a time, like a live
+  // conversation, when scrolled into view. Loops with a pause at the end.
+  document.querySelectorAll('[data-convo]').forEach(container => {
+    const lines     = Array.from(container.querySelectorAll('[data-convo-line]'));
+    const typingEl  = container.querySelector('[data-convo-typing]');
+    if (!lines.length) return;
+    const typingDisplay = typingEl ? getComputedStyle(typingEl).display : null;
+
+    lines.forEach(line => {
+      line.style.opacity = '0';
+      line.style.transform = 'translateY(6px)';
+      line.style.transition = 'opacity .35s ease, transform .35s ease';
+    });
+    if (typingEl) typingEl.style.display = 'none';
+
+    let playing = false;
+    let timers = [];
+    const clearTimers = () => { timers.forEach(t => clearTimeout(t)); timers = []; };
+
+    function play() {
+      if (playing) return;
+      playing = true;
+      clearTimers();
+      lines.forEach(line => {
+        line.style.opacity = '0';
+        line.style.transform = 'translateY(6px)';
+      });
+      if (typingEl) typingEl.style.display = 'none';
+
+      let i = 0;
+      function showNext() {
+        if (i < lines.length) {
+          const line = lines[i];
+          const delay = i === 0 ? 350 : 700 + Math.random() * 500;
+          timers.push(setTimeout(() => {
+            line.style.opacity = '1';
+            line.style.transform = 'translateY(0)';
+            i++;
+            showNext();
+          }, delay));
+        } else {
+          if (typingEl) {
+            timers.push(setTimeout(() => { typingEl.style.display = typingDisplay; }, 600));
+          }
+          timers.push(setTimeout(() => { playing = false; play(); }, 5500));
+        }
+      }
+      showNext();
+    }
+
+    // Start immediately if already on-screen (don't wait on IntersectionObserver,
+    // which some browsers throttle/suspend for background or just-loaded tabs).
+    const rect = container.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) play();
+
+    const convoObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) play();
+        else { playing = false; clearTimers(); }
+      });
+    }, { threshold: 0.2 });
+    convoObserver.observe(container);
+  });
+
   // ---- CARD 3D TILT ----
   document.querySelectorAll('.tilt-card').forEach(card => {
     const INTENSITY = 8;

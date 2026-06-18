@@ -52,6 +52,62 @@
   --shadow-orange: 0 8px 40px var(--orange-glow);
 }
 
+/* ============================================================
+   LIGHT THEME — PREVIEW ONLY (toggle via data-theme="light" on <html>)
+   Not the default. For evaluating a non-dark direction before
+   committing to a full rollout.
+   ============================================================ */
+html[data-theme="light"] {
+  --bg:        #F5F1E8;
+  --bg-2:      #EDE6D8;
+  --bg-3:      #E4DAC6;
+  --glass:     rgba(50,38,18,0.04);
+  --glass-md:  rgba(50,38,18,0.07);
+  --glass-hv:  rgba(50,38,18,0.10);
+  --border:    rgba(50,38,18,0.12);
+  --border-md: rgba(50,38,18,0.20);
+
+  --copper:       #C47A3C;
+  --copper-dk:    #A8622A;
+  --copper-glow:  rgba(196,122,60,0.22);
+  --copper-lt:    rgba(196,122,60,0.13);
+
+  --orange:     #C47A3C;
+  --orange-dk:  #A8622A;
+  --orange-glow:rgba(196,122,60,0.22);
+  --orange-lt:  rgba(196,122,60,0.13);
+
+  --blue:       #2F5AA0;
+  --blue-dk:    #244680;
+  --blue-glow:  rgba(47,90,160,0.16);
+  --blue-lt:    rgba(47,90,160,0.09);
+
+  --green:      #15803d;
+
+  --text:    #2A2419;
+  --muted:   #756C5B;
+  --dim:     #B3A890;
+
+  --shadow:    0 1px 3px rgba(50,38,18,.07), 0 4px 16px rgba(50,38,18,.06);
+  --shadow-lg: 0 8px 30px rgba(50,38,18,.12);
+  --shadow-blue: 0 8px 30px var(--blue-glow);
+  --shadow-orange: 0 8px 30px var(--orange-glow);
+}
+html[data-theme="light"] .price-amount sub,
+html[data-theme="light"] .price-amount sup { color: var(--muted); }
+html[data-theme="light"] .ucla-badge {
+  background: rgba(168,122,0,.10);
+  border-color: rgba(168,122,0,.25);
+  color: #8a6500;
+}
+html[data-theme="light"] nav.scrolled {
+  background: rgba(245,241,232,0.92);
+  box-shadow: 0 4px 30px rgba(50,38,18,.10);
+}
+html[data-theme="light"] .mobile-menu {
+  background: rgba(245,241,232,0.97);
+}
+
 /* ---- RESET ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -574,12 +630,13 @@ nav.scrolled {
   white-space: nowrap;
 }
 .price-tier {
-  font-size: .68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .12em;
-  color: var(--blue);
-  margin-bottom: .75rem;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin-bottom: .9rem;
+  line-height: 1.25;
 }
 .price-amount {
   font-family: var(--serif);
@@ -623,7 +680,7 @@ nav.scrolled {
 .price-btn {
   width: 100%;
   padding: .85rem;
-  border-radius: 50px;
+  border-radius: 6px;
   font-size: .875rem;
   font-weight: 600;
   font-family: var(--serif);
@@ -645,7 +702,6 @@ nav.scrolled {
   background: var(--blue);
   color: #fff;
   border: none;
-  box-shadow: 0 4px 20px var(--blue-glow);
 }
 .price-card.featured .price-btn:hover {
   background: var(--blue-dk);
@@ -798,7 +854,7 @@ nav.scrolled {
 }
 .bubble.ai {
   background: var(--blue-lt);
-  color: rgba(238,238,248,.85);
+  color: var(--text);
   border-radius: 14px 14px 14px 4px;
 }
 .bubble.user {
@@ -859,7 +915,7 @@ nav.scrolled {
 /* ---- FLOATING CARDS ---- */
 .float-card {
   position: absolute;
-  background: rgba(15,15,38,.85);
+  background: var(--bg-2);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-md);
   border-radius: 14px;
@@ -1369,6 +1425,17 @@ footer {
 }
 
 /* --- Call Button --- */
+/* This widget is always a dark glass panel by design, regardless of
+   site theme — pin its variables so light mode can't wash out the text. */
+#solano-call-btn, #solano-transcript {
+  --text:  #f0ede8;
+  --muted: #848090;
+  --dim:   #383550;
+  --blue:  #4E7CC9;
+  --green: #22c55e;
+  --border: rgba(255,255,255,0.08);
+}
+
 #solano-call-btn {
   position: fixed;
   bottom: 28px;
@@ -1580,7 +1647,7 @@ footer {
   padding: .5rem .8rem;
   font-size: .78rem;
   line-height: 1.55;
-  color: rgba(240,237,232,.88);
+  color: var(--text);
 }
 .st-msg.assistant .st-bubble {
   background: rgba(78,124,201,.13);
@@ -1636,4 +1703,58 @@ footer {
   .footer-top { grid-template-columns: 1fr; }
 
   section { padding: 3rem 1rem; }
+}
+
+/* ============================================================
+   REFINED HERO — PREVIEW (scoped, does not affect other sections)
+   Drops blob gradients, glass blur, glow shadows, and the
+   green pulse-dot pattern in favor of flat cards, hairline
+   borders, and restrained color.
+   ============================================================ */
+.hero-refined .hero-blob,
+.hero-refined .hero-grid { display: none; }
+
+.label-quiet {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--copper);
+  border: 1px solid var(--border-md);
+  border-radius: 3px;
+  padding: .4rem .85rem;
+  background: transparent;
+}
+
+.btn-refined {
+  border-radius: 6px !important;
+  box-shadow: none !important;
+}
+.btn-refined.btn-primary { background: var(--copper); }
+.btn-refined.btn-primary:hover { background: var(--copper-dk); }
+
+.trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .9rem;
+  font-size: .78rem;
+  color: var(--muted);
+}
+.trust-row .div { color: var(--border-md); }
+
+.status-quiet {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--copper);
+  flex-shrink: 0;
+}
+
+.phone-frame-refined {
+  border-radius: 10px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,.5), 0 12px 40px rgba(0,0,0,.45) !important;
 }
