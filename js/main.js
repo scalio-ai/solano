@@ -52,12 +52,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---- ACTIVE NAV LINK ----
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  // Pages are served at extensionless paths (e.g. /services) — Cloudflare
+  // 308-redirects the .html version, so links must match the path exactly.
+  const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
   document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
-    const href = a.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-      a.classList.add('active');
-    }
+    if (a.getAttribute('href') === currentPath) a.classList.add('active');
   });
 
   // ---- SCROLL REVEAL (Intersection Observer) ----
