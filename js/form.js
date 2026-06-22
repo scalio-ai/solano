@@ -47,96 +47,96 @@ document.addEventListener('DOMContentLoaded', () => {
 function buildClientEmailHtml(data) {
   const servicesHtml = data.services
     ? data.services.split(', ').map(s =>
-        `<span style="display:inline-block;background:#1a2240;border:1px solid #2a3560;border-radius:4px;padding:3px 10px;font-size:12px;color:#4E7CC9;margin:3px 3px 0 0;">${s}</span>`
+        `<span style="display:inline-block;background:#F4E4D2;border:1px solid #E3C39C;border-radius:4px;padding:3px 10px;font-size:12px;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#A8622A;font-weight:600;margin:3px 3px 0 0;">${s}</span>`
       ).join('')
-    : '<span style="color:#848090;font-size:13px;">Not specified</span>';
+    : '<span style="color:#756C5B;font-size:13px;font-family:\'Inter\',-apple-system,BlinkMacSystemFont,\'Segoe UI\',Arial,sans-serif;">Not specified</span>';
 
   return `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#060912;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#060912;padding:40px 0;">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0;background:#F5F1E8;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#F5F1E8;padding:40px 0;">
     <tr><td align="center">
-      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#0d1120;border-radius:8px;overflow:hidden;box-shadow:0 4px 40px rgba(0,0,0,0.5);">
+      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:10px;overflow:hidden;box-shadow:0 4px 30px rgba(50,38,18,0.10);">
 
         <!-- Header -->
-        <tr><td style="background:#090c14;padding:36px 40px;text-align:center;border-bottom:1px solid #1a2240;">
-          <p style="margin:0 0 6px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#4E7CC9;">Solano AI</p>
-          <p style="margin:0;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#383550;">Demo Request Received</p>
+        <tr><td style="background:#C47A3C;padding:36px 40px;text-align:center;">
+          <p style="margin:0 0 6px;font-size:14px;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;color:#ffffff;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">Solano AI</p>
+          <p style="margin:0;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.75);">Demo Request Received</p>
         </td></tr>
-
-        <!-- Blue accent bar -->
-        <tr><td style="height:2px;background:linear-gradient(90deg,#2a3a6e,#4E7CC9,#2a3a6e);"></td></tr>
 
         <!-- Greeting -->
         <tr><td style="padding:44px 40px 28px;text-align:center;">
-          <p style="margin:0 0 10px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#4E7CC9;">You're in.</p>
-          <h1 style="margin:0 0 16px;font-size:26px;font-weight:600;color:#f0ede8;line-height:1.3;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">We got your request, ${data.firstName}.</h1>
-          <p style="margin:0;font-size:15px;color:#848090;line-height:1.7;max-width:440px;margin-left:auto;margin-right:auto;">We'll reach out within 4 business hours to confirm your consultation and answer any questions before your demo.</p>
+          <p style="margin:0 0 10px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#C47A3C;font-weight:700;">You're in.</p>
+          <h1 style="margin:0 0 16px;font-size:26px;font-weight:800;color:#2A2419;line-height:1.3;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">We got your request, ${data.firstName}.</h1>
+          <p style="margin:0;font-size:15px;color:#756C5B;line-height:1.7;max-width:440px;margin-left:auto;margin-right:auto;">We'll reach out within 4 business hours to confirm your consultation and answer any questions before your demo.</p>
         </td></tr>
 
         <!-- Divider -->
-        <tr><td style="padding:0 40px;"><div style="height:1px;background:#1a2240;"></div></td></tr>
+        <tr><td style="padding:0 40px;"><div style="height:1px;background:#EDE6D8;"></div></td></tr>
 
         <!-- What to expect -->
         <tr><td style="padding:32px 40px;">
-          <p style="margin:0 0 20px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#4E7CC9;">What Happens Next</p>
+          <p style="margin:0 0 20px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#A8622A;font-weight:700;">What Happens Next</p>
           <table width="100%" cellpadding="0" cellspacing="0">
             <tr>
-              <td style="padding:12px 0;border-bottom:1px solid #1a2240;vertical-align:top;width:36px;">
-                <table cellpadding="0" cellspacing="0"><tr><td width="26" height="26" style="width:26px;height:26px;border-radius:50%;background:#1a2240;border:1px solid #2a3560;text-align:center;vertical-align:middle;font-size:11px;color:#4E7CC9;font-weight:700;line-height:26px;">1</td></tr></table>
+              <td style="padding:12px 0;border-bottom:1px solid #EDE6D8;vertical-align:top;width:36px;">
+                <table cellpadding="0" cellspacing="0"><tr><td width="26" height="26" style="width:26px;height:26px;border-radius:50%;background:#F4E4D2;border:1px solid #E3C39C;text-align:center;vertical-align:middle;font-size:11px;color:#A8622A;font-weight:700;line-height:26px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">1</td></tr></table>
               </td>
-              <td style="padding:12px 0 12px 12px;border-bottom:1px solid #1a2240;">
-                <p style="margin:0;font-size:13px;font-weight:600;color:#f0ede8;">We review your request</p>
-                <p style="margin:4px 0 0;font-size:12px;color:#848090;line-height:1.6;">Our team looks at your business type, service area, and goals so we can prep a custom demo.</p>
+              <td style="padding:12px 0 12px 12px;border-bottom:1px solid #EDE6D8;">
+                <p style="margin:0;font-size:13px;font-weight:700;color:#2A2419;">We review your request</p>
+                <p style="margin:4px 0 0;font-size:12px;color:#756C5B;line-height:1.6;">Our team looks at your business type, service area, and goals so we can prep a custom demo.</p>
               </td>
             </tr>
             <tr>
-              <td style="padding:12px 0;border-bottom:1px solid #1a2240;vertical-align:top;width:36px;">
-                <table cellpadding="0" cellspacing="0"><tr><td width="26" height="26" style="width:26px;height:26px;border-radius:50%;background:#1a2240;border:1px solid #2a3560;text-align:center;vertical-align:middle;font-size:11px;color:#4E7CC9;font-weight:700;line-height:26px;">2</td></tr></table>
+              <td style="padding:12px 0;border-bottom:1px solid #EDE6D8;vertical-align:top;width:36px;">
+                <table cellpadding="0" cellspacing="0"><tr><td width="26" height="26" style="width:26px;height:26px;border-radius:50%;background:#F4E4D2;border:1px solid #E3C39C;text-align:center;vertical-align:middle;font-size:11px;color:#A8622A;font-weight:700;line-height:26px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">2</td></tr></table>
               </td>
-              <td style="padding:12px 0 12px 12px;border-bottom:1px solid #1a2240;">
-                <p style="margin:0;font-size:13px;font-weight:600;color:#f0ede8;">We reach out to schedule</p>
-                <p style="margin:4px 0 0;font-size:12px;color:#848090;line-height:1.6;">Expect a call or email within 4 business hours to lock in a time that works for you.</p>
+              <td style="padding:12px 0 12px 12px;border-bottom:1px solid #EDE6D8;">
+                <p style="margin:0;font-size:13px;font-weight:700;color:#2A2419;">We reach out to schedule</p>
+                <p style="margin:4px 0 0;font-size:12px;color:#756C5B;line-height:1.6;">Expect a call or email within 4 business hours to lock in a time that works for you.</p>
               </td>
             </tr>
             <tr>
               <td style="padding:12px 0;vertical-align:top;width:36px;">
-                <table cellpadding="0" cellspacing="0"><tr><td width="26" height="26" style="width:26px;height:26px;border-radius:50%;background:#1a2240;border:1px solid #2a3560;text-align:center;vertical-align:middle;font-size:11px;color:#4E7CC9;font-weight:700;line-height:26px;">3</td></tr></table>
+                <table cellpadding="0" cellspacing="0"><tr><td width="26" height="26" style="width:26px;height:26px;border-radius:50%;background:#F4E4D2;border:1px solid #E3C39C;text-align:center;vertical-align:middle;font-size:11px;color:#A8622A;font-weight:700;line-height:26px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">3</td></tr></table>
               </td>
               <td style="padding:12px 0 12px 12px;">
-                <p style="margin:0;font-size:13px;font-weight:600;color:#f0ede8;">Your personalized demo</p>
-                <p style="margin:4px 0 0;font-size:12px;color:#848090;line-height:1.6;">30 minutes. We show you exactly how Solano AI works for your trade and your service area.</p>
+                <p style="margin:0;font-size:13px;font-weight:700;color:#2A2419;">Your personalized demo</p>
+                <p style="margin:4px 0 0;font-size:12px;color:#756C5B;line-height:1.6;">30 minutes. We show you exactly how Solano AI works for your trade and your service area.</p>
               </td>
             </tr>
           </table>
         </td></tr>
 
         <!-- Divider -->
-        <tr><td style="padding:0 40px;"><div style="height:1px;background:#1a2240;"></div></td></tr>
+        <tr><td style="padding:0 40px;"><div style="height:1px;background:#EDE6D8;"></div></td></tr>
 
         <!-- Submission summary -->
         <tr><td style="padding:32px 40px;">
-          <p style="margin:0 0 20px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#4E7CC9;">Your Submission</p>
+          <p style="margin:0 0 20px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#A8622A;font-weight:700;">Your Submission</p>
           <table width="100%" cellpadding="0" cellspacing="0">
             <tr>
-              <td style="padding:10px 0;border-bottom:1px solid #1a2240;font-size:12px;color:#848090;width:42%;vertical-align:top;">Company</td>
-              <td style="padding:10px 0;border-bottom:1px solid #1a2240;font-size:13px;color:#f0ede8;font-weight:600;">${data.companyName || '—'}</td>
+              <td style="padding:10px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;width:42%;vertical-align:top;">Company</td>
+              <td style="padding:10px 0;border-bottom:1px solid #EDE6D8;font-size:13px;color:#2A2419;font-weight:700;">${data.companyName || '—'}</td>
             </tr>
             <tr>
-              <td style="padding:10px 0;border-bottom:1px solid #1a2240;font-size:12px;color:#848090;vertical-align:top;">Trade</td>
-              <td style="padding:10px 0;border-bottom:1px solid #1a2240;font-size:13px;color:#f0ede8;">${data.trade || '—'}</td>
+              <td style="padding:10px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;vertical-align:top;">Trade</td>
+              <td style="padding:10px 0;border-bottom:1px solid #EDE6D8;font-size:13px;color:#2A2419;">${data.trade || '—'}</td>
             </tr>
             <tr>
-              <td style="padding:10px 0;border-bottom:1px solid #1a2240;font-size:12px;color:#848090;vertical-align:top;">Service Area</td>
-              <td style="padding:10px 0;border-bottom:1px solid #1a2240;font-size:13px;color:#f0ede8;">${data.serviceArea || '—'}</td>
+              <td style="padding:10px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;vertical-align:top;">Service Area</td>
+              <td style="padding:10px 0;border-bottom:1px solid #EDE6D8;font-size:13px;color:#2A2419;">${data.serviceArea || '—'}</td>
             </tr>
             <tr>
-              <td style="padding:10px 0;border-bottom:1px solid #1a2240;font-size:12px;color:#848090;vertical-align:top;">Biggest Challenge</td>
-              <td style="padding:10px 0;border-bottom:1px solid #1a2240;font-size:13px;color:#f0ede8;">${data.biggestChallenge || '—'}</td>
+              <td style="padding:10px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;vertical-align:top;">Biggest Challenge</td>
+              <td style="padding:10px 0;border-bottom:1px solid #EDE6D8;font-size:13px;color:#2A2419;">${data.biggestChallenge || '—'}</td>
             </tr>
             <tr>
-              <td style="padding:10px 0;font-size:12px;color:#848090;vertical-align:top;">Services of Interest</td>
+              <td style="padding:10px 0;font-size:12px;color:#756C5B;vertical-align:top;">Services of Interest</td>
               <td style="padding:10px 0;">${servicesHtml}</td>
             </tr>
           </table>
@@ -145,24 +145,24 @@ function buildClientEmailHtml(data) {
         ${data.message && data.message !== 'None' ? `
         <!-- Notes -->
         <tr><td style="padding:0 40px 32px;">
-          <div style="background:#090c14;border-left:2px solid #4E7CC9;padding:16px 20px;border-radius:0 6px 6px 0;">
-            <p style="margin:0 0 6px;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#4E7CC9;">Your Notes</p>
-            <p style="margin:0;font-size:13px;color:#848090;line-height:1.6;">${data.message}</p>
+          <div style="background:#FAF6EF;border-left:3px solid #C47A3C;padding:16px 20px;border-radius:0 6px 6px 0;">
+            <p style="margin:0 0 6px;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#A8622A;font-weight:700;">Your Notes</p>
+            <p style="margin:0;font-size:13px;color:#756C5B;line-height:1.6;">${data.message}</p>
           </div>
         </td></tr>` : ''}
 
         <!-- CTA box -->
         <tr><td style="padding:0 40px 40px;">
-          <div style="background:#090c14;border:1px solid #1a2240;border-radius:6px;padding:28px;text-align:center;">
-            <p style="margin:0 0 6px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#4E7CC9;">Questions in the meantime?</p>
-            <p style="margin:0 0 18px;font-size:13px;color:#848090;">Reply to this email and we'll get back to you fast.</p>
-            <a href="mailto:solano.ai.solutions@gmail.com" style="display:inline-block;background:#4E7CC9;color:#ffffff;text-decoration:none;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;padding:12px 28px;border-radius:4px;">Email Us Directly</a>
+          <div style="background:#FAF6EF;border:1px solid #EDE6D8;border-radius:8px;padding:28px;text-align:center;">
+            <p style="margin:0 0 6px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#A8622A;font-weight:700;">Questions in the meantime?</p>
+            <p style="margin:0 0 18px;font-size:13px;color:#756C5B;">Reply to this email and we'll get back to you fast.</p>
+            <a href="mailto:solano.ai.solutions@gmail.com" style="display:inline-block;background:#C47A3C;color:#ffffff;text-decoration:none;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;padding:12px 28px;border-radius:6px;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">Email Us Directly</a>
           </div>
         </td></tr>
 
         <!-- Footer -->
-        <tr><td style="background:#090c14;padding:22px 40px;text-align:center;border-top:1px solid #1a2240;">
-          <p style="margin:0;font-size:11px;color:#383550;">© ${new Date().getFullYear()} Solano AI &nbsp;·&nbsp; solano.ai.solutions@gmail.com</p>
+        <tr><td style="background:#F5F1E8;padding:22px 40px;text-align:center;border-top:1px solid #EDE6D8;">
+          <p style="margin:0;font-size:11px;color:#B3A890;">© ${new Date().getFullYear()} Solano AI &nbsp;·&nbsp; solano.ai.solutions@gmail.com</p>
         </td></tr>
 
       </table>
@@ -175,82 +175,84 @@ function buildClientEmailHtml(data) {
 function buildOwnerEmailHtml(data) {
   const servicesHtml = data.services
     ? data.services.split(', ').map(s =>
-        `<span style="display:inline-block;background:#1a2240;border:1px solid #2a3560;border-radius:4px;padding:3px 10px;font-size:12px;color:#4E7CC9;margin:3px 3px 0 0;">${s}</span>`
+        `<span style="display:inline-block;background:#F4E4D2;border:1px solid #E3C39C;border-radius:4px;padding:3px 10px;font-size:12px;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#A8622A;font-weight:600;margin:3px 3px 0 0;">${s}</span>`
       ).join('')
-    : '<span style="color:#848090;font-size:13px;">Not specified</span>';
+    : '<span style="color:#756C5B;font-size:13px;font-family:\'Inter\',-apple-system,BlinkMacSystemFont,\'Segoe UI\',Arial,sans-serif;">Not specified</span>';
 
   return `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"></head>
-<body style="margin:0;padding:0;background:#060912;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#060912;padding:40px 0;">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0;background:#F5F1E8;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#F5F1E8;padding:40px 0;">
     <tr><td align="center">
-      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#0d1120;border-radius:8px;overflow:hidden;box-shadow:0 4px 40px rgba(0,0,0,0.5);">
+      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:10px;overflow:hidden;box-shadow:0 4px 30px rgba(50,38,18,0.10);">
 
         <!-- Header -->
-        <tr><td style="background:#090c14;padding:28px 40px;text-align:center;border-bottom:1px solid #1a2240;">
-          <p style="margin:0 0 4px;font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#4E7CC9;">Solano AI — New Demo Request</p>
-          <p style="margin:0;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#383550;">Owner Notification</p>
+        <tr><td style="background:#C47A3C;padding:28px 40px;text-align:center;">
+          <p style="margin:0 0 4px;font-size:13px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#ffffff;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">Solano AI — New Demo Request</p>
+          <p style="margin:0;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.75);">Owner Notification</p>
         </td></tr>
-        <tr><td style="height:2px;background:linear-gradient(90deg,#2a3a6e,#4E7CC9,#2a3a6e);"></td></tr>
 
         <!-- Summary -->
         <tr><td style="padding:36px 40px 24px;text-align:center;">
-          <h1 style="margin:0 0 6px;font-size:22px;font-weight:600;color:#f0ede8;">${data.firstName} ${data.lastName}</h1>
-          <p style="margin:0;font-size:15px;color:#4E7CC9;font-weight:600;">${data.companyName || 'No company'} &nbsp;·&nbsp; ${data.trade || 'Trade not specified'}</p>
+          <h1 style="margin:0 0 6px;font-size:22px;font-weight:800;color:#2A2419;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">${data.firstName} ${data.lastName}</h1>
+          <p style="margin:0;font-size:15px;color:#A8622A;font-weight:700;">${data.companyName || 'No company'} &nbsp;·&nbsp; ${data.trade || 'Trade not specified'}</p>
         </td></tr>
 
-        <tr><td style="padding:0 40px;"><div style="height:1px;background:#1a2240;"></div></td></tr>
+        <tr><td style="padding:0 40px;"><div style="height:1px;background:#EDE6D8;"></div></td></tr>
 
         <!-- Contact details -->
         <tr><td style="padding:28px 40px 0;">
-          <p style="margin:0 0 16px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#4E7CC9;">Contact Info</p>
+          <p style="margin:0 0 16px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#A8622A;font-weight:700;">Contact Info</p>
           <table width="100%" cellpadding="0" cellspacing="0">
             <tr>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:12px;color:#848090;width:38%;vertical-align:top;">Name</td>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:13px;color:#f0ede8;font-weight:600;">${data.firstName} ${data.lastName}</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;width:38%;vertical-align:top;">Name</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:13px;color:#2A2419;font-weight:700;">${data.firstName} ${data.lastName}</td>
             </tr>
             <tr>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:12px;color:#848090;vertical-align:top;">Email</td>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:13px;"><a href="mailto:${data.email}" style="color:#4E7CC9;text-decoration:none;">${data.email}</a></td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;vertical-align:top;">Email</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:13px;"><a href="mailto:${data.email}" style="color:#A8622A;text-decoration:none;font-weight:600;">${data.email}</a></td>
             </tr>
             <tr>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:12px;color:#848090;vertical-align:top;">Phone</td>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:13px;"><a href="tel:${data.phone}" style="color:#4E7CC9;text-decoration:none;">${data.phone}</a></td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;vertical-align:top;">Phone</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:13px;"><a href="tel:${data.phone}" style="color:#A8622A;text-decoration:none;font-weight:600;">${data.phone}</a></td>
             </tr>
             <tr>
-              <td style="padding:9px 0;font-size:12px;color:#848090;vertical-align:top;">Role</td>
-              <td style="padding:9px 0;font-size:13px;color:#f0ede8;">${data.role || '—'}</td>
+              <td style="padding:9px 0;font-size:12px;color:#756C5B;vertical-align:top;">Role</td>
+              <td style="padding:9px 0;font-size:13px;color:#2A2419;">${data.role || '—'}</td>
             </tr>
           </table>
         </td></tr>
 
         <!-- Business details -->
         <tr><td style="padding:28px 40px 0;">
-          <p style="margin:0 0 16px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#4E7CC9;">Business Info</p>
+          <p style="margin:0 0 16px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#A8622A;font-weight:700;">Business Info</p>
           <table width="100%" cellpadding="0" cellspacing="0">
             <tr>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:12px;color:#848090;width:38%;vertical-align:top;">Company</td>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:13px;color:#f0ede8;font-weight:600;">${data.companyName || '—'}</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;width:38%;vertical-align:top;">Company</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:13px;color:#2A2419;font-weight:700;">${data.companyName || '—'}</td>
             </tr>
             <tr>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:12px;color:#848090;vertical-align:top;">Trade</td>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:13px;color:#f0ede8;">${data.trade || '—'}</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;vertical-align:top;">Trade</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:13px;color:#2A2419;">${data.trade || '—'}</td>
             </tr>
             <tr>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:12px;color:#848090;vertical-align:top;">Service Area</td>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:13px;color:#f0ede8;">${data.serviceArea || '—'}</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;vertical-align:top;">Service Area</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:13px;color:#2A2419;">${data.serviceArea || '—'}</td>
             </tr>
             <tr>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:12px;color:#848090;vertical-align:top;">Team Size</td>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:13px;color:#f0ede8;">${data.teamSize || '—'}</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;vertical-align:top;">Team Size</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:13px;color:#2A2419;">${data.teamSize || '—'}</td>
             </tr>
             <tr>
-              <td style="padding:9px 0;font-size:12px;color:#848090;vertical-align:top;">Current Website</td>
+              <td style="padding:9px 0;font-size:12px;color:#756C5B;vertical-align:top;">Current Website</td>
               <td style="padding:9px 0;font-size:13px;">
                 ${data.currentWebsite && data.currentWebsite !== 'None'
-                  ? `<a href="${data.currentWebsite}" style="color:#4E7CC9;text-decoration:none;">${data.currentWebsite}</a>`
-                  : '<span style="color:#848090;">None</span>'}
+                  ? `<a href="${data.currentWebsite}" style="color:#A8622A;text-decoration:none;font-weight:600;">${data.currentWebsite}</a>`
+                  : '<span style="color:#756C5B;">None</span>'}
               </td>
             </tr>
           </table>
@@ -258,14 +260,14 @@ function buildOwnerEmailHtml(data) {
 
         <!-- Goals -->
         <tr><td style="padding:28px 40px;">
-          <p style="margin:0 0 16px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#4E7CC9;">Goals &amp; Interests</p>
+          <p style="margin:0 0 16px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#A8622A;font-weight:700;">Goals &amp; Interests</p>
           <table width="100%" cellpadding="0" cellspacing="0">
             <tr>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:12px;color:#848090;width:38%;vertical-align:top;">Biggest Challenge</td>
-              <td style="padding:9px 0;border-bottom:1px solid #1a2240;font-size:13px;color:#f0ede8;">${data.biggestChallenge || '—'}</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;width:38%;vertical-align:top;">Biggest Challenge</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:13px;color:#2A2419;">${data.biggestChallenge || '—'}</td>
             </tr>
             <tr>
-              <td style="padding:9px 0;font-size:12px;color:#848090;vertical-align:top;">Services Interested In</td>
+              <td style="padding:9px 0;font-size:12px;color:#756C5B;vertical-align:top;">Services Interested In</td>
               <td style="padding:9px 0;">${servicesHtml}</td>
             </tr>
           </table>
@@ -274,15 +276,15 @@ function buildOwnerEmailHtml(data) {
         ${data.message && data.message !== 'None' ? `
         <!-- Notes -->
         <tr><td style="padding:0 40px 28px;">
-          <div style="background:#090c14;border-left:2px solid #4E7CC9;padding:14px 18px;border-radius:0 6px 6px 0;">
-            <p style="margin:0 0 4px;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#4E7CC9;">Additional Notes</p>
-            <p style="margin:0;font-size:13px;color:#848090;line-height:1.6;">${data.message}</p>
+          <div style="background:#FAF6EF;border-left:3px solid #C47A3C;padding:14px 18px;border-radius:0 6px 6px 0;">
+            <p style="margin:0 0 4px;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#A8622A;font-weight:700;">Additional Notes</p>
+            <p style="margin:0;font-size:13px;color:#756C5B;line-height:1.6;">${data.message}</p>
           </div>
         </td></tr>` : ''}
 
         <!-- Footer -->
-        <tr><td style="background:#090c14;padding:20px 40px;text-align:center;border-top:1px solid #1a2240;">
-          <p style="margin:0;font-size:11px;color:#383550;">Solano AI &nbsp;·&nbsp; solano.ai.solutions@gmail.com</p>
+        <tr><td style="background:#F5F1E8;padding:20px 40px;text-align:center;border-top:1px solid #EDE6D8;">
+          <p style="margin:0;font-size:11px;color:#B3A890;">Solano AI &nbsp;·&nbsp; solano.ai.solutions@gmail.com</p>
         </td></tr>
 
       </table>

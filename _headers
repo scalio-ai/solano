@@ -8,10 +8,17 @@
 # Static assets are cache-busted via ?v= query params on every change, so it's
 # safe to cache them aggressively — this is what makes switching between pages
 # fast after the first load (CSS/JS/icons don't get re-fetched).
+#
+# Content-Type charset is explicit here because Cloudflare's default
+# (application/javascript / text/css with no charset) makes some browsers
+# guess the wrong encoding for non-ASCII characters in source — e.g. the
+# em dashes and arrows in main.js/form.js were rendering as mojibake.
 /css/*
   Cache-Control: public, max-age=31536000, immutable
+  Content-Type: text/css; charset=utf-8
 /js/*
   Cache-Control: public, max-age=31536000, immutable
+  Content-Type: application/javascript; charset=utf-8
 /*.svg
   Cache-Control: public, max-age=31536000, immutable
 /*.png
