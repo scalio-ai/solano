@@ -2,7 +2,9 @@
    SOLANO AI — GLOBAL DESIGN SYSTEM
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Font is loaded via <link> tags in <head>, not @import here — @import
+   blocks until this whole file is fetched AND parsed before the browser
+   even discovers the font stylesheet, adding a full extra round trip. */
 
 /* ---- TOKENS (default: light) ---- */
 :root {

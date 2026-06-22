@@ -32,7 +32,8 @@
 <link rel="shortcut icon" href="favicon.svg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="stylesheet" href="css/styles.css?v=7"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"/>
+<link rel="stylesheet" href="css/styles.css?v=8"/>
 <link rel="prefetch" href="index.html"/>
 <link rel="prefetch" href="services.html"/>
 <!-- Structured data: ProfessionalService + FAQPage -->
@@ -120,8 +121,8 @@
   ]
 }
 </script>
-<!-- EmailJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<!-- EmailJS SDK (deferred — was render-blocking in <head>, delaying first paint on this page) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
 </head>
 <body>
 
@@ -596,7 +597,7 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=4"></script>
+<script src="js/main.js?v=5"></script>
 <script src="js/form.js?v=3"></script>
 
 <!-- THEME TOGGLE (floating eye icon, default theme is light) -->

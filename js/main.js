@@ -4,6 +4,24 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ---- PREFETCH OTHER PAGES ON TOUCH/HOVER ----
+  // Safari (incl. iOS) never implemented <link rel="prefetch">, so on iPhone
+  // those hints in <head> do nothing. This warms the HTTP cache for a page
+  // the instant a finger/cursor lands on its nav link, so the actual tap
+  // often hits a cache that's already populated instead of a cold fetch.
+  const prefetched = new Set();
+  function prefetchPage(href) {
+    if (!href || prefetched.has(href)) return;
+    prefetched.add(href);
+    fetch(href, { priority: 'low' }).catch(() => {});
+  }
+  document.querySelectorAll('.nav-links a, .mobile-menu a, .nav-right a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('http')) return;
+    a.addEventListener('touchstart', () => prefetchPage(href), { passive: true });
+    a.addEventListener('mouseenter', () => prefetchPage(href));
+  });
+
   // ---- AUTO-UPDATE FOOTER COPYRIGHT YEAR ----
   const yearEl = document.getElementById('footer-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
