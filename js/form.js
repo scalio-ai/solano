@@ -25,6 +25,14 @@
 
    4. Copy your Public Key from Account → API Keys
    5. Fill in the four config values below.
+
+
+   CRM SETUP (Google Sheets — free, via Apps Script)
+   ─────────────────────────────────────────────────────────────
+   See CRM_SETUP.md in the repo root for the full walkthrough. Short
+   version: paste crm/AppsScript.gs into a Google Sheet's Apps Script
+   editor, run setupCRM() once, set a CRM_SECRET script property, deploy
+   as a Web App, then fill in the two values below.
    ============================================================ */
 
 const EMAILJS_CONFIG = {
@@ -32,6 +40,11 @@ const EMAILJS_CONFIG = {
   serviceId:         'service_l220jnt',
   clientTemplateId:  'template_tvrbq3i',
   ownerTemplateId:   'template_927yi2a',
+};
+
+const CRM_CONFIG = {
+  webhookUrl: 'YOUR_APPS_SCRIPT_WEB_APP_URL',
+  secret:     'YOUR_CRM_SECRET',
 };
 
 // ─── Init ────────────────────────────────────────────────────
@@ -225,13 +238,24 @@ function buildOwnerEmailHtml(data) {
 
 // ─── Send Both Emails ────────────────────────────────────────
 
+// Fire-and-forget POST to the Solano CRM Google Sheet (see crm/AppsScript.gs
+// and CRM_SETUP.md). Sent as text/plain so the browser treats it as a
+// "simple request" and skips a CORS preflight — Apps Script Web Apps don't
+// handle OPTIONS preflight requests.
+function sendToCRM(data) {
+  if (CRM_CONFIG.webhookUrl === 'YOUR_APPS_SCRIPT_WEB_APP_URL') {
+    console.info('[Solano AI] CRM webhook not configured — skipping.');
+    return;
+  }
+  fetch(CRM_CONFIG.webhookUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ ...data, secret: CRM_CONFIG.secret }),
+  }).catch(() => {});
+}
+
 // Returns a Promise so the form handler can await it
 window.sendSolanoEmails = function(formData) {
-  if (!window.emailjs || EMAILJS_CONFIG.publicKey === 'YOUR_PUBLIC_KEY') {
-    console.info('[Solano AI] EmailJS not configured — skipping email send.');
-    return Promise.resolve();
-  }
-
   const services = formData.getAll('services').join(', ') || 'Not specified';
   const data = {
     firstName:        formData.get('first_name')       || '',
@@ -248,6 +272,13 @@ window.sendSolanoEmails = function(formData) {
     services,
     message:          formData.get('message')          || 'None',
   };
+
+  sendToCRM(data);
+
+  if (!window.emailjs || EMAILJS_CONFIG.publicKey === 'YOUR_PUBLIC_KEY') {
+    console.info('[Solano AI] EmailJS not configured — skipping email send.');
+    return Promise.resolve();
+  }
 
   const baseParams = {
     to_name:           `${data.firstName} ${data.lastName}`,
