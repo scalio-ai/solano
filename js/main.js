@@ -345,13 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         }
 
-        // Fire-and-forget to Netlify for data logging (non-blocking)
-        fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString(),
-        }).catch(() => {});
-
         form.innerHTML = `
           <div style="text-align:center;padding:3.5rem 1.5rem">
             <div style="width:68px;height:68px;border-radius:50%;background:var(--blue-lt);border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 1.75rem">
