@@ -104,6 +104,21 @@ document.addEventListener('DOMContentLoaded', () => {
     let   charIdx= 0;
     let   deleting = false;
 
+    // Reserve width for the longest word up front so typing/deleting never
+    // reflows the surrounding paragraph (was causing the page to visibly
+    // jump as shorter/longer words cycled in and out).
+    if (words.length) {
+      const originalText = cycleEl.textContent;
+      let maxWidth = 0;
+      words.forEach(w => {
+        cycleEl.textContent = w;
+        maxWidth = Math.max(maxWidth, cycleEl.scrollWidth);
+      });
+      cycleEl.textContent = originalText;
+      cycleEl.style.display = 'inline-block';
+      cycleEl.style.minWidth = maxWidth + 'px';
+    }
+
     function type() {
       const word = words[idx];
       if (!deleting) {

@@ -4,60 +4,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* ---- TOKENS ---- */
+/* ---- TOKENS (default: light) ---- */
 :root {
-  --bg:        #090c14;
-  --bg-2:      #0d1120;
-  --bg-3:      #12182c;
-  --glass:     rgba(255,255,255,0.04);
-  --glass-md:  rgba(255,255,255,0.08);
-  --glass-hv:  rgba(255,255,255,0.12);
-  --border:    rgba(255,255,255,0.08);
-  --border-md: rgba(255,255,255,0.15);
-
-  /* Copper — logo primary mark color */
-  --copper:       #C47A3C;
-  --copper-dk:    #A8622A;
-  --copper-glow:  rgba(196,122,60,0.22);
-  --copper-lt:    rgba(196,122,60,0.11);
-
-  /* Alias: --orange = copper throughout for backward compat */
-  --orange:     #C47A3C;
-  --orange-dk:  #A8622A;
-  --orange-glow:rgba(196,122,60,0.22);
-  --orange-lt:  rgba(196,122,60,0.11);
-
-  /* Navy blue — secondary UI accent */
-  --blue:       #4E7CC9;
-  --blue-dk:    #3560AA;
-  --blue-glow:  rgba(78,124,201,0.20);
-  --blue-lt:    rgba(78,124,201,0.10);
-
-  --green:      #22c55e;
-
-  --text:    #f0ede8;
-  --muted:   #848090;
-  --dim:     #383550;
-
-  --serif: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --sans:  'Inter', system-ui, sans-serif;
-
-  --r:    12px;
-  --r-lg: 20px;
-  --r-xl: 28px;
-
-  --shadow:    0 1px 3px rgba(0,0,0,.5), 0 4px 20px rgba(0,0,0,.4);
-  --shadow-lg: 0 8px 40px rgba(0,0,0,.6);
-  --shadow-blue: 0 8px 40px var(--blue-glow);
-  --shadow-orange: 0 8px 40px var(--orange-glow);
-}
-
-/* ============================================================
-   LIGHT THEME — PREVIEW ONLY (toggle via data-theme="light" on <html>)
-   Not the default. For evaluating a non-dark direction before
-   committing to a full rollout.
-   ============================================================ */
-html[data-theme="light"] {
   --bg:        #F5F1E8;
   --bg-2:      #EDE6D8;
   --bg-3:      #E4DAC6;
@@ -67,16 +15,19 @@ html[data-theme="light"] {
   --border:    rgba(50,38,18,0.12);
   --border-md: rgba(50,38,18,0.20);
 
+  /* Copper — logo primary mark color */
   --copper:       #C47A3C;
   --copper-dk:    #A8622A;
   --copper-glow:  rgba(196,122,60,0.22);
   --copper-lt:    rgba(196,122,60,0.13);
 
+  /* Alias: --orange = copper throughout for backward compat */
   --orange:     #C47A3C;
   --orange-dk:  #A8622A;
   --orange-glow:rgba(196,122,60,0.22);
   --orange-lt:  rgba(196,122,60,0.13);
 
+  /* Navy blue — secondary UI accent */
   --blue:       #2F5AA0;
   --blue-dk:    #244680;
   --blue-glow:  rgba(47,90,160,0.16);
@@ -88,24 +39,84 @@ html[data-theme="light"] {
   --muted:   #756C5B;
   --dim:     #B3A890;
 
+  --serif: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --sans:  'Inter', system-ui, sans-serif;
+
+  --r:    12px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+
   --shadow:    0 1px 3px rgba(50,38,18,.07), 0 4px 16px rgba(50,38,18,.06);
   --shadow-lg: 0 8px 30px rgba(50,38,18,.12);
   --shadow-blue: 0 8px 30px var(--blue-glow);
   --shadow-orange: 0 8px 30px var(--orange-glow);
 }
-html[data-theme="light"] .price-amount sub,
-html[data-theme="light"] .price-amount sup { color: var(--muted); }
-html[data-theme="light"] .ucla-badge {
+
+/* ============================================================
+   DARK THEME — opt-in via data-theme="dark" on <html>
+   ============================================================ */
+html[data-theme="dark"] {
+  --bg:        #090c14;
+  --bg-2:      #0d1120;
+  --bg-3:      #12182c;
+  --glass:     rgba(255,255,255,0.04);
+  --glass-md:  rgba(255,255,255,0.08);
+  --glass-hv:  rgba(255,255,255,0.12);
+  --border:    rgba(255,255,255,0.08);
+  --border-md: rgba(255,255,255,0.15);
+
+  --copper:       #C47A3C;
+  --copper-dk:    #A8622A;
+  --copper-glow:  rgba(196,122,60,0.22);
+  --copper-lt:    rgba(196,122,60,0.11);
+
+  --orange:     #C47A3C;
+  --orange-dk:  #A8622A;
+  --orange-glow:rgba(196,122,60,0.22);
+  --orange-lt:  rgba(196,122,60,0.11);
+
+  --blue:       #4E7CC9;
+  --blue-dk:    #3560AA;
+  --blue-glow:  rgba(78,124,201,0.20);
+  --blue-lt:    rgba(78,124,201,0.10);
+
+  --green:      #22c55e;
+
+  --text:    #f0ede8;
+  --muted:   #848090;
+  --dim:     #383550;
+
+  --shadow:    0 1px 3px rgba(0,0,0,.5), 0 4px 20px rgba(0,0,0,.4);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,.6);
+  --shadow-blue: 0 8px 40px var(--blue-glow);
+  --shadow-orange: 0 8px 40px var(--orange-glow);
+}
+.price-amount sub,
+.price-amount sup { color: var(--muted); }
+html[data-theme="dark"] .price-amount sup { color: var(--text); }
+.ucla-badge {
   background: rgba(168,122,0,.10);
   border-color: rgba(168,122,0,.25);
   color: #8a6500;
 }
-html[data-theme="light"] nav.scrolled {
+html[data-theme="dark"] .ucla-badge {
+  background: rgba(255,200,0,.07);
+  border-color: rgba(255,200,0,.18);
+  color: #ffd060;
+}
+nav.scrolled {
   background: rgba(245,241,232,0.92);
   box-shadow: 0 4px 30px rgba(50,38,18,.10);
 }
-html[data-theme="light"] .mobile-menu {
+html[data-theme="dark"] nav.scrolled {
+  background: rgba(6,6,18,0.92);
+  box-shadow: 0 4px 30px rgba(0,0,0,.4);
+}
+.mobile-menu {
   background: rgba(245,241,232,0.97);
+}
+html[data-theme="dark"] .mobile-menu {
+  background: rgba(6,6,18,0.97);
 }
 
 /* ---- RESET ---- */
@@ -288,11 +299,9 @@ nav {
   transition: all .3s ease;
 }
 nav.scrolled {
-  background: rgba(6,6,18,0.92);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 4px 30px rgba(0,0,0,.4);
 }
 .nav-logo {
   font-family: var(--serif);
@@ -362,10 +371,9 @@ nav.scrolled {
 .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 .mobile-menu {
-  display: none;
+  display: flex;
   position: fixed;
   top: 72px; left: 0; right: 0;
-  background: rgba(6,6,18,0.97);
   backdrop-filter: blur(24px);
   border-bottom: 1px solid var(--border);
   padding: 1.5rem clamp(1.25rem,5vw,4rem);
@@ -373,8 +381,16 @@ nav.scrolled {
   gap: .25rem;
   z-index: 999;
   box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
 }
-.mobile-menu.open { display: flex; }
+.mobile-menu.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
 .mobile-menu a {
   font-size: 1rem;
   font-weight: 500;
@@ -389,9 +405,9 @@ nav.scrolled {
   margin-top: .75rem;
   text-align: center;
   padding: .8rem;
-  background: var(--blue);
+  background: var(--copper);
   color: #fff;
-  border-radius: 50px;
+  border-radius: 6px;
   font-weight: 600;
   font-size: .9rem;
 }
@@ -699,12 +715,12 @@ nav.scrolled {
   background: var(--blue-lt);
 }
 .price-card.featured .price-btn {
-  background: var(--blue);
+  background: var(--copper);
   color: #fff;
   border: none;
 }
 .price-card.featured .price-btn:hover {
-  background: var(--blue-dk);
+  background: var(--copper-dk);
 }
 
 /* ---- TESTIMONIAL CARDS ---- */
@@ -1125,9 +1141,8 @@ footer {
   display: inline-flex;
   align-items: center;
   gap: .5rem;
-  background: rgba(255,200,0,.07);
-  border: 1px solid rgba(255,200,0,.18);
-  color: #ffd060;
+  border-style: solid;
+  border-width: 1px;
   font-size: .73rem;
   font-weight: 600;
   padding: .4rem .95rem;
@@ -1343,7 +1358,8 @@ footer {
     align-items: center;
   }
   .hero-content .btn-row .btn { width: 100%; justify-content: center; }
-  .hero-content .trust-pills { justify-content: center; }
+  .hero-content .trust-pills,
+  .hero-content .trust-row { justify-content: center; }
   .hero-content p { max-width: 100% !important; }
 
   /* Section padding — tighter on mobile */
@@ -1391,6 +1407,24 @@ footer {
   /* Form card */
   .form-card { padding: 1.5rem 1.25rem; }
 
+  /* Mix & Match discount card — collapse the 2-up grid and the 4-col list rows */
+  .price-card[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    gap: 1.5rem !important;
+  }
+  .price-list li[style*="grid-template-columns:auto 96px 52px 1fr"] {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: .35rem;
+    row-gap: .15rem;
+    text-align: left;
+  }
+  .price-list li[style*="grid-template-columns:auto 96px 52px 1fr"] .price-check {
+    align-self: center;
+  }
+
   /* Progress step labels — hide to save space */
   .ps-label { display: none; }
 
@@ -1403,6 +1437,26 @@ footer {
   }
 
   .price-card.featured { margin-top: 1rem; }
+
+  /* Standalone CTA buttons inside left-aligned content columns — center them
+     on mobile instead of leaving them flush left under full-width text */
+  .content-split > .reveal > a.btn,
+  .ai-feature-row > .reveal > a.btn {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  /* "No Pitch Decks / No Lock-In / No Risk" cards (book.html) — 3-up grid
+     is far too cramped on phone widths */
+  div[style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  /* Hero scroll cue is a desktop affordance — hero content is much taller
+     than the viewport on mobile, so it floats awkwardly mid-content */
+  .hero-scroll-cue { display: none !important; }
 }
 
 /* ============================================================
