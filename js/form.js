@@ -43,8 +43,8 @@ const EMAILJS_CONFIG = {
 };
 
 const CRM_CONFIG = {
-  webhookUrl: 'YOUR_APPS_SCRIPT_WEB_APP_URL',
-  secret:     'YOUR_CRM_SECRET',
+  webhookUrl: 'https://script.google.com/macros/s/AKfycbzB6sc6i7SbYYtMcS0KVhCPcnplk12QNRy64K_bSfOQ1h49Yplw5JkopJTGkDH8Z3Tk/exec',
+  secret:     'mynameisjepaandiloves0lan0343',
 };
 
 // ─── Init ────────────────────────────────────────────────────
@@ -95,7 +95,7 @@ function buildClientEmailHtml(data) {
               <td style="padding:10px 0;border-bottom:1px solid #EDE6D8;font-size:13px;color:#2A2419;font-weight:700;">${data.companyName || '—'}</td>
             </tr>
             <tr>
-              <td style="padding:10px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;vertical-align:top;">Trade</td>
+              <td style="padding:10px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;vertical-align:top;">Industry</td>
               <td style="padding:10px 0;border-bottom:1px solid #EDE6D8;font-size:13px;color:#2A2419;">${data.trade || '—'}</td>
             </tr>
             <tr>
@@ -162,7 +162,7 @@ function buildOwnerEmailHtml(data) {
         <!-- Summary -->
         <tr><td style="padding:36px 40px 24px;text-align:center;">
           <h1 style="margin:0 0 6px;font-size:22px;font-weight:800;color:#2A2419;font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">${data.firstName} ${data.lastName}</h1>
-          <p style="margin:0;font-size:15px;color:#A8622A;font-weight:700;">${data.companyName || 'No company'} &nbsp;·&nbsp; ${data.trade || 'Trade not specified'}</p>
+          <p style="margin:0;font-size:15px;color:#A8622A;font-weight:700;">${data.companyName || 'No company'} &nbsp;·&nbsp; ${data.trade || 'Industry not specified'}</p>
         </td></tr>
 
         <!-- Details -->
@@ -185,7 +185,7 @@ function buildOwnerEmailHtml(data) {
               <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:13px;color:#2A2419;">${data.role || '—'}</td>
             </tr>
             <tr>
-              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;vertical-align:top;">Trade</td>
+              <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:12px;color:#756C5B;vertical-align:top;">Industry</td>
               <td style="padding:9px 0;border-bottom:1px solid #EDE6D8;font-size:13px;color:#2A2419;">${data.trade || '—'}</td>
             </tr>
             <tr>

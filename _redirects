@@ -1,0 +1,4 @@
+# The old single Services page split into two pages in July 2026.
+# AI services is the flagship, so it inherits the old URL's traffic.
+/services /ai-services 301
+/services.html /ai-services 301
