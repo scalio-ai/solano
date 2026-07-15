@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin:0 0 .75rem">Request Received</p>
             <h3 style="color:var(--text);margin:0 0 1rem;font-size:1.4rem">You're on the list.</h3>
             <p style="max-width:360px;margin:0 auto 1.25rem;line-height:1.75">A confirmation email is on its way to <strong style="color:var(--text)">${clientEmail}</strong>. We'll follow up within 4 business hours to schedule your demo.</p>
-            <p style="font-size:.78rem;color:var(--dim)">Questions in the meantime? <a href="mailto:solano.ai.solutions@gmail.com" style="color:var(--blue);text-decoration:none">solano.ai.solutions@gmail.com</a></p>
+            <p style="font-size:.78rem;color:var(--dim)">Questions in the meantime? <a href="mailto:info@solano-ai.com" style="color:var(--blue);text-decoration:none">info@solano-ai.com</a></p>
           </div>`;
       } catch (err) {
         console.error('Submission error:', err);
@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
           submitBtn.textContent = 'Send Request →';
           submitBtn.disabled = false;
         }
-        alert('Something went wrong sending your request. Please email us directly at solano.ai.solutions@gmail.com and we\'ll get right back to you.');
+        alert('Something went wrong sending your request. Please email us directly at info@solano-ai.com and we\'ll get right back to you.');
       }
     });
 

@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18217136997"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18217136997');
+  </script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>See How It Works — Solano AI</title>
+  <meta name="description" content="Watch live demos of Solano AI's three services: AI Receptionist, Paid Ads Management, and Website Design — built for HVAC, plumbing, and electrical companies."/>
+  <link rel="canonical" href="https://solano-ai.com/how-it-works"/>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"/>
+  <link rel="stylesheet" href="css/styles.css?v=10"/>
+  <style>
+    /* ── PAGE HERO ── */
+    .hiw-hero {
+      padding: 7rem 1.5rem 4rem;
+      text-align: center;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+    .hiw-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, var(--blue-lt), transparent);
+      pointer-events: none;
+    }
+    .hiw-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--copper);
+      background: var(--copper-lt);
+      border: 1px solid rgba(196,122,60,.22);
+      padding: .35rem .9rem;
+      border-radius: 99px;
+      margin-bottom: 1.25rem;
+    }
+    .hiw-hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      max-width: 700px;
+      margin-inline: auto;
+    }
+    .hiw-hero h1 span { color: var(--copper); }
+    .hiw-hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-inline: auto;
+      line-height: 1.7;
+    }
+
+    /* ── SERVICE TABS ── */
+    .hiw-tabs-wrap {
+      display: flex;
+      justify-content: center;
+      gap: .5rem;
+      padding: 2.5rem 1.5rem 0;
+      flex-wrap: wrap;
+    }
+    .hiw-tab {
+      font-family: var(--sans);
+      font-size: .82rem;
+      font-weight: 600;
+      padding: .55rem 1.25rem;
+      border-radius: 99px;
+      border: 1.5px solid var(--border-md);
+      background: var(--bg);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .hiw-tab:hover { border-color: var(--copper); color: var(--copper); }
+    .hiw-tab.active {
+      background: var(--copper);
+      border-color: var(--copper);
+      color: #fff;
+    }
+
+    /* ── DEMO SECTION ── */
+    .hiw-section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 5rem;
+      display: none;
+    }
+    .hiw-section.visible { display: block; }
+    .hiw-demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .hiw-demo-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── VIDEO PLAYER ── */
+    .vid-player {
+      position: relative;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg), 0 0 0 1px var(--border);
+      background: #08101e;
+      aspect-ratio: 16/9;
+    }
+    .vid-scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      opacity: 0;
+      transition: opacity .6s ease;
+      pointer-events: none;
+    }
+    .vid-scene.active { opacity: 1; pointer-events: auto; }
+
+    /* progress bar */
+    .vid-progress {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: rgba(255,255,255,.12);
+      z-index: 10;
+    }
+    .vid-progress-fill {
+      height: 100%;
+      background: var(--copper);
+      transition: width .1s linear;
+      width: 0%;
+    }
+
+    /* controls */
+    .vid-controls {
+      position: absolute;
+      bottom: 10px;
+      right: 12px;
+      display: flex;
+      gap: .4rem;
+      z-index: 20;
+    }
+    .vid-btn {
+      background: rgba(255,255,255,.13);
+      border: none;
+      color: #fff;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: .7rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .vid-btn:hover { background: rgba(255,255,255,.25); }
+
+    /* scene counter */
+    .vid-dots {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+      z-index: 20;
+    }
+    .vid-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.25);
+      transition: all .3s;
+    }
+    .vid-dot.active { background: var(--copper); width: 14px; border-radius: 3px; }
+
+    /* ── COPY PANEL ── */
+    .hiw-copy { }
+    .hiw-copy .svc-label {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: .75rem;
+    }
+    .hiw-copy h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .hiw-copy p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      font-size: .97rem;
+    }
+    .hiw-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .65rem;
+    }
+    .hiw-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: .65rem;
+      font-size: .9rem;
+      color: var(--text);
+    }
+    .hiw-bullets li::before {
+      content: '';
+      width: 18px; height: 18px;
+      min-width: 18px;
+      border-radius: 50%;
+      background: var(--copper-lt);
+      border: 1.5px solid rgba(196,122,60,.3);
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4l2.5 2.5L9 1' stroke='%23C47A3C' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-top: 1px;
+    }
+
+    /* ── SCENE SPECIFIC STYLES ── */
+
+    /* shared */
+    .sc-eyebrow {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: .6rem;
+      opacity: .9;
+    }
+    .sc-headline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 800;
+      color: #fff;
+      text-align: center;
+      line-height: 1.25;
+      margin-bottom: .5rem;
+    }
+    .sc-sub {
+      font-size: .8rem;
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      line-height: 1.5;
+      max-width: 360px;
+    }
+
+    /* CRM call log rows */
+    .crm-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px;
+      padding: .85rem 1rem;
+      width: 100%;
+      max-width: 420px;
+    }
+    .crm-row {
+      display: flex;
+      align-items: flex-start;
+      gap: .7rem;
+      padding: .55rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .crm-row:last-child { border-bottom: none; }
+    .crm-avatar {
+      width: 30px; height: 30px;
+      min-width: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2F5AA0, #1a3a70);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .65rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .crm-info { flex: 1; min-width: 0; }
+    .crm-name { font-size: .78rem; font-weight: 700; color: #e2e8f0; margin-bottom: .15rem; }
+    .crm-summary { font-size: .68rem; color: rgba(255,255,255,.45); line-height: 1.4; }
+    .crm-badge {
+      font-size: .6rem;
+      font-weight: 700;
+      padding: .2rem .55rem;
+      border-radius: 99px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge-booked { background: rgba(22,163,74,.18); color: #4ade80; border: 1px solid rgba(74,222,128,.2); }
+    .badge-new { background: rgba(47,90,160,.25); color: #93c5fd; border: 1px solid rgba(147,197,253,.2); }
+
+    /* call transcript bubble */
+    .transcript-wrap { width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: .5rem; }
+    .bubble {
+      padding: .55rem .85rem;
+      border-radius: 12px;
+      font-size: .75rem;
+      line-height: 1.45;
+      max-width: 85%;
+    }
+    .bubble-ai {
+      background: rgba(47,90,160,.3);
+      border: 1px solid rgba(47,90,160,.4);
+      color: #bfdbfe;
+      align-self: flex-start;
+      border-bottom-left-radius: 3px;
+    }
+    .bubble-caller {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #e2e8f0;
+      align-self: flex-end;
+      border-bottom-right-radius: 3px;
+    }
+    .bubble-label {
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: .2rem;
+    }
+    .bubble-label-ai { color: rgba(147,197,253,.6); }
+    .bubble-label-caller { color: rgba(255,255,255,.3); text-align: right; }
+
+    /* kpi cards */
+    .kpi-grid-vid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .5rem;
+      width: 100%;
+      max-width: 420px;
+    }
+    .kpi-card-vid {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 8px;
+      padding: .8rem 1rem;
+    }
+    .kpi-label-vid { font-size: .6rem; color: rgba(255,255,255,.45); font-weight: 500; margin-bottom: .3rem; text-transform: uppercase; letter-spacing: .05em; }
+    .kpi-value-vid { font-size: 1.45rem; font-weight: 800; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1; }
+    .kpi-delta-vid { font-size: .62rem; margin-top: .3rem; font-weight: 600; }
+    .kpi-up { color: #4ade80; }
+    .kpi-down { color: #f87171; }
+
+    /* campaign row */
+    .camp-table { width: 100%; max-width: 430px; border-collapse: collapse; }
+    .camp-table thead th {
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      padding: .4rem .5rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .camp-table tbody td {
+      font-size: .7rem;
+      color: rgba(255,255,255,.75);
+      padding: .5rem .5rem;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+    .camp-table tbody tr:last-child td { border-bottom: none; }
+    .pill-g { background: rgba(30,64,175,.3); color: #93c5fd; font-size: .58rem; font-weight: 700; padding: .15rem .4rem; border-radius: 4px; }
+    .pill-m { background: rgba(51,65,85,.5); color: #94a3b8; font-size: .58rem; font-weight: 700; padding: .15rem .4rem; border-radius: 4px; }
+    .pill-on { background: rgba(22,163,74,.2); color: #4ade80; font-size: .58rem; font-weight: 700; padding: .15rem .4rem; border-radius: 4px; }
+    .cpl-v { font-weight: 700; color: #60a5fa; }
+
+    /* website mockup */
+    .site-mockup {
+      width: 100%;
+      max-width: 440px;
+      background: #0F172A;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .mockup-bar {
+      background: #1E293B;
+      padding: .4rem .75rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .mockup-dot { width: 7px; height: 7px; border-radius: 50%; }
+    .mockup-url {
+      flex: 1;
+      background: rgba(255,255,255,.07);
+      border-radius: 4px;
+      height: 14px;
+      font-size: .55rem;
+      color: rgba(255,255,255,.3);
+      display: flex;
+      align-items: center;
+      padding: 0 .5rem;
+    }
+    .mockup-hero {
+      background: linear-gradient(135deg, #0F172A 0%, #1a2942 100%);
+      padding: 1.2rem 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .mockup-hero::after {
+      content: '';
+      position: absolute;
+      right: -30px; top: -30px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(3,105,161,.25), transparent 70%);
+    }
+    .mockup-badge-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      background: rgba(3,105,161,.2);
+      border: 1px solid rgba(14,165,233,.25);
+      color: #38bdf8;
+      font-size: .55rem;
+      font-weight: 700;
+      padding: .2rem .5rem;
+      border-radius: 99px;
+      margin-bottom: .5rem;
+    }
+    .mockup-h1 { font-size: .85rem; font-weight: 800; color: #fff; line-height: 1.25; margin-bottom: .35rem; }
+    .mockup-h1 span { color: #0EA5E9; }
+    .mockup-p { font-size: .58rem; color: #94a3b8; line-height: 1.5; margin-bottom: .6rem; }
+    .mockup-btns { display: flex; gap: .4rem; margin-bottom: .6rem; }
+    .mockup-cta { background: #F97316; color: #fff; font-size: .58rem; font-weight: 700; padding: .3rem .65rem; border-radius: 6px; }
+    .mockup-cta-sec { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); color: #fff; font-size: .58rem; font-weight: 600; padding: .3rem .65rem; border-radius: 6px; }
+    .mockup-trust { display: flex; flex-wrap: wrap; gap: .3rem; }
+    .mockup-trust-pill { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: #cbd5e1; font-size: .52rem; padding: .2rem .45rem; border-radius: 99px; }
+    .mockup-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: #1E293B;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .mockup-stat { padding: .6rem .4rem; text-align: center; border-right: 1px solid rgba(255,255,255,.06); }
+    .mockup-stat:last-child { border-right: none; }
+    .mockup-stat-val { font-size: .75rem; font-weight: 800; color: #fff; }
+    .mockup-stat-label { font-size: .5rem; color: #64748b; margin-top: .15rem; }
+    .mockup-services {
+      padding: .75rem 1rem;
+      background: #F8FAFC;
+    }
+    .mockup-svc-title { font-size: .62rem; font-weight: 700; color: #0F172A; margin-bottom: .5rem; text-align: center; }
+    .mockup-svc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .35rem; }
+    .mockup-svc-card {
+      background: #fff;
+      border: 1px solid #E2E8F0;
+      border-radius: 5px;
+      padding: .45rem .4rem;
+    }
+    .mockup-svc-icon { width: 14px; height: 14px; background: rgba(3,105,161,.12); border-radius: 3px; margin-bottom: .25rem; display: flex; align-items: center; justify-content: center; }
+    .mockup-svc-name { font-size: .52rem; font-weight: 700; color: #0F172A; line-height: 1.3; }
+
+    /* phone ring animation */
+    .phone-ring-wrap { position: relative; margin-bottom: 1.5rem; }
+    .phone-icon {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--copper), var(--copper-dk));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid rgba(196,122,60,.35);
+      animation: ringPulse 2s ease-out infinite;
+    }
+    .ring-1 { width: 80px; height: 80px; top: -12px; left: -12px; animation-delay: 0s; }
+    .ring-2 { width: 106px; height: 106px; top: -25px; left: -25px; animation-delay: .4s; }
+    .ring-3 { width: 132px; height: 132px; top: -38px; left: -38px; animation-delay: .8s; }
+    @keyframes ringPulse {
+      0% { opacity: 0.8; transform: scale(.9); }
+      100% { opacity: 0; transform: scale(1.1); }
+    }
+
+    /* waveform */
+    .waveform {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 36px;
+      margin: .75rem 0;
+    }
+    .wave-bar {
+      width: 4px;
+      border-radius: 2px;
+      background: var(--copper);
+      animation: waveAnim 1.2s ease-in-out infinite;
+    }
+    @keyframes waveAnim {
+      0%, 100% { height: 6px; opacity: .4; }
+      50% { height: 28px; opacity: 1; }
+    }
+
+    /* brand outro */
+    .outro-logo { display: flex; align-items: center; gap: .6rem; font-family: var(--serif); font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: .5rem; }
+    .outro-tagline { font-size: .8rem; color: rgba(255,255,255,.5); text-align: center; margin-bottom: 1.25rem; }
+    .outro-cta {
+      display: inline-block;
+      background: var(--copper);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: .55rem 1.4rem;
+      border-radius: 99px;
+      text-decoration: none;
+    }
+
+    /* spend donut (CSS only) */
+    .donut-wrap { position: relative; width: 100px; height: 100px; }
+    .donut-svg { width: 100px; height: 100px; transform: rotate(-90deg); }
+    .donut-pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 800; color: #fff; }
+    .donut-legend-vid { display: flex; flex-direction: column; gap: .6rem; }
+    .donut-legend-row { display: flex; align-items: center; gap: .5rem; font-size: .72rem; color: rgba(255,255,255,.65); }
+    .donut-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .donut-amount { font-weight: 700; color: #fff; margin-left: auto; padding-left: 1rem; }
+
+    /* bar split */
+    .bar-split { width: 100%; max-width: 420px; }
+    .bar-split-row { display: flex; align-items: center; gap: .6rem; margin-bottom: .5rem; font-size: .72rem; color: rgba(255,255,255,.6); }
+    .bar-split-label { width: 52px; text-align: right; font-weight: 600; }
+    .bar-split-track { flex: 1; height: 22px; background: rgba(255,255,255,.06); border-radius: 4px; overflow: hidden; }
+    .bar-split-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: .5rem; font-size: .65rem; font-weight: 700; color: #fff; }
+
+    /* ── BOTTOM CTA ── */
+    .hiw-cta {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 5rem 1.5rem;
+    }
+    .hiw-cta h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: .75rem;
+    }
+    .hiw-cta p { color: var(--muted); margin-bottom: 2rem; font-size: 1rem; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .anim-in { animation: fadeSlideUp .5s ease forwards; }
+    .anim-in-d1 { animation-delay: .1s; opacity: 0; }
+    .anim-in-d2 { animation-delay: .25s; opacity: 0; }
+    .anim-in-d3 { animation-delay: .4s; opacity: 0; }
+    .anim-in-d4 { animation-delay: .55s; opacity: 0; }
+    .anim-in-d5 { animation-delay: .7s; opacity: 0; }
+
+    @keyframes countUp { from { opacity: 0; } to { opacity: 1; } }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo"><svg width="32" height="26" viewBox="0 0 32 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><line x1="16" y1="0.8" x2="16" y2="4.4" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="9.2" y1="2.8" x2="11.4" y2="6" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="23.8" y1="2.8" x2="21.6" y2="6" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="9" x2="7.6" y2="10" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="28" y1="9" x2="24.4" y2="10" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><path d="M5.5 16.5 A10.5 10.5 0 0 1 26.5 16.5" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round" fill="none"/><line x1="3" y1="19" x2="29" y2="19" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="6.5" y1="22" x2="25.5" y2="22" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="10.5" y1="25" x2="21.5" y2="25" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/></svg>SOLANO</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/services">Services</a>
+    <a href="/how-it-works" style="color:var(--copper)">How It Works</a>
+    <a href="/book">Work With Us</a>
+  </div>
+  <div class="nav-right">
+    <a href="/book" class="btn btn-primary nav-btn btn-refined">Book a Free Demo</a>
+  </div>
+  <div class="nav-hamburger" role="button" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu">
+  <a href="/">Home</a>
+  <a href="/services">Services</a>
+  <a href="/how-it-works">How It Works</a>
+  <a href="/book">Work With Us</a>
+  <a href="/book" class="mobile-cta">Book a Free Demo →</a>
+</div>
+
+<!-- HERO -->
+<section class="hiw-hero">
+  <div class="hiw-eyebrow">
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
+    Live Demos
+  </div>
+  <h1>See exactly what you're<br/><span>getting before you commit</span></h1>
+  <p>Every Solano AI service is built for real home service companies. Watch how each one works with a live mock client — Meridian Climate Systems.</p>
+</section>
+
+<!-- TABS -->
+<div class="hiw-tabs-wrap">
+  <button class="hiw-tab active" onclick="showSection('crm', this)">AI Receptionist</button>
+  <button class="hiw-tab" onclick="showSection('ads', this)">Paid Ads Management</button>
+  <button class="hiw-tab" onclick="showSection('web', this)">Website Design</button>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 1 — AI RECEPTIONIST
+══════════════════════════════════════════════════════════ -->
+<section class="hiw-section visible" id="sec-crm">
+  <div class="hiw-demo-grid">
+
+    <!-- VIDEO PLAYER -->
+    <div class="vid-player" id="player-crm">
+
+      <!-- Scene 1: Phone rings at midnight -->
+      <div class="vid-scene active" id="crm-s1">
+        <div style="text-align:center">
+          <div style="font-size:.7rem;color:rgba(255,255,255,.35);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.5rem">11:47 PM · After hours</div>
+          <div class="phone-ring-wrap" style="display:flex;justify-content:center">
+            <div style="position:relative;display:inline-flex">
+              <div class="ring ring-1"></div>
+              <div class="ring ring-2"></div>
+              <div class="ring ring-3"></div>
+              <div class="phone-icon">📞</div>
+            </div>
+          </div>
+          <div style="margin-top:2rem">
+            <div class="sc-headline">Incoming call.<br/>Your AC just went out.</div>
+            <div class="sc-sub" style="margin-top:.5rem">A lead is calling after hours.<br/>Most companies miss this call.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 2: AI answers -->
+      <div class="vid-scene" id="crm-s2">
+        <div style="width:100%;max-width:400px">
+          <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:1rem;background:rgba(47,90,160,.15);border:1px solid rgba(47,90,160,.3);border-radius:8px;padding:.6rem .8rem">
+            <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#2F5AA0,#1a3a70);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:#fff;flex-shrink:0">J</div>
+            <div>
+              <div style="font-size:.72rem;font-weight:700;color:#93c5fd">Jordan · AI Receptionist</div>
+              <div style="font-size:.62rem;color:rgba(255,255,255,.35)">Answering for Meridian Climate Systems</div>
+            </div>
+            <div class="waveform" style="margin:0;height:22px">
+              <div class="wave-bar" style="animation-delay:.0s"></div>
+              <div class="wave-bar" style="animation-delay:.15s"></div>
+              <div class="wave-bar" style="animation-delay:.3s"></div>
+              <div class="wave-bar" style="animation-delay:.45s"></div>
+              <div class="wave-bar" style="animation-delay:.6s"></div>
+              <div class="wave-bar" style="animation-delay:.75s"></div>
+            </div>
+          </div>
+          <div class="transcript-wrap">
+            <div style="margin-bottom:.2rem" class="bubble-label bubble-label-ai">Jordan</div>
+            <div class="bubble bubble-ai">"Thanks for calling Meridian Climate Systems, this is Jordan. How can I help you tonight?"</div>
+            <div style="margin-top:.4rem;margin-bottom:.2rem;text-align:right" class="bubble-label bubble-label-caller">Caller</div>
+            <div class="bubble bubble-caller" style="align-self:flex-end">"Hi — our AC stopped working, it's really hot in here. Do you guys do emergency repairs?"</div>
+            <div style="margin-top:.4rem;margin-bottom:.2rem" class="bubble-label bubble-label-ai">Jordan</div>
+            <div class="bubble bubble-ai">"Absolutely — we handle emergency HVAC repairs. Can I get your name and address to get a tech scheduled for you?"</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 3: Booking the appointment -->
+      <div class="vid-scene" id="crm-s3">
+        <div style="width:100%;max-width:400px">
+          <div style="font-size:.65rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem;text-align:center">Jordan collecting details →</div>
+          <div class="transcript-wrap">
+            <div class="bubble-label bubble-label-ai" style="margin-bottom:.2rem">Jordan</div>
+            <div class="bubble bubble-ai">"Got it, Maria. And the address?"</div>
+            <div class="bubble bubble-caller" style="align-self:flex-end;margin-top:.3rem">"1842 Olive Ave, Burbank."</div>
+            <div class="bubble bubble-ai" style="margin-top:.3rem">"Perfect. We have a slot tomorrow at 10 AM — does that work for you?"</div>
+            <div class="bubble bubble-caller" style="align-self:flex-end;margin-top:.3rem">"Yes, that's great!"</div>
+            <div class="bubble bubble-ai" style="margin-top:.3rem">"You're all set, Maria. A technician will be there June 11th at 10 AM. You'll get a confirmation text shortly. Anything else?"</div>
+          </div>
+          <div style="margin-top:.75rem;background:rgba(22,163,74,.1);border:1px solid rgba(74,222,128,.2);border-radius:7px;padding:.5rem .7rem;display:flex;align-items:center;gap:.4rem">
+            <span style="color:#4ade80;font-size:.85rem">✓</span>
+            <span style="font-size:.68rem;color:#86efac;font-weight:600">Appointment booked · June 11 · 10:00 AM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 4: CRM auto-logs -->
+      <div class="vid-scene" id="crm-s4">
+        <div style="width:100%;max-width:430px">
+          <div style="font-size:.65rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem;text-align:center">Logged automatically in your CRM →</div>
+          <div class="crm-card">
+            <div class="crm-row">
+              <div class="crm-avatar">MD</div>
+              <div class="crm-info">
+                <div class="crm-name">Maria Delgado <span style="font-weight:400;color:rgba(255,255,255,.3);font-size:.65rem">· (213) 554-8821</span></div>
+                <div class="crm-summary">HVAC Maintenance · Jun 11 at 10:00 AM · 1842 Olive Ave, Burbank</div>
+              </div>
+              <div class="crm-badge badge-booked">Booked</div>
+            </div>
+            <div class="crm-row">
+              <div class="crm-avatar">LP</div>
+              <div class="crm-info">
+                <div class="crm-name">Linda Park <span style="font-weight:400;color:rgba(255,255,255,.3);font-size:.65rem">· (626) 881-5593</span></div>
+                <div class="crm-summary">HVAC Installation · Jun 13 at 11:00 AM · Pasadena</div>
+              </div>
+              <div class="crm-badge badge-booked">Booked</div>
+            </div>
+            <div class="crm-row">
+              <div class="crm-avatar">CV</div>
+              <div class="crm-info">
+                <div class="crm-name">Carlos Vega <span style="font-weight:400;color:rgba(255,255,255,.3);font-size:.65rem">· (747) 330-2298</span></div>
+                <div class="crm-summary">HVAC Repair · Jun 15 at 3:00 PM · Glendale</div>
+              </div>
+              <div class="crm-badge badge-booked">Booked</div>
+            </div>
+          </div>
+          <div style="margin-top:.6rem;text-align:center;font-size:.62rem;color:rgba(255,255,255,.3)">18 total calls logged · 11 appointments booked</div>
+        </div>
+      </div>
+
+      <!-- Scene 5: Outro -->
+      <div class="vid-scene" id="crm-s5" style="background:linear-gradient(135deg,#08101e,#0d1a30)">
+        <div style="text-align:center">
+          <div class="outro-logo">
+            <svg width="26" height="21" viewBox="0 0 32 26" fill="none"><line x1="16" y1="0.8" x2="16" y2="4.4" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="9.2" y1="2.8" x2="11.4" y2="6" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="23.8" y1="2.8" x2="21.6" y2="6" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="9" x2="7.6" y2="10" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="28" y1="9" x2="24.4" y2="10" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><path d="M5.5 16.5 A10.5 10.5 0 0 1 26.5 16.5" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round" fill="none"/><line x1="3" y1="19" x2="29" y2="19" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="6.5" y1="22" x2="25.5" y2="22" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="10.5" y1="25" x2="21.5" y2="25" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/></svg>
+            SOLANO AI
+          </div>
+          <div class="sc-headline" style="font-size:1.15rem;margin-bottom:.4rem">Never miss another lead.</div>
+          <div class="outro-tagline">Even at midnight. Even on weekends.<br/>Your AI receptionist never sleeps.</div>
+          <a href="/book" class="outro-cta">Book a Free Demo →</a>
+        </div>
+      </div>
+
+      <div class="vid-progress"><div class="vid-progress-fill" id="crm-prog"></div></div>
+      <div class="vid-dots" id="crm-dots"></div>
+      <div class="vid-controls">
+        <button class="vid-btn" id="crm-playpause" onclick="togglePlay('crm')" title="Play/Pause">⏸</button>
+        <button class="vid-btn" onclick="restartPlayer('crm')" title="Restart">↺</button>
+      </div>
+    </div>
+
+    <!-- COPY -->
+    <div class="hiw-copy">
+      <div class="svc-label">Service 01 — AI Receptionist</div>
+      <h2>Your phone answered.<br/>Every call. Every time.</h2>
+      <p>Jordan — your AI receptionist — picks up instantly, in English or Spanish, collects the caller's info, and books the appointment. Every call is logged automatically in your CRM. No staff required.</p>
+      <ul class="hiw-bullets">
+        <li>Answers calls 24/7, including nights and weekends</li>
+        <li>Collects name, address, service needed, and books the slot</li>
+        <li>Logs every call automatically — no manual entry</li>
+        <li>Bilingual: English and Spanish</li>
+        <li>Real demo above built for Meridian Climate Systems</li>
+      </ul>
+      <a href="/book" class="btn btn-primary btn-refined">Get This for Your Business →</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 2 — PAID ADS
+══════════════════════════════════════════════════════════ -->
+<section class="hiw-section" id="sec-ads">
+  <div class="hiw-demo-grid">
+
+    <!-- VIDEO PLAYER -->
+    <div class="vid-player" id="player-ads">
+
+      <!-- Scene 1: Google search -->
+      <div class="vid-scene active" id="ads-s1">
+        <div style="width:100%;max-width:420px">
+          <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.7rem .9rem;margin-bottom:.75rem">
+            <div style="font-size:.58rem;color:rgba(255,255,255,.3);margin-bottom:.35rem">🔍 &nbsp;Google Search</div>
+            <div style="font-size:.82rem;color:#e2e8f0;font-weight:500">"AC repair near me"</div>
+          </div>
+          <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:.7rem .9rem">
+            <div style="font-size:.55rem;color:#4ade80;font-weight:700;margin-bottom:.2rem">▲ Sponsored</div>
+            <div style="font-size:.8rem;color:#60a5fa;font-weight:700;margin-bottom:.2rem">Meridian Climate Systems — AC Repair Same-Day</div>
+            <div style="font-size:.62rem;color:rgba(255,255,255,.4);">meridianclimatesystems.com · (818) 555-0192</div>
+            <div style="font-size:.65rem;color:rgba(255,255,255,.55);margin-top:.3rem">NATE-Certified · Upfront Pricing · 24/7 Emergency · Greater LA</div>
+          </div>
+          <div style="margin-top:.75rem;text-align:center;font-size:.65rem;color:rgba(255,255,255,.3)">Your ad. Top of search. Every time someone looks.</div>
+        </div>
+      </div>
+
+      <!-- Scene 2: KPIs -->
+      <div class="vid-scene" id="ads-s2">
+        <div style="width:100%;max-width:420px">
+          <div style="font-size:.62rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem;text-align:center">Meridian Climate Systems · Last 14 Days</div>
+          <div class="kpi-grid-vid">
+            <div class="kpi-card-vid">
+              <div class="kpi-label-vid">Cost Per Lead</div>
+              <div class="kpi-value-vid">$34</div>
+              <div class="kpi-delta-vid kpi-down">▼ 18% vs prior</div>
+            </div>
+            <div class="kpi-card-vid">
+              <div class="kpi-label-vid">Total Leads</div>
+              <div class="kpi-value-vid">61</div>
+              <div class="kpi-delta-vid kpi-up">▲ 24% vs prior</div>
+            </div>
+            <div class="kpi-card-vid">
+              <div class="kpi-label-vid">Ad Spend</div>
+              <div class="kpi-value-vid">$2,074</div>
+              <div class="kpi-delta-vid" style="color:rgba(255,255,255,.3)">— on budget</div>
+            </div>
+            <div class="kpi-card-vid">
+              <div class="kpi-label-vid">Calls Booked</div>
+              <div class="kpi-value-vid">38</div>
+              <div class="kpi-delta-vid kpi-up">▲ 12% vs prior</div>
+            </div>
+          </div>
+          <div style="margin-top:.6rem;text-align:center;font-size:.62rem;color:rgba(255,255,255,.3)">Powered by Solano AI · solano-ai.com</div>
+        </div>
+      </div>
+
+      <!-- Scene 3: Campaign table -->
+      <div class="vid-scene" id="ads-s3">
+        <div style="width:100%;max-width:440px">
+          <div style="font-size:.62rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem;text-align:center">Campaign Breakdown</div>
+          <table class="camp-table">
+            <thead>
+              <tr><th>Campaign</th><th>Platform</th><th>Leads</th><th>CPL</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:#e2e8f0;font-weight:600">AC Repair – Search</td>
+                <td><span class="pill-g">Google</span></td>
+                <td>19</td>
+                <td class="cpl-v">$42</td>
+              </tr>
+              <tr>
+                <td style="color:#e2e8f0;font-weight:600">Summer AC – Lead Gen</td>
+                <td><span class="pill-m">Meta</span></td>
+                <td>22</td>
+                <td class="cpl-v">$23</td>
+              </tr>
+              <tr>
+                <td style="color:#e2e8f0;font-weight:600">HVAC Install – Search</td>
+                <td><span class="pill-g">Google</span></td>
+                <td>10</td>
+                <td class="cpl-v">$47</td>
+              </tr>
+              <tr>
+                <td style="color:#e2e8f0;font-weight:600">Retargeting – Video</td>
+                <td><span class="pill-m">Meta</span></td>
+                <td>10</td>
+                <td class="cpl-v">$27</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Scene 4: Spend split -->
+      <div class="vid-scene" id="ads-s4">
+        <div style="width:100%;max-width:380px">
+          <div style="font-size:.62rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.9rem;text-align:center">Spend Split · Google vs Meta</div>
+          <div style="display:flex;align-items:center;gap:1.5rem;justify-content:center;margin-bottom:1rem">
+            <div class="donut-wrap">
+              <svg class="donut-svg" viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="14" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="4"/>
+                <circle cx="18" cy="18" r="14" fill="none" stroke="#0369A1" stroke-width="4" stroke-dasharray="54.9 87.96" stroke-dashoffset="0"/>
+                <circle cx="18" cy="18" r="14" fill="none" stroke="#334155" stroke-width="4" stroke-dasharray="33.06 87.96" stroke-dashoffset="-54.9"/>
+              </svg>
+              <div class="donut-pct">62%</div>
+            </div>
+            <div class="donut-legend-vid">
+              <div class="donut-legend-row"><div class="donut-dot" style="background:#0369A1"></div> Google Ads <span class="donut-amount">$1,286</span></div>
+              <div class="donut-legend-row"><div class="donut-dot" style="background:#334155"></div> Meta Ads <span class="donut-amount">$788</span></div>
+            </div>
+          </div>
+          <div class="bar-split">
+            <div class="bar-split-row">
+              <div class="bar-split-label">Google</div>
+              <div class="bar-split-track"><div class="bar-split-fill" style="width:62%;background:#0369A1">29 leads</div></div>
+            </div>
+            <div class="bar-split-row">
+              <div class="bar-split-label">Meta</div>
+              <div class="bar-split-track"><div class="bar-split-fill" style="width:48%;background:#334155">32 leads</div></div>
+            </div>
+          </div>
+          <div style="margin-top:.8rem;text-align:center;font-size:.62rem;color:rgba(255,255,255,.3)">You see exactly where every dollar goes</div>
+        </div>
+      </div>
+
+      <!-- Scene 5: Outro -->
+      <div class="vid-scene" id="ads-s5" style="background:linear-gradient(135deg,#08101e,#0d1a30)">
+        <div style="text-align:center">
+          <div class="outro-logo">
+            <svg width="26" height="21" viewBox="0 0 32 26" fill="none"><line x1="16" y1="0.8" x2="16" y2="4.4" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="9.2" y1="2.8" x2="11.4" y2="6" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="23.8" y1="2.8" x2="21.6" y2="6" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="9" x2="7.6" y2="10" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="28" y1="9" x2="24.4" y2="10" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><path d="M5.5 16.5 A10.5 10.5 0 0 1 26.5 16.5" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round" fill="none"/><line x1="3" y1="19" x2="29" y2="19" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="6.5" y1="22" x2="25.5" y2="22" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="10.5" y1="25" x2="21.5" y2="25" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/></svg>
+            SOLANO AI
+          </div>
+          <div class="sc-headline" style="font-size:1.15rem;margin-bottom:.4rem">Ads that actually convert.</div>
+          <div class="outro-tagline">No mystery. No fluff.<br/>Just booked jobs and full transparency.</div>
+          <a href="/book" class="outro-cta">Book a Free Demo →</a>
+        </div>
+      </div>
+
+      <div class="vid-progress"><div class="vid-progress-fill" id="ads-prog"></div></div>
+      <div class="vid-dots" id="ads-dots"></div>
+      <div class="vid-controls">
+        <button class="vid-btn" id="ads-playpause" onclick="togglePlay('ads')" title="Play/Pause">⏸</button>
+        <button class="vid-btn" onclick="restartPlayer('ads')" title="Restart">↺</button>
+      </div>
+    </div>
+
+    <!-- COPY -->
+    <div class="hiw-copy">
+      <div class="svc-label">Service 02 — Paid Ads</div>
+      <h2>Google & Meta ads<br/>built to book jobs.</h2>
+      <p>We run your Google and Meta campaigns with one goal: booked service calls, not just clicks. You get a real-time client portal showing exactly what your money is doing.</p>
+      <ul class="hiw-bullets">
+        <li>Google Search and Meta campaigns managed for you</li>
+        <li>Real-time client portal — see every lead and dollar</li>
+        <li>Optimized weekly based on what's actually converting</li>
+        <li>Transparent reporting, no agency fluff</li>
+        <li>Demo above is real data from Meridian Climate Systems</li>
+      </ul>
+      <a href="/book" class="btn btn-primary btn-refined">Get This for Your Business →</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 3 — WEBSITE DESIGN
+══════════════════════════════════════════════════════════ -->
+<section class="hiw-section" id="sec-web">
+  <div class="hiw-demo-grid">
+
+    <!-- VIDEO PLAYER -->
+    <div class="vid-player" id="player-web">
+
+      <!-- Scene 1: Opening -->
+      <div class="vid-scene active" id="web-s1">
+        <div style="text-align:center">
+          <div style="font-size:.65rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1rem">Website Design Demo</div>
+          <div class="sc-headline" style="margin-bottom:.5rem">Your first impression<br/>should be perfect.</div>
+          <div class="sc-sub">This is a real website we built<br/>for a mock HVAC company.</div>
+        </div>
+      </div>
+
+      <!-- Scene 2: Hero section -->
+      <div class="vid-scene" id="web-s2" style="padding:.75rem;align-items:stretch;justify-content:flex-start">
+        <div class="site-mockup">
+          <div class="mockup-bar">
+            <div class="mockup-dot" style="background:#EF4444"></div>
+            <div class="mockup-dot" style="background:#F59E0B"></div>
+            <div class="mockup-dot" style="background:#22C55E"></div>
+            <div class="mockup-url">meridianclimatesystems.com</div>
+          </div>
+          <div class="mockup-hero">
+            <div class="mockup-badge-sm">⭐ Rated #1 HVAC in Greater Los Angeles</div>
+            <div class="mockup-h1">Expert HVAC Service<br/><span>You Can Count On</span></div>
+            <div class="mockup-p">NATE-certified technicians, upfront pricing, and 24/7 emergency service — since 2006.</div>
+            <div class="mockup-btns">
+              <div class="mockup-cta">Get a Free Quote →</div>
+              <div class="mockup-cta-sec">📞 (818) 555-0192</div>
+            </div>
+            <div class="mockup-trust">
+              <div class="mockup-trust-pill">🛡 Licensed & Insured</div>
+              <div class="mockup-trust-pill">✓ NATE Certified</div>
+              <div class="mockup-trust-pill">⏰ 24/7 Emergency</div>
+              <div class="mockup-trust-pill">1-Year Guarantee</div>
+            </div>
+          </div>
+          <div class="mockup-stats">
+            <div class="mockup-stat"><div class="mockup-stat-val">18+</div><div class="mockup-stat-label">Years</div></div>
+            <div class="mockup-stat"><div class="mockup-stat-val">1,400+</div><div class="mockup-stat-label">5-Star Reviews</div></div>
+            <div class="mockup-stat"><div class="mockup-stat-val">24/7</div><div class="mockup-stat-label">Emergency</div></div>
+            <div class="mockup-stat"><div class="mockup-stat-val">15K+</div><div class="mockup-stat-label">Homes Served</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 3: Services section -->
+      <div class="vid-scene" id="web-s3" style="padding:.75rem;align-items:stretch;justify-content:flex-start">
+        <div class="site-mockup" style="background:#F8FAFC">
+          <div class="mockup-bar" style="background:#0F172A">
+            <div class="mockup-dot" style="background:#EF4444"></div>
+            <div class="mockup-dot" style="background:#F59E0B"></div>
+            <div class="mockup-dot" style="background:#22C55E"></div>
+            <div class="mockup-url" style="background:rgba(255,255,255,.07);color:rgba(255,255,255,.3)">meridianclimatesystems.com/services</div>
+          </div>
+          <div class="mockup-services">
+            <div class="mockup-svc-title" style="font-size:.7rem;font-weight:800;color:#0F172A;margin-bottom:.6rem">OUR SERVICES</div>
+            <div class="mockup-svc-grid">
+              <div class="mockup-svc-card">
+                <div class="mockup-svc-icon"><svg width="8" height="8" viewBox="0 0 8 8" fill="#0369A1"><rect width="8" height="8" rx="1"/></svg></div>
+                <div class="mockup-svc-name">AC Repair &<br/>Installation</div>
+              </div>
+              <div class="mockup-svc-card">
+                <div class="mockup-svc-icon"><svg width="8" height="8" viewBox="0 0 8 8" fill="#0369A1"><rect width="8" height="8" rx="1"/></svg></div>
+                <div class="mockup-svc-name">Heating<br/>Systems</div>
+              </div>
+              <div class="mockup-svc-card">
+                <div class="mockup-svc-icon"><svg width="8" height="8" viewBox="0 0 8 8" fill="#0369A1"><rect width="8" height="8" rx="1"/></svg></div>
+                <div class="mockup-svc-name">Preventive<br/>Maintenance</div>
+              </div>
+              <div class="mockup-svc-card">
+                <div class="mockup-svc-icon"><svg width="8" height="8" viewBox="0 0 8 8" fill="#0369A1"><rect width="8" height="8" rx="1"/></svg></div>
+                <div class="mockup-svc-name">Indoor Air<br/>Quality</div>
+              </div>
+              <div class="mockup-svc-card">
+                <div class="mockup-svc-icon"><svg width="8" height="8" viewBox="0 0 8 8" fill="#0369A1"><rect width="8" height="8" rx="1"/></svg></div>
+                <div class="mockup-svc-name">Duct<br/>Services</div>
+              </div>
+              <div class="mockup-svc-card">
+                <div class="mockup-svc-icon"><svg width="8" height="8" viewBox="0 0 8 8" fill="#0369A1"><rect width="8" height="8" rx="1"/></svg></div>
+                <div class="mockup-svc-name">Commercial<br/>HVAC</div>
+              </div>
+            </div>
+          </div>
+          <div style="padding:.6rem 1rem;background:#fff;border-top:1px solid #E2E8F0">
+            <div style="font-size:.6rem;color:#64748B;margin-bottom:.4rem;font-weight:600">WHAT CUSTOMERS ARE SAYING</div>
+            <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:6px;padding:.5rem .65rem;font-size:.6rem;color:#334155;line-height:1.45">
+              ⭐⭐⭐⭐⭐ &nbsp;"Called at 9pm when our AC died during a heat wave. Technician arrived in 2 hours. Truly outstanding." — <strong>David K., Glendale</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 4: Multilingual -->
+      <div class="vid-scene" id="web-s4">
+        <div style="width:100%;max-width:400px;text-align:center">
+          <div class="sc-eyebrow">Trilingual by default</div>
+          <div class="sc-headline" style="margin-bottom:.75rem">Reaches every homeowner<br/>in Greater Los Angeles</div>
+          <div style="display:flex;flex-direction:column;gap:.5rem;max-width:280px;margin:0 auto">
+            <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:.65rem .9rem;display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:.8rem;color:#fff;font-weight:600">🇺🇸 &nbsp;English</span>
+              <span style="font-size:.68rem;color:rgba(255,255,255,.4)">Expert HVAC Service</span>
+            </div>
+            <div style="background:rgba(47,90,160,.15);border:1px solid rgba(47,90,160,.35);border-radius:8px;padding:.65rem .9rem;display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:.8rem;color:#93c5fd;font-weight:600">🇲🇽 &nbsp;Español</span>
+              <span style="font-size:.68rem;color:rgba(255,255,255,.4)">Servicio HVAC Experto</span>
+            </div>
+            <div style="background:rgba(196,122,60,.1);border:1px solid rgba(196,122,60,.25);border-radius:8px;padding:.65rem .9rem;display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:.8rem;color:#fdba74;font-weight:600">🇦🇲 &nbsp;Armenian</span>
+              <span style="font-size:.68rem;color:rgba(255,255,255,.4)">Կ.Բ.Կ. Ծառայություն</span>
+            </div>
+          </div>
+          <div style="margin-top:.8rem;font-size:.65rem;color:rgba(255,255,255,.3)">One site. Three languages. Every customer covered.</div>
+        </div>
+      </div>
+
+      <!-- Scene 5: Outro -->
+      <div class="vid-scene" id="web-s5" style="background:linear-gradient(135deg,#08101e,#0d1a30)">
+        <div style="text-align:center">
+          <div class="outro-logo">
+            <svg width="26" height="21" viewBox="0 0 32 26" fill="none"><line x1="16" y1="0.8" x2="16" y2="4.4" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="9.2" y1="2.8" x2="11.4" y2="6" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="23.8" y1="2.8" x2="21.6" y2="6" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="9" x2="7.6" y2="10" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="28" y1="9" x2="24.4" y2="10" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><path d="M5.5 16.5 A10.5 10.5 0 0 1 26.5 16.5" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round" fill="none"/><line x1="3" y1="19" x2="29" y2="19" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="6.5" y1="22" x2="25.5" y2="22" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="10.5" y1="25" x2="21.5" y2="25" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/></svg>
+            SOLANO AI
+          </div>
+          <div class="sc-headline" style="font-size:1.15rem;margin-bottom:.4rem">Built to convert. Built to last.</div>
+          <div class="outro-tagline">Fast, trilingual, mobile-first.<br/>Your first impression — perfected.</div>
+          <a href="/book" class="outro-cta">Book a Free Demo →</a>
+        </div>
+      </div>
+
+      <div class="vid-progress"><div class="vid-progress-fill" id="web-prog"></div></div>
+      <div class="vid-dots" id="web-dots"></div>
+      <div class="vid-controls">
+        <button class="vid-btn" id="web-playpause" onclick="togglePlay('web')" title="Play/Pause">⏸</button>
+        <button class="vid-btn" onclick="restartPlayer('web')" title="Restart">↺</button>
+      </div>
+    </div>
+
+    <!-- COPY -->
+    <div class="hiw-copy">
+      <div class="svc-label">Service 03 — Website Design</div>
+      <h2>Websites that make<br/>your phone ring.</h2>
+      <p>We build conversion-first websites for HVAC companies, plumbers, and electricians — fast, mobile-first, trilingual, and designed to turn visitors into booked jobs.</p>
+      <ul class="hiw-bullets">
+        <li>Built specifically for home service companies</li>
+        <li>Trilingual: English, Spanish, and Armenian</li>
+        <li>Mobile-first, lightning fast, SEO-optimized</li>
+        <li>Every page designed around one goal: get the call</li>
+        <li>Demo above is the real Meridian Climate Systems site</li>
+      </ul>
+      <a href="/book" class="btn btn-primary btn-refined">Get This for Your Business →</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- BOTTOM CTA -->
+<section class="hiw-cta">
+  <div style="max-width:600px;margin:0 auto">
+    <h2>Ready to see what this looks like<br/>for <em>your</em> company?</h2>
+    <p>Book a free 30-minute demo. We'll walk you through everything live, answer every question, and show you exactly what we'd build for you.</p>
+    <a href="/book" class="btn btn-primary btn-refined" style="font-size:1rem;padding:.85rem 2rem">Book a Free Demo →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo" style="font-size:1.25rem;margin-bottom:.65rem"><svg width="32" height="26" viewBox="0 0 32 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><line x1="16" y1="0.8" x2="16" y2="4.4" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="9.2" y1="2.8" x2="11.4" y2="6" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="23.8" y1="2.8" x2="21.6" y2="6" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="4" y1="9" x2="7.6" y2="10" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="28" y1="9" x2="24.4" y2="10" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><path d="M5.5 16.5 A10.5 10.5 0 0 1 26.5 16.5" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round" fill="none"/><line x1="3" y1="19" x2="29" y2="19" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="6.5" y1="22" x2="25.5" y2="22" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/><line x1="10.5" y1="25" x2="21.5" y2="25" stroke="#C47A3C" stroke-width="1.8" stroke-linecap="round"/></svg>SOLANO</div>
+        <p>AI-powered growth for HVAC companies, plumbers, and electricians. We build the system that keeps your phones answered and your calendar full.</p>
+        <div class="ucla-badge" style="font-size:.68rem;padding:.3rem .8rem">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          UCLA Alumni Owned
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="/services">AI Voice & Automation Agent</a>
+        <a href="/services">Website Design</a>
+        <a href="/services">Google Ads</a>
+        <a href="/services">Meta Ads</a>
+      </div>
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <a href="index.html#industries">HVAC Companies</a>
+        <a href="index.html#industries">Plumbers</a>
+        <a href="index.html#industries">Electricians</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/how-it-works">How It Works</a>
+        <a href="/book">Work With Us</a>
+        <a href="/book">Book a Demo</a>
+        <a href="mailto:info@solano-ai.com">Contact Us</a>
+        <a href="/privacy">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <p>&copy; <span id="footer-year">2026</span> Solano AI, LLC. Los Angeles, CA. &nbsp;·&nbsp; <a href="/privacy" style="color:inherit;opacity:.6">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js?v=7"></script>
+<script>
+// ── TAB SWITCHING ──
+function showSection(id, btn) {
+  document.querySelectorAll('.hiw-section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.hiw-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('visible');
+  btn.classList.add('active');
+  // restart the player for the newly shown section
+  restartPlayer(id === 'crm' ? 'crm' : id === 'ads' ? 'ads' : 'web');
+}
+
+// ── PLAYER ENGINE ──
+const PLAYERS = {
+  crm: { scenes: 5, duration: 5500, timer: null, current: 0, playing: true, elapsed: 0, lastTick: null },
+  ads: { scenes: 5, duration: 5500, timer: null, current: 0, playing: true, elapsed: 0, lastTick: null },
+  web: { scenes: 5, duration: 5500, timer: null, current: 0, playing: true, elapsed: 0, lastTick: null },
+};
+
+function buildDots(id) {
+  const p = PLAYERS[id];
+  const wrap = document.getElementById(id + '-dots');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  for (let i = 0; i < p.scenes; i++) {
+    const d = document.createElement('div');
+    d.className = 'vid-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goToScene(id, i);
+    d.style.cursor = 'pointer';
+    wrap.appendChild(d);
+  }
+}
+
+function goToScene(id, idx) {
+  const p = PLAYERS[id];
+  // hide current
+  const cur = document.getElementById(id + '-s' + (p.current + 1));
+  if (cur) cur.classList.remove('active');
+  p.current = idx;
+  p.elapsed = 0;
+  // show new
+  const next = document.getElementById(id + '-s' + (p.current + 1));
+  if (next) next.classList.add('active');
+  // update dots
+  document.querySelectorAll('#' + id + '-dots .vid-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === p.current);
+  });
+  updateProgress(id, 0);
+}
+
+function updateProgress(id, pct) {
+  const bar = document.getElementById(id + '-prog');
+  if (bar) bar.style.width = pct + '%';
+}
+
+function tick(id) {
+  const p = PLAYERS[id];
+  if (!p.playing) return;
+  const now = performance.now();
+  if (p.lastTick !== null) {
+    p.elapsed += now - p.lastTick;
+  }
+  p.lastTick = now;
+  const pct = Math.min(100, (p.elapsed / p.duration) * 100);
+  // overall progress across all scenes
+  const totalPct = ((p.current + pct / 100) / p.scenes) * 100;
+  updateProgress(id, totalPct);
+
+  if (p.elapsed >= p.duration) {
+    const next = (p.current + 1) % p.scenes;
+    goToScene(id, next);
+    if (next === 0) {
+      // looped — pause briefly or just keep going
+    }
+  }
+  p.timer = requestAnimationFrame(() => tick(id));
+}
+
+function startPlayer(id) {
+  const p = PLAYERS[id];
+  p.playing = true;
+  p.lastTick = null;
+  const btn = document.getElementById(id + '-playpause');
+  if (btn) btn.textContent = '⏸';
+  p.timer = requestAnimationFrame(() => tick(id));
+}
+
+function pausePlayer(id) {
+  const p = PLAYERS[id];
+  p.playing = false;
+  p.lastTick = null;
+  if (p.timer) cancelAnimationFrame(p.timer);
+  const btn = document.getElementById(id + '-playpause');
+  if (btn) btn.textContent = '▶';
+}
+
+function togglePlay(id) {
+  const p = PLAYERS[id];
+  if (p.playing) pausePlayer(id);
+  else startPlayer(id);
+}
+
+function restartPlayer(id) {
+  const p = PLAYERS[id];
+  pausePlayer(id);
+  goToScene(id, 0);
+  p.elapsed = 0;
+  startPlayer(id);
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  // init dots for all players
+  ['crm', 'ads', 'web'].forEach(id => {
+    buildDots(id);
+  });
+  // only start the visible one
+  startPlayer('crm');
+
+  // footer year
+  const fy = document.getElementById('footer-year');
+  if (fy) fy.textContent = new Date().getFullYear();
+
+  // Intersection Observer — pause when off-screen
+  ['crm', 'ads', 'web'].forEach(id => {
+    const el = document.getElementById('player-' + id);
+    if (!el) return;
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) pausePlayer(id);
+        else if (PLAYERS[id].current < PLAYERS[id].scenes - 1) startPlayer(id);
+      });
+    }, { threshold: 0.3 });
+    obs.observe(el);
+  });
+});
+</script>
+</body>
+</html>

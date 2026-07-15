@@ -15,7 +15,7 @@
         Body:      {{{message_html}}}
 
       Template B — owner notification
-        To Email:  solano.ai.solutions@gmail.com  (hardcode in dashboard)
+        To Email:  info@solano-ai.com  (hardcode in dashboard)
         Subject:   New Demo Request — {{company_name}}
         Body type: HTML
         Body:      {{{message_html}}}
@@ -125,7 +125,7 @@ function buildClientEmailHtml(data) {
         <!-- Footer -->
         <tr><td style="background:#F5F1E8;padding:22px 40px;text-align:center;border-top:1px solid #EDE6D8;">
           <p style="margin:0 0 4px;font-size:12px;color:#756C5B;">Questions? Just reply to this email.</p>
-          <p style="margin:0;font-size:11px;color:#B3A890;">© ${new Date().getFullYear()} Solano AI &nbsp;·&nbsp; solano.ai.solutions@gmail.com</p>
+          <p style="margin:0;font-size:11px;color:#B3A890;">© ${new Date().getFullYear()} Solano AI &nbsp;·&nbsp; info@solano-ai.com</p>
         </td></tr>
 
       </table>
@@ -226,7 +226,7 @@ function buildOwnerEmailHtml(data) {
 
         <!-- Footer -->
         <tr><td style="background:#F5F1E8;padding:20px 40px;text-align:center;border-top:1px solid #EDE6D8;">
-          <p style="margin:0;font-size:11px;color:#B3A890;">Solano AI &nbsp;·&nbsp; solano.ai.solutions@gmail.com</p>
+          <p style="margin:0;font-size:11px;color:#B3A890;">Solano AI &nbsp;·&nbsp; info@solano-ai.com</p>
         </td></tr>
 
       </table>
@@ -299,7 +299,7 @@ window.sendSolanoEmails = function(formData) {
   const ownerEmail = emailjs.send(
     EMAILJS_CONFIG.serviceId,
     EMAILJS_CONFIG.ownerTemplateId,
-    { ...baseParams, to_email: 'solano.ai.solutions@gmail.com', message_html: buildOwnerEmailHtml(data) }
+    { ...baseParams, to_email: 'info@solano-ai.com', message_html: buildOwnerEmailHtml(data) }
   );
 
   return Promise.all([clientEmail, ownerEmail]);
