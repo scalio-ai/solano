@@ -283,6 +283,7 @@ window.sendSolanoEmails = function(formData) {
   const baseParams = {
     to_name:           `${data.firstName} ${data.lastName}`,
     to_email:          data.email,
+    reply_to:          data.email,
     company_name:      data.companyName,
     trade:             data.trade,
     service_area:      data.serviceArea,
