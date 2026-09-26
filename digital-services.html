@@ -75,6 +75,18 @@
   ]
 }
 </script>
+<!-- Structured data: BreadcrumbList — gives the result a "solano-ai.com › Digital Services"
+     path instead of a bare URL -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://solano-ai.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Digital Services", "item": "https://solano-ai.com/digital-services"}
+  ]
+}
+</script>
 </head>
 <body>
 
