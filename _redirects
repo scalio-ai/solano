@@ -2,3 +2,12 @@
 # AI services is the flagship, so it inherits the old URL's traffic.
 /services /ai-services 301
 /services.html /ai-services 301
+
+# Digital Services page is DORMANT as of Nov 2026. The file
+# (digital-services.html) is kept in the repo so it can be restored.
+# 302 (temporary) on purpose: browsers cache a 301 forever, which would
+# make bringing the page back harder. To restore: delete these two lines,
+# remove the noindex tag from the page, and re-add the nav/footer links
+# and the sitemap entry.
+/digital-services      /ai-services 302
+/digital-services.html /ai-services 302
